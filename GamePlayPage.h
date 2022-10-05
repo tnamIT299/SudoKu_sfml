@@ -20,6 +20,7 @@ public:
 	bool computerPlay; // if true "AI" is playing
 	void Display() override;
 	void HandleEvents(sf::Event*) override;
+	const sf::Color CaramelColor = sf::Color(235, 114, 84);
 
 private:
 	void setUp();
@@ -46,9 +47,13 @@ private:
 	sf::RectangleShape _submitButton;
 	sf::RectangleShape _undoButton;
 	sf::RectangleShape _checkButton;
+	sf::RectangleShape _BackButton;
+	sf::RectangleShape _StartButton;
 	sf::Text _submitText;
 	sf::Text _undoText;
 	sf::Text _checkText;
+	sf::Text _BackText;
+	sf::Text _StartText;
 	const sf::Color LineColor = sf::Color(235, 114, 84);
 	bool _checkErr{ false };
 	bool _resetErrColor{ false };

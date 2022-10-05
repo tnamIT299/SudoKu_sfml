@@ -24,6 +24,44 @@ void LevelPage::setUp() {
 	this->_bgSprite.setTexture(this->_bgTexture);
 	this->_bgSprite.setScale(ScaleX, ScaleY);
 
+	this->_level.setFillColor(sf::Color(209, 201, 178));
+	this->_level.setSize(sf::Vector2f(500.f, 450.f));
+	this->_level.setPosition(sf::Vector2f(this->_window->getSize().x / 2.7f - this->_level.getLocalBounds().width / 2.f,
+		this->_window->getSize().y / 2.f - this->_level.getLocalBounds().height / 2.f));
+
+	auto boardOriginX = this->_level.getPosition().x;
+	auto boardOriginY = this->_level.getPosition().y;
+
+	auto buttonX = boardOriginX + 43;
+	auto ButtonY = boardOriginY - 55;
+
+	this->_BackButton.setFillColor(LineColor);
+	this->_BackButton.setSize(sf::Vector2f(133.f, 40.f));
+	this->_BackButton.setPosition(sf::Vector2f(buttonX, ButtonY));
+
+	this->_BackText.setFont(this->_HeaderFont);
+	this->_BackText.setCharacterSize(18);
+	this->_BackText.setFillColor(sf::Color::Black);
+
+	float sizex;
+	float sizey;
+
+	if (this->level == true)
+	{
+		this->_BackText.setString("BACK");
+		sizex = this->_BackText.getLocalBounds().width / 1.2f;
+		sizey = this->_BackText.getLocalBounds().height / 1.6f;
+		this->_BackText.setPosition(sf::Vector2f(buttonX + sizex, ButtonY + sizey));
+	}
+
+	else
+	{
+		//this->_BackText.setString("Back");
+		//sizex = this->_BackText.getLocalBounds().width / 2.6f;
+	    //sizey = this->_BackText.getLocalBounds().height / 2.8f;
+		//this->_BackText.setPosition(sf::Vector2f(buttonX + sizex, ButtonY + sizey));
+	}
+
 	this->_mainTitle.setFont(this->_HeaderFont);
 	this->_mainTitle.setString("LEVEL");
 	this->_mainTitle.setCharacterSize(45);
@@ -75,6 +113,9 @@ void LevelPage::setUp() {
 	Framey = Posy + this->_HardButton.getLocalBounds().height / 1.5f - (this->_HardButton.getLocalBounds().height / 2.f);
 	this->_HardText.setPosition(Framex, Framey);
 
+	
+
+
 
 }
 
@@ -89,6 +130,8 @@ void LevelPage::Display() {
 	this->_window->draw(this->_MediumText);
 	this->_window->draw(this->_HardButton);
 	this->_window->draw(this->_HardText);
+	this->_window->draw(this->_BackButton);
+	this->_window->draw(this->_BackText);
 	
 	this->_window->display();
 }
@@ -112,6 +155,12 @@ void LevelPage::OnFocusEvent() {
 	else if (this->IsMouseOverButton(this->_HardButton)) {
 
 		//this->_window->close();
+	}
+
+	else if (this->IsMouseOverButton(this->_BackButton)) {
+
+		this->ChangePage = true;
+		this->NavTOPage = GamePages::StartPage;
 	}
 }
 
@@ -145,6 +194,16 @@ void LevelPage::MouseMoveTigger() {
 	else {
 		this->_HardButton.setFillColor(CaramelColor);
 		this->_HardText.setFillColor(sf::Color::Black);
+	}
+
+	if (this->IsMouseOverButton(this->_BackButton)) {
+
+		this->_BackButton.setFillColor(sf::Color::White);
+		this->_BackText.setFillColor(CaramelColor);
+	}                                                                       //back btn
+	else {
+		this->_BackButton.setFillColor(CaramelColor);
+		this->_BackText.setFillColor(sf::Color::Black);
 	}
 
 }

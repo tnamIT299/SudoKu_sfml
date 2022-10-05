@@ -1,4 +1,5 @@
 #include "GamePlayPage.h"
+#include "LevelPage.h"
 
 void GamePlayPage::setUp() {
 
@@ -71,15 +72,52 @@ void GamePlayPage::setUp() {
 	float sizex;
 	float sizey;
 
+
+
 	if (this->computerPlay == true)
 	{
-		this->_submitText.setString("Start");
-		sizex = this->_submitText.getLocalBounds().width / 1.2f;
-		sizey = this->_submitText.getLocalBounds().height / 2.f;
-		this->_submitText.setPosition(sf::Vector2f(buttonX + sizex, ButtonY + sizey));
+		//this->_submitText.setString("START");
+	//	sizex = this->_submitText.getLocalBounds().width / 1.1f;
+		//sizey = this->_submitText.getLocalBounds().height / 1.7f;
+		//this->_submitText.setPosition(sf::Vector2f(buttonX + sizex , ButtonY + sizey));
+	 // buttonX += 140.f;
+
+		this->_StartButton.setFillColor(LineColor);
+		this->_StartButton.setSize(sf::Vector2f(133.f, 40.f));
+		this->_StartButton.setPosition(sf::Vector2f(buttonX, ButtonY));
+
+		this->_StartText.setFont(this->_HeaderFont);
+		this->_StartText.setCharacterSize(18);
+		this->_StartText.setFillColor(sf::Color::Black);
+		this->_StartText.setString("START");
+
+
+		sizex = this->_StartText.getLocalBounds().width / 1.2f;
+		sizey = this->_StartText.getLocalBounds().height / 2.3f;
+
+		this->_StartText.setPosition(sf::Vector2f(buttonX + sizex, ButtonY + sizey));
+
+
+		buttonX += 140.f * 2;
+
+		this->_BackButton.setFillColor(LineColor);
+		this->_BackButton.setSize(sf::Vector2f(133.f, 40.f));
+		this->_BackButton.setPosition(sf::Vector2f(buttonX , ButtonY ));
+
+		this->_BackText.setFont(this->_HeaderFont);
+		this->_BackText.setCharacterSize(18);
+		this->_BackText.setFillColor(sf::Color::Black);
+		this->_BackText.setString("BACK");
+
+
+		sizex = this->_BackText.getLocalBounds().width / 1.2f;
+		sizey = this->_BackText.getLocalBounds().height / 2.3f;
+
+		this->_BackText.setPosition(sf::Vector2f(buttonX + sizex, ButtonY + sizey));
+		
 	}
 
-	else
+	/*else
 	{
 		this->_submitText.setString("Submit");
 		sizex = this->_submitText.getLocalBounds().width / 2.f;
@@ -87,6 +125,21 @@ void GamePlayPage::setUp() {
 		this->_submitText.setPosition(sf::Vector2f(buttonX + sizex, ButtonY + sizey));
 
 	}
+	*/
+	buttonX += 140.f / 20;
+
+	this->_submitButton.setFillColor(LineColor);
+	this->_submitButton.setSize(sf::Vector2f(133.f, 40.f));
+	this->_submitButton.setPosition(sf::Vector2f(buttonX, ButtonY));
+
+	this->_submitText.setFont(this->_HeaderFont);
+	this->_submitText.setCharacterSize(18);
+	this->_submitText.setFillColor(sf::Color::Black);
+	this->_submitText.setString("Submit");
+	sizex = this->_submitText.getLocalBounds().width / 2.f;
+	sizey = this->_submitText.getLocalBounds().height / 2.f;
+
+	this->_submitText.setPosition(sf::Vector2f(buttonX + sizex, ButtonY + sizey));
 
 	buttonX += 140.f;
 
@@ -235,11 +288,24 @@ void GamePlayPage::Display() {
 
 	this->_window->draw(this->_submitButton);
 	this->_window->draw(this->_submitText);
-
+	this->_window->draw(this->_BackButton);
+	this->_window->draw(this->_BackText);
+	this->_window->draw(this->_StartButton);
+	this->_window->draw(this->_StartText);
 	this->_window->display();
 }
 
 void GamePlayPage::MouseMoveTigger() {
+
+	if (this->IsMouseOverButton(this->_BackButton)) {
+
+		this->_BackButton.setFillColor(sf::Color::White);
+		this->_BackText.setFillColor(CaramelColor);
+	}                                                                       //back btn
+	else {
+		this->_BackButton.setFillColor(CaramelColor);
+		this->_BackText.setFillColor(sf::Color::Black);
+	}
 
 	for (int i = 0; i < SudokuMapGen::MaxSize; ++i) {
 
@@ -280,6 +346,11 @@ void GamePlayPage::HoverCheck(sf::RectangleShape* button, sf::Text* buttonText) 
 }
 
 void GamePlayPage::OnFocusEvent() {
+	if (this->IsMouseOverButton(this->_BackButton)) {
+
+		this->ChangePage = true;
+		this->NavTOPage = GamePages::StartPage;
+	}
 
 	for (int i = 0; i < SudokuMapGen::MaxSize; ++i) {
 
@@ -387,7 +458,6 @@ void GamePlayPage::OnFocusEvent() {
 void GamePlayPage::HandleEvents(sf::Event* event) {
 
 	if (this->computerPlay == false) {
-
 		if (event->type == sf::Event::MouseButtonPressed)
 			this->OnFocusEvent();
 
@@ -397,12 +467,20 @@ void GamePlayPage::HandleEvents(sf::Event* event) {
 
 	else
 	{
+
+		if (this->computerPlay == true){
+			if (event->type == sf::Event::MouseButtonPressed)
+				this->OnFocusEvent();
+
+			if (event->type == sf::Event::MouseMoved)
+				this->MouseMoveTigger();
+		}
 		if (event->type == sf::Event::MouseMoved)
-			HoverCheck(&this->_submitButton, &this->_submitText);
+			HoverCheck(&this->_StartButton, &this->_StartText);
 
 		if (event->type == sf::Event::MouseButtonPressed) {
 
-			if (this->IsMouseOverButton(this->_submitButton))
+			if (this->IsMouseOverButton(this->_StartButton))
 				this->_initAi = true;
 		}
 	}
