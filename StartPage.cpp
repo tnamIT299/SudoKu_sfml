@@ -115,6 +115,13 @@ void StartPage::OnFocusEvent() {
 
 	}
 
+	if (this->IsMouseOverButton(this->_LevelButton)) {
+
+		this->ChangePage = true;
+		this->NavTOPage = GamePages::LevelPage;
+
+	}
+
 	else if (this->IsMouseOverButton(this->_computerPlayButton)) {
 
 		this->ChangePage = true;

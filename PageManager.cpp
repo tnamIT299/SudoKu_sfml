@@ -17,7 +17,7 @@ void PagesManager::Display() {
 			this->_currentPage = new GamePlayPage(this->_window, false);
 
 		else if (this->_currentPage->NavTOPage == GamePages::LevelPage)
-			this->_currentPage = new GamePlayPage(this->_window, false);
+			this->_currentPage = new LevelPage(this->_window , true);
 
 		else if (this->_currentPage->NavTOPage == GamePages::GamePlayPage_C)
 			this->_currentPage = new GamePlayPage(this->_window, true);

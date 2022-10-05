@@ -135,6 +135,7 @@
   <ItemGroup>
     <ClCompile Include="BasePageClass.cpp" />
     <ClCompile Include="GamePlayPage.cpp" />
+    <ClCompile Include="LevelPage.cpp" />
     <ClCompile Include="PageManager.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="StartPage.cpp" />
@@ -143,6 +144,7 @@
   <ItemGroup>
     <ClInclude Include="BasePageClass.h" />
     <ClInclude Include="GamePlayPage.h" />
+    <ClInclude Include="LevelPage.h" />
     <ClInclude Include="PageManager.h" />
     <ClInclude Include="StartPage.h" />
     <ClInclude Include="SudokuMapGen.h" />
