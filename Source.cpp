@@ -3,7 +3,7 @@
 
 int main()
 {
-	sf::RenderWindow window(sf::VideoMode(600, 600), "Sudoku", sf::Style::Titlebar | sf::Style::Close);
+	sf::RenderWindow window(sf::VideoMode(800, 800), "Sudoku", sf::Style::Titlebar | sf::Style::Close);
 	PagesManager pageManager(&window);
 	/*SudokuMapGen gen;
 	gen.printGrid(gen.gameMap);

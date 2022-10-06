@@ -80,11 +80,11 @@ void GamePlayPage::setUp() {
 	//	sizex = this->_submitText.getLocalBounds().width / 1.1f;
 		//sizey = this->_submitText.getLocalBounds().height / 1.7f;
 		//this->_submitText.setPosition(sf::Vector2f(buttonX + sizex , ButtonY + sizey));
-	 // buttonX += 140.f;
+	  //buttonX += 20.f * 2;
 
 		this->_StartButton.setFillColor(LineColor);
 		this->_StartButton.setSize(sf::Vector2f(133.f, 40.f));
-		this->_StartButton.setPosition(sf::Vector2f(buttonX, ButtonY));
+		this->_StartButton.setPosition(sf::Vector2f(buttonX -30, ButtonY));
 
 		this->_StartText.setFont(this->_HeaderFont);
 		this->_StartText.setCharacterSize(18);
@@ -92,17 +92,17 @@ void GamePlayPage::setUp() {
 		this->_StartText.setString("START");
 
 
-		sizex = this->_StartText.getLocalBounds().width / 1.2f;
+		sizex = this->_StartText.getLocalBounds().width / 0.9f;
 		sizey = this->_StartText.getLocalBounds().height / 2.3f;
 
-		this->_StartText.setPosition(sf::Vector2f(buttonX + sizex, ButtonY + sizey));
+		this->_StartText.setPosition(sf::Vector2f(buttonX + sizex - 50, ButtonY + sizey));
 
 
-		buttonX += 140.f * 2;
+		buttonX += 120.f  * 3;
 
 		this->_BackButton.setFillColor(LineColor);
 		this->_BackButton.setSize(sf::Vector2f(133.f, 40.f));
-		this->_BackButton.setPosition(sf::Vector2f(buttonX , ButtonY ));
+		this->_BackButton.setPosition(sf::Vector2f(buttonX - 50 , ButtonY ));
 
 		this->_BackText.setFont(this->_HeaderFont);
 		this->_BackText.setCharacterSize(18);
@@ -110,10 +110,10 @@ void GamePlayPage::setUp() {
 		this->_BackText.setString("BACK");
 
 
-		sizex = this->_BackText.getLocalBounds().width / 1.2f;
+		sizex = this->_BackText.getLocalBounds().width / 1.7f;
 		sizey = this->_BackText.getLocalBounds().height / 2.3f;
 
-		this->_BackText.setPosition(sf::Vector2f(buttonX + sizex, ButtonY + sizey));
+		this->_BackText.setPosition(sf::Vector2f(buttonX + sizex -40, ButtonY + sizey));
 		
 	}
 
@@ -126,42 +126,58 @@ void GamePlayPage::setUp() {
 
 	}
 	*/
-	buttonX += 140.f / 20;
 
-	this->_submitButton.setFillColor(LineColor);
-	this->_submitButton.setSize(sf::Vector2f(133.f, 40.f));
-	this->_submitButton.setPosition(sf::Vector2f(buttonX, ButtonY));
+	buttonX +=0.f;
 
-	this->_submitText.setFont(this->_HeaderFont);
-	this->_submitText.setCharacterSize(18);
-	this->_submitText.setFillColor(sf::Color::Black);
-	this->_submitText.setString("Submit");
-	sizex = this->_submitText.getLocalBounds().width / 2.f;
-	sizey = this->_submitText.getLocalBounds().height / 2.f;
+	this->_TimeButton.setFillColor(LineColor);
+	this->_TimeButton.setSize(sf::Vector2f(133.f, 40.f));
+	this->_TimeButton.setPosition(sf::Vector2f(buttonX -160.f, ButtonY - 100.f));
 
-	this->_submitText.setPosition(sf::Vector2f(buttonX + sizex, ButtonY + sizey));
+	this->_TimeText.setFont(this->_HeaderFont);
+	this->_TimeText.setCharacterSize(18);
+	this->_TimeText.setFillColor(sf::Color::Black);
+	this->_TimeText.setString("time");
+	sizex = this->_TimeText.getLocalBounds().width / 12.f;
+	sizey = this->_TimeText.getLocalBounds().height / 2.f;
+
+	this->_TimeText.setPosition(sf::Vector2f(buttonX + sizex -120, ButtonY + sizey -100));
 
 	buttonX += 140.f;
 
 	this->_checkButton.setFillColor(LineColor);
 	this->_checkButton.setSize(sf::Vector2f(133.f, 40.f));
-	this->_checkButton.setPosition(sf::Vector2f(buttonX, ButtonY));
+	this->_checkButton.setPosition(sf::Vector2f(buttonX -160, ButtonY));
 
 	this->_checkText.setFont(this->_HeaderFont);
 	this->_checkText.setCharacterSize(18);
 	this->_checkText.setFillColor(sf::Color::Black);
-	this->_checkText.setString("Check-Board");
-
-
-	sizex = this->_checkText.getLocalBounds().width / 12.f;
+	this->_checkText.setString("Error : ");
+	sizex = this->_checkText.getLocalBounds().width / 2.f;
 	sizey = this->_checkText.getLocalBounds().height / 2.f;
 
-	this->_checkText.setPosition(sf::Vector2f(buttonX + sizex, ButtonY + sizey));
+	this->_checkText.setPosition(sf::Vector2f(buttonX + sizex -150 , ButtonY + sizey));
+
+	buttonX += 140.f;
+
+	this->_submitButton.setFillColor(LineColor);
+	this->_submitButton.setSize(sf::Vector2f(133.f, 40.f));
+	this->_submitButton.setPosition(sf::Vector2f(buttonX -120 , ButtonY));
+
+	this->_submitText.setFont(this->_HeaderFont);
+	this->_submitText.setCharacterSize(18);
+	this->_submitText.setFillColor(sf::Color::Black);
+	this->_submitText.setString("Submit");
+
+
+	sizex = this->_submitText.getLocalBounds().width / 12.f;
+	sizey = this->_submitText.getLocalBounds().height / 2.f;
+
+	this->_submitText.setPosition(sf::Vector2f(buttonX + sizex - 120, ButtonY + sizey));
 	buttonX += 140.f;
 
 	this->_undoButton.setFillColor(LineColor);
 	this->_undoButton.setSize(sf::Vector2f(133.f, 40.f));
-	this->_undoButton.setPosition(sf::Vector2f(buttonX, ButtonY));
+	this->_undoButton.setPosition(sf::Vector2f(buttonX -90 , ButtonY));
 
 	this->_undoText.setFont(this->_HeaderFont);
 	this->_undoText.setCharacterSize(18);
@@ -172,7 +188,24 @@ void GamePlayPage::setUp() {
 	sizex = this->_undoText.getLocalBounds().width / 1.2f;
 	sizey = this->_undoText.getLocalBounds().height / 2.f;
 
-	this->_undoText.setPosition(sf::Vector2f(buttonX + sizex, ButtonY + sizey));
+	this->_undoText.setPosition(sf::Vector2f(buttonX + sizex -90 , ButtonY + sizey));
+
+	buttonX += 120.f;
+
+	this->_BackButton.setFillColor(LineColor);
+	this->_BackButton.setSize(sf::Vector2f(133.f, 40.f));
+	this->_BackButton.setPosition(sf::Vector2f(buttonX -100.f , ButtonY - 100.f));
+
+	this->_BackText.setFont(this->_HeaderFont);
+	this->_BackText.setCharacterSize(18);
+	this->_BackText.setFillColor(sf::Color::Black);
+	this->_BackText.setString("BACK");
+
+
+	sizex = this->_BackText.getLocalBounds().width / 1.7f;
+	sizey = this->_BackText.getLocalBounds().height / 2.3f;
+
+	this->_BackText.setPosition(sf::Vector2f(buttonX + sizex - 85 , ButtonY + sizey - 100 ));
 
 #pragma region SetInitGrid
 
@@ -279,15 +312,15 @@ void GamePlayPage::Display() {
 	this->_window->draw(this->_hLine2);
 
 	if (this->computerPlay == false) {
-
+		this->_window->draw(this->_submitButton);
+		this->_window->draw(this->_submitText);
 		this->_window->draw(this->_checkButton);
 		this->_window->draw(this->_undoButton);
 		this->_window->draw(this->_checkText);
 		this->_window->draw(this->_undoText);
 	}
-
-	this->_window->draw(this->_submitButton);
-	this->_window->draw(this->_submitText);
+	this->_window->draw(this->_TimeButton);
+	this->_window->draw(this->_TimeText);
 	this->_window->draw(this->_BackButton);
 	this->_window->draw(this->_BackText);
 	this->_window->draw(this->_StartButton);

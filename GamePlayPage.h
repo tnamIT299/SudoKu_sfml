@@ -2,6 +2,7 @@
 
 #include "BasePageClass.h"
 #include "SudokuMapGen.h"
+#include "time.h"
 
 class GamePlayPage : public BasePageClass
 {
@@ -44,11 +45,13 @@ private:
 	int _selectedNumber{ 1 }; //default
 	int _selectedIndex{ 0 }; //default
 	std::vector<Field> _selections;
+	sf::RectangleShape _TimeButton;
 	sf::RectangleShape _submitButton;
 	sf::RectangleShape _undoButton;
 	sf::RectangleShape _checkButton;
 	sf::RectangleShape _BackButton;
 	sf::RectangleShape _StartButton;
+	sf::Text _TimeText;
 	sf::Text _submitText;
 	sf::Text _undoText;
 	sf::Text _checkText;

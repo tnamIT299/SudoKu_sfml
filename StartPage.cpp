@@ -70,8 +70,8 @@ void StartPage::setUp() {
 	this->_computerPlayText.setFillColor(sf::Color::Black);
 	this->_computerPlayText.setFont(this->_HeaderFont);
 	this->_computerPlayText.setCharacterSize(18);
-	this->_computerPlayText.setString("Computer Play");
-	Framex = Posx + this->_computerPlayButton.getLocalBounds().width / 1.6f - (this->_computerPlayButton.getLocalBounds().width / 2.f);
+	this->_computerPlayText.setString("Computer Solve");
+	Framex = Posx + this->_computerPlayButton.getLocalBounds().width / 1.7f - (this->_computerPlayButton.getLocalBounds().width / 2.f);
 	Framey = Posy + this->_computerPlayButton.getLocalBounds().height / 1.5f - (this->_computerPlayButton.getLocalBounds().height / 2.f);
 	this->_computerPlayText.setPosition(Framex, Framey);
 
