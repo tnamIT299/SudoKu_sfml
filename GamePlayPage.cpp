@@ -84,7 +84,7 @@ void GamePlayPage::setUp() {
 
 		this->_StartButton.setFillColor(LineColor);
 		this->_StartButton.setSize(sf::Vector2f(133.f, 40.f));
-		this->_StartButton.setPosition(sf::Vector2f(buttonX -30, ButtonY));
+		this->_StartButton.setPosition(sf::Vector2f(buttonX -80, ButtonY -97));
 
 		this->_StartText.setFont(this->_HeaderFont);
 		this->_StartText.setCharacterSize(18);
@@ -95,10 +95,10 @@ void GamePlayPage::setUp() {
 		sizex = this->_StartText.getLocalBounds().width / 0.9f;
 		sizey = this->_StartText.getLocalBounds().height / 2.3f;
 
-		this->_StartText.setPosition(sf::Vector2f(buttonX + sizex - 50, ButtonY + sizey));
+		this->_StartText.setPosition(sf::Vector2f(buttonX + sizex - 90, ButtonY + sizey -95));
 
 
-		buttonX += 120.f  * 3;
+		buttonX += 10.f ;
 
 		this->_BackButton.setFillColor(LineColor);
 		this->_BackButton.setSize(sf::Vector2f(133.f, 40.f));
@@ -113,7 +113,7 @@ void GamePlayPage::setUp() {
 		sizex = this->_BackText.getLocalBounds().width / 1.7f;
 		sizey = this->_BackText.getLocalBounds().height / 2.3f;
 
-		this->_BackText.setPosition(sf::Vector2f(buttonX + sizex -40, ButtonY + sizey));
+		this->_BackText.setPosition(sf::Vector2f(buttonX + sizex , ButtonY + sizey));
 		
 	}
 
@@ -318,13 +318,18 @@ void GamePlayPage::Display() {
 		this->_window->draw(this->_undoButton);
 		this->_window->draw(this->_checkText);
 		this->_window->draw(this->_undoText);
+		this->_window->draw(this->_TimeButton);
+		this->_window->draw(this->_TimeText);
+		this->_window->draw(this->_BackButton);
+		this->_window->draw(this->_BackText);
 	}
-	this->_window->draw(this->_TimeButton);
-	this->_window->draw(this->_TimeText);
 	this->_window->draw(this->_BackButton);
 	this->_window->draw(this->_BackText);
+	
 	this->_window->draw(this->_StartButton);
 	this->_window->draw(this->_StartText);
+
+
 	this->_window->display();
 }
 
@@ -362,6 +367,7 @@ void GamePlayPage::MouseMoveTigger() {
 	HoverCheck(&this->_submitButton, &this->_submitText);
 	HoverCheck(&this->_checkButton, &this->_checkText);
 	HoverCheck(&this->_undoButton, &this->_undoText);
+	HoverCheck(&this->_BackButton, &this->_BackText);
 }
 
 void GamePlayPage::HoverCheck(sf::RectangleShape* button, sf::Text* buttonText) {
