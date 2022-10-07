@@ -2,13 +2,16 @@
 
 #include "BasePageClass.h"
 #include "SudokuMapGen.h"
-#include "time.h"
+#include "sstream"
+#include "string"
 
+using namespace std;
 class GamePlayPage : public BasePageClass
 {
 
 public:
 
+	GamePlayPage(){};
 	GamePlayPage(sf::RenderWindow* window, bool compPlay) : BasePageClass(window)
 	{
 		this->_pageID = "MainPage";
@@ -19,10 +22,10 @@ public:
 	}
 
 	bool computerPlay; // if true "AI" is playing
+	void TimePlay();
 	void Display() override;
 	void HandleEvents(sf::Event*) override;
 	const sf::Color CaramelColor = sf::Color(235, 114, 84);
-
 private:
 	void setUp();
 	void MouseMoveTigger();
@@ -62,6 +65,16 @@ private:
 	bool _resetErrColor{ false };
 	bool _aiDone{ false };
 	bool _initAi{ false };
+
+	// TIME
+	stringstream ss;
+	stringstream data;
+	stringstream c;
+
+	int second = 0;
+	int milisecond = 0;
+	int minute = 0;
+	int hours = 0;
 };
 
 

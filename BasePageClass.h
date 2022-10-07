@@ -17,7 +17,7 @@ class BasePageClass
 {
 
 public:
-
+	BasePageClass() {};
 	BasePageClass(sf::RenderWindow* window) {
 		this->_window = window;
 	}

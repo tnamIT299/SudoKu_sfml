@@ -1,5 +1,9 @@
 #include "GamePlayPage.h"
 #include "LevelPage.h"
+#include "sstream"
+#include "windows.h"
+
+
 
 void GamePlayPage::setUp() {
 
@@ -28,7 +32,7 @@ void GamePlayPage::setUp() {
 	this->_gameBoard.setFillColor(sf::Color(209, 201, 178));
 	this->_gameBoard.setSize(sf::Vector2f(500.f, 450.f));
 	this->_gameBoard.setPosition(sf::Vector2f(this->_window->getSize().x / 2.f - this->_gameBoard.getLocalBounds().width / 2.f,
-		this->_window->getSize().y / 2.f - this->_gameBoard.getLocalBounds().height / 2.f));
+	this->_window->getSize().y / 2.f - this->_gameBoard.getLocalBounds().height / 2.f));
 
 #pragma region Vertical BoardLine
 
@@ -72,8 +76,6 @@ void GamePlayPage::setUp() {
 	float sizex;
 	float sizey;
 
-
-
 	if (this->computerPlay == true)
 	{
 		//this->_submitText.setString("START");
@@ -90,8 +92,6 @@ void GamePlayPage::setUp() {
 		this->_StartText.setCharacterSize(18);
 		this->_StartText.setFillColor(sf::Color::Black);
 		this->_StartText.setString("START");
-
-
 		sizex = this->_StartText.getLocalBounds().width / 0.9f;
 		sizey = this->_StartText.getLocalBounds().height / 2.3f;
 
@@ -127,20 +127,7 @@ void GamePlayPage::setUp() {
 	}
 	*/
 
-	buttonX +=0.f;
-
-	this->_TimeButton.setFillColor(LineColor);
-	this->_TimeButton.setSize(sf::Vector2f(133.f, 40.f));
-	this->_TimeButton.setPosition(sf::Vector2f(buttonX -160.f, ButtonY - 100.f));
-
-	this->_TimeText.setFont(this->_HeaderFont);
-	this->_TimeText.setCharacterSize(18);
-	this->_TimeText.setFillColor(sf::Color::Black);
-	this->_TimeText.setString("time");
-	sizex = this->_TimeText.getLocalBounds().width / 12.f;
-	sizey = this->_TimeText.getLocalBounds().height / 2.f;
-
-	this->_TimeText.setPosition(sf::Vector2f(buttonX + sizex -120, ButtonY + sizey -100));
+	
 
 	buttonX += 140.f;
 
@@ -172,7 +159,7 @@ void GamePlayPage::setUp() {
 	sizex = this->_submitText.getLocalBounds().width / 12.f;
 	sizey = this->_submitText.getLocalBounds().height / 2.f;
 
-	this->_submitText.setPosition(sf::Vector2f(buttonX + sizex - 120, ButtonY + sizey));
+	this->_submitText.setPosition(sf::Vector2f(buttonX + sizex - 90, ButtonY + sizey));
 	buttonX += 140.f;
 
 	this->_undoButton.setFillColor(LineColor);
@@ -289,6 +276,7 @@ void GamePlayPage::Display() {
 	this->_window->draw(this->_bgSprite);
 	this->_window->draw(this->_gameBoard);
 
+
 	for (int i = 0; i < SudokuMapGen::MaxSize; ++i) {
 
 		if (this->computerPlay == false) {
@@ -312,6 +300,7 @@ void GamePlayPage::Display() {
 	this->_window->draw(this->_hLine2);
 
 	if (this->computerPlay == false) {
+		//Sleep(10);
 		this->_window->draw(this->_submitButton);
 		this->_window->draw(this->_submitText);
 		this->_window->draw(this->_checkButton);
@@ -322,6 +311,7 @@ void GamePlayPage::Display() {
 		this->_window->draw(this->_TimeText);
 		this->_window->draw(this->_BackButton);
 		this->_window->draw(this->_BackText);
+		this->TimePlay();
 	}
 	this->_window->draw(this->_BackButton);
 	this->_window->draw(this->_BackText);
@@ -571,4 +561,79 @@ bool GamePlayPage::AISolve(int grid[SudokuMapGen::MaxSize][SudokuMapGen::MaxSize
 		}
 	}
 	return false;
+}
+void GamePlayPage::TimePlay() {
+	//TIME
+	sf::Font font;
+	if (!font.loadFromFile("Fonts/07558_CenturyGothic.ttf"))
+	{
+		std::cout << "Error Loading Fonts" << std::endl;
+		std::cout << "Shutting Down!" << std::endl;
+		this->_window->close();
+	}
+	float  sizex = this->_TimeText.getLocalBounds().width / 12.f;
+	float sizey = this->_TimeText.getLocalBounds().height / 2.f;
+	this->_TimeButton.setFillColor(LineColor);
+	this->_TimeButton.setSize(sf::Vector2f(133.f, 40.f));
+	this->_TimeButton.setPosition(sf::Vector2f(700-660.f, 700 -680.f));
+
+	this->_TimeText.setFont(this->_HeaderFont);
+	this->_TimeText.setCharacterSize(20);
+	this->_TimeText.setFillColor(sf::Color::Black);
+	this->_TimeText.setString(ss.str());
+	this->_TimeText.setPosition(sf::Vector2f(100 + sizex - 50, 100 + sizey - 80));
+		Sleep(1);
+		milisecond++;
+		if (milisecond == 60) {
+			second++;
+			milisecond = 0;
+		}
+		if (second == 60) {
+			minute++;
+			second = 0;
+			milisecond = 0;
+		}
+		if (minute == 60) {
+			hours++;
+			second = 0;
+			milisecond = 0;
+			minute = 0;
+		}
+		ss.str("");
+
+		if (hours < 10)
+		{
+			ss << "0" << hours << ":";
+		}
+		else
+		{
+			ss << hours;
+		}
+		if (minute < 10)
+		{
+			ss << "0" << minute << ":";
+		}
+		else
+		{
+			ss << minute << ":";
+		}
+
+		if (second < 10)
+		{
+			ss << "0" << second << ":";
+		}
+		else
+		{
+			ss << second << ":";
+		}
+
+		if (milisecond < 10)
+		{
+			ss << "0" << milisecond;
+		}
+		else
+		{
+			ss << milisecond;
+		}
+		
 }
