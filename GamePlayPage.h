@@ -4,13 +4,13 @@
 #include "SudokuMapGen.h"
 #include "sstream"
 #include "string"
+#include "SFML/Audio.hpp"
 
 using namespace std;
 class GamePlayPage : public BasePageClass
 {
 
 public:
-
 	GamePlayPage(){};
 	GamePlayPage(sf::RenderWindow* window, bool compPlay) : BasePageClass(window)
 	{
@@ -22,6 +22,7 @@ public:
 	}
 
 	bool computerPlay; // if true "AI" is playing
+	//hàm cài time
 	void TimePlay();
 	void Display() override;
 	void HandleEvents(sf::Event*) override;
@@ -60,6 +61,12 @@ private:
 	sf::Text _checkText;
 	sf::Text _BackText;
 	sf::Text _StartText;
+	
+	//Music
+	sf::SoundBuffer buffer;
+	sf::Sound sound;
+	sf::Music music;
+
 	const sf::Color LineColor = sf::Color(235, 114, 84);
 	bool _checkErr{ false };
 	bool _resetErrColor{ false };

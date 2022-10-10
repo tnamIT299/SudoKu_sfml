@@ -1,6 +1,8 @@
 #pragma once
 
 #include"BasePageClass.h"
+#include"SFML/Audio.hpp"
+#include"SFML/Graphics.hpp"
 
 class StartPage : public BasePageClass
 {
@@ -29,8 +31,18 @@ private:
 	sf::RectangleShape _LevelButton;
 	sf::RectangleShape _computerPlayButton;
 	sf::RectangleShape _exitButton;
+	sf::RectangleShape _music_Stop_Button;
+	sf::RectangleShape _music_Pause_Button;
+	sf::RectangleShape _music_Play_Button;
+	sf::RectangleShape _music_Volume_Button;
 	sf::Text _playGameText;
 	sf::Text _levelText;
 	sf::Text _computerPlayText;
 	sf::Text _exitButtonText;
+	sf::Text _music_StopText;
+	sf::Text _music_PauseText;
+	sf::Text _music_PlayText;
+	sf::Text _music_VolumeText;
+	sf::SoundBuffer buffer;
+	sf::Sound sound;
 };

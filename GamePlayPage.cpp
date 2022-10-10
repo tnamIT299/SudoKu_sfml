@@ -2,6 +2,7 @@
 #include "LevelPage.h"
 #include "sstream"
 #include "windows.h"
+#include "SFML/Audio.hpp"
 
 
 
@@ -19,6 +20,13 @@ void GamePlayPage::setUp() {
 		std::cout << "Shutting Down!" << std::endl;
 		this->_window->close();
 	}
+
+	if (!this->buffer.loadFromFile("music/mixkit-arcade-game-jump-coin-216.wav"))
+	{
+		std::cout << "ERROR: Loading Sound Effect" << std::endl;
+		this->_window->close();
+	}
+	sound.setBuffer(buffer);
 
 	auto textureSize = this->_bgTexture.getSize();
 	auto WindowSize = this->_window->getSize();
@@ -139,10 +147,10 @@ void GamePlayPage::setUp() {
 	this->_checkText.setCharacterSize(18);
 	this->_checkText.setFillColor(sf::Color::Black);
 	this->_checkText.setString("Error : ");
-	sizex = this->_checkText.getLocalBounds().width / 2.f;
+	sizex = this->_checkText.getLocalBounds().width / 2.2f;
 	sizey = this->_checkText.getLocalBounds().height / 2.f;
 
-	this->_checkText.setPosition(sf::Vector2f(buttonX + sizex -150 , ButtonY + sizey));
+	this->_checkText.setPosition(sf::Vector2f(buttonX + sizex -170 , ButtonY + sizey));
 
 	buttonX += 140.f;
 
@@ -300,7 +308,6 @@ void GamePlayPage::Display() {
 	this->_window->draw(this->_hLine2);
 
 	if (this->computerPlay == false) {
-		//Sleep(10);
 		this->_window->draw(this->_submitButton);
 		this->_window->draw(this->_submitText);
 		this->_window->draw(this->_checkButton);
@@ -311,7 +318,11 @@ void GamePlayPage::Display() {
 		this->_window->draw(this->_TimeText);
 		this->_window->draw(this->_BackButton);
 		this->_window->draw(this->_BackText);
+
+
+		//Vong lap timeplay
 		this->TimePlay();
+
 	}
 	this->_window->draw(this->_BackButton);
 	this->_window->draw(this->_BackText);
@@ -329,6 +340,7 @@ void GamePlayPage::MouseMoveTigger() {
 
 		this->_BackButton.setFillColor(sf::Color::White);
 		this->_BackText.setFillColor(CaramelColor);
+		this->sound.play();
 	}                                                                       //back btn
 	else {
 		this->_BackButton.setFillColor(CaramelColor);
