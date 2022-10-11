@@ -1,4 +1,4 @@
-#include "StartPage.h"
+﻿#include "StartPage.h"
 #include "SFML/Audio.hpp"
 #include "SFML/Graphics.hpp"
 
@@ -22,6 +22,14 @@ void StartPage::setUp() {
 		this->_window->close();
 	}
 	sound.setBuffer(buffer);
+
+	if (!music.openFromFile("music/Nhac-Thien-Tinh-Tam-V-A.ogg"))
+	{
+		std::cout << "ERROR: Loading File Music" << std::endl;
+		this->_window->close();
+	}
+	music.setVolume(50.f);
+	music.play();
 	auto textureSize = this->_bgTexture.getSize();
 	auto WindowSize = this->_window->getSize();
 
@@ -43,44 +51,44 @@ void StartPage::setUp() {
 
 	const auto height = 40.f;
 	//Music play
-	this->_music_Play_Button.setSize(sf::Vector2f(60.f, height));
+	this->_music_Play_Button.setSize(sf::Vector2f(50.f, height));
 	this->_music_Play_Button.setPosition(sf::Vector2f(20, 20));
 	this->_music_Play_Button.setFillColor(CaramelColor);
 
 	this->_music_PlayText.setFillColor(sf::Color::Black);
 	this->_music_PlayText.setFont(this->_HeaderFont);
-	this->_music_PlayText.setCharacterSize(13);
-	this->_music_PlayText.setString("Play");
+	this->_music_PlayText.setCharacterSize(20);
+	this->_music_PlayText.setString("| |");
 	auto Framex = Posx + this->_music_Play_Button.getLocalBounds().width / 1.4f - (this->_music_Play_Button.getLocalBounds().width / 2.f);
 	auto Framey = Posy + this->_music_Play_Button.getLocalBounds().height / 1.5f - (this->_music_Play_Button.getLocalBounds().height / 2.f);
-	this->_music_PlayText.setPosition(40, 30);
+	this->_music_PlayText.setPosition(31, 27);
 
 	//Music Pause
 
-	this->_music_Pause_Button.setSize(sf::Vector2f(60.f, height));
+	this->_music_Pause_Button.setSize(sf::Vector2f(50.f, height));
 	this->_music_Pause_Button.setPosition(sf::Vector2f(120, 20));
 	this->_music_Pause_Button.setFillColor(CaramelColor);
 
 	this->_music_PauseText.setFillColor(sf::Color::Black);
 	this->_music_PauseText.setFont(this->_HeaderFont);
-	this->_music_PauseText.setCharacterSize(13);
-	this->_music_PauseText.setString("Pause");
+	this->_music_PauseText.setCharacterSize(20);
+	this->_music_PauseText.setString("|>");
 	Framex = Posx + this->_music_Pause_Button.getLocalBounds().width / 1.4f - (this->_music_Pause_Button.getLocalBounds().width / 2.f);
 	Framey = Posy + this->_music_Pause_Button.getLocalBounds().height / 1.5f - (this->_music_Pause_Button.getLocalBounds().height / 2.f);
-	this->_music_PauseText.setPosition(139, 30);
+	this->_music_PauseText.setPosition(133, 27);
 
 	//Music Stop
-	this->_music_Stop_Button.setSize(sf::Vector2f(60.f, height));
+	this->_music_Stop_Button.setSize(sf::Vector2f(50.f, height));
 	this->_music_Stop_Button.setPosition(sf::Vector2f(220, 20));
 	this->_music_Stop_Button.setFillColor(CaramelColor);
 
 	this->_music_StopText.setFillColor(sf::Color::Black);
 	this->_music_StopText.setFont(this->_HeaderFont);
-	this->_music_StopText.setCharacterSize(13);
-	this->_music_StopText.setString("Stop");
+	this->_music_StopText.setCharacterSize(20);
+	this->_music_StopText.setString("X");
 	Framex = Posx + this->_music_Stop_Button.getLocalBounds().width / 1.4f - (this->_music_Stop_Button.getLocalBounds().width / 2.f);
 	Framey = Posy + this->_music_Stop_Button.getLocalBounds().height / 1.5f - (this->_music_Stop_Button.getLocalBounds().height / 2.f);
-	this->_music_StopText.setPosition(239, 30);
+	this->_music_StopText.setPosition(239, 27);
 
 	//Play Game button
 	this->_PlayGameButton.setSize(sf::Vector2f(170.f, height));
@@ -164,20 +172,28 @@ void StartPage::Display() {
 }
 
 void StartPage::OnFocusEvent() {
+	if (this->IsMouseOverButton(this->_music_Play_Button)) {
 
-	if (this->IsMouseOverButton(this->_PlayGameButton)) {
+		this->music.play();
+	}
+	else if (this->IsMouseOverButton(this->_music_Pause_Button)) {
+
+		this->music.pause();
+	}
+	else if (this->IsMouseOverButton(this->_music_Stop_Button)) {
+
+		this->music.stop();
+	}
+	else if (this->IsMouseOverButton(this->_PlayGameButton)) {
 
 		this->ChangePage = true;
 		this->NavTOPage = GamePages::GamePlayPage_P;
-		this->sound.play();
-
 	}
 
-	if (this->IsMouseOverButton(this->_LevelButton)) {
+	else if (this->IsMouseOverButton(this->_LevelButton)) {
 
 		this->ChangePage = true;
 		this->NavTOPage = GamePages::LevelPage;
-
 	}
 
 	else if (this->IsMouseOverButton(this->_computerPlayButton)) {
@@ -194,11 +210,43 @@ void StartPage::OnFocusEvent() {
 }
 
 void StartPage::MouseMoveTigger() {
+	if (this->IsMouseOverButton(this->_music_Play_Button)) {
+
+		this->_music_Play_Button.setFillColor(sf::Color::White);
+		this->_music_PlayText.setFillColor(CaramelColor);
+		//this->music.play();
+	}                                                                       //PlayMusic Btn	
+	else {
+		this->_music_Play_Button.setFillColor(CaramelColor);
+		this->_music_PlayText.setFillColor(sf::Color::Black);
+	}
+
+	if (this->IsMouseOverButton(this->_music_Pause_Button)) {
+
+		this->_music_Pause_Button.setFillColor(sf::Color::White);
+		this->_music_PauseText.setFillColor(CaramelColor);
+		//this->music.pause();
+	}                                                                       //PauseMusic Btn	
+	else {
+		this->_music_Pause_Button.setFillColor(CaramelColor);
+		this->_music_PauseText.setFillColor(sf::Color::Black);
+	}
+	if (this->IsMouseOverButton(this->_music_Stop_Button)) {
+
+		this->_music_Stop_Button.setFillColor(sf::Color::White);
+		this->_music_StopText.setFillColor(CaramelColor);
+		//this->music.stop();
+	}                                                                       //StopMusic Btn	
+	else {
+		this->_music_Stop_Button.setFillColor(CaramelColor);
+		this->_music_StopText.setFillColor(sf::Color::Black);
+	}
 
 	if (this->IsMouseOverButton(this->_PlayGameButton)) {
 
 		this->_PlayGameButton.setFillColor(sf::Color::White);
 		this->_playGameText.setFillColor(CaramelColor);
+		//this->sound.play();
 		this->sound.play();
 	}                                                                       //PlayGame Btn	
 	else {

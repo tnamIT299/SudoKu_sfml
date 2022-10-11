@@ -45,4 +45,5 @@ private:
 	sf::Text _music_VolumeText;
 	sf::SoundBuffer buffer;
 	sf::Sound sound;
+	sf::Music music;
 };

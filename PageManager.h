@@ -3,6 +3,7 @@
 #include "StartPage.h"
 #include "LevelPage.h"
 #include "GamePlayPage.h"
+#include "LoginPage.h"
 
 class PagesManager
 {

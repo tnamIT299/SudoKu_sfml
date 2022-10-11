@@ -10,7 +10,8 @@ enum class GamePages
 	LevelPage,
 	GamePlayPage_P,
 	GamePlayPage_C,
-	//GamePlayPage_L,
+	LoginPage,
+	//EasyPage;
 };
 
 class BasePageClass

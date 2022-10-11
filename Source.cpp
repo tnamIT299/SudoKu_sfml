@@ -11,10 +11,11 @@ int main()
 {
 	
 	sf::RenderWindow window(sf::VideoMode(800, 800), "Sudoku", sf::Style::Titlebar | sf::Style::Close);
-	sf::Music music;
-	if (!music.openFromFile("music/Nhac-Thien-Tinh-Tam-V-A.ogg"))
-		return -1; // error
-	music.play();
+	//sf::Music music;
+	//if (!music.openFromFile("music/Nhac-Thien-Tinh-Tam-V-A.ogg"))
+	//	return -1; // error
+	//music.setVolume(05.f);
+	//music.play();
 
 	
 	PagesManager pageManager(&window);
