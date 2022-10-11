@@ -138,6 +138,7 @@
     <ClCompile Include="LevelPage.cpp" />
     <ClCompile Include="LoginPage.cpp" />
     <ClCompile Include="PageManager.cpp" />
+    <ClCompile Include="Sign_In.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="StartPage.cpp" />
     <ClCompile Include="SudokuMapGen.cpp" />
@@ -148,6 +149,7 @@
     <ClInclude Include="LevelPage.h" />
     <ClInclude Include="LoginPage.h" />
     <ClInclude Include="PageManager.h" />
+    <ClInclude Include="Sign_In.h" />
     <ClInclude Include="StartPage.h" />
     <ClInclude Include="SudokuMapGen.h" />
   </ItemGroup>

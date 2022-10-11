@@ -27,7 +27,7 @@ void LevelPage::setUp() {
 	this->_level.setFillColor(sf::Color(209, 201, 178));
 	this->_level.setSize(sf::Vector2f(500.f, 450.f));
 	this->_level.setPosition(sf::Vector2f(this->_window->getSize().x / 2.7f - this->_level.getLocalBounds().width / 2.f,
-		this->_window->getSize().y / 2.f - this->_level.getLocalBounds().height / 2.f));
+	this->_window->getSize().y / 2.f - this->_level.getLocalBounds().height / 2.f));
 
 	auto boardOriginX = this->_level.getPosition().x;
 	auto boardOriginY = this->_level.getPosition().y;

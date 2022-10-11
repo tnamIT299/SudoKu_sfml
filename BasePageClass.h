@@ -11,6 +11,7 @@ enum class GamePages
 	GamePlayPage_P,
 	GamePlayPage_C,
 	LoginPage,
+	Sign_In,
 	//EasyPage;
 };
 

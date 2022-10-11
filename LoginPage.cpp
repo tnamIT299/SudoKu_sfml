@@ -1,18 +1,8 @@
 #include "LoginPage.h"
 
-
-void LoginPage::Display()
-{
-}
-
-void LoginPage::HandleEvents(sf::Event*)
-{
-}
-
 void LoginPage::setUp()
 {
 	//sf::RenderWindow window(sf::VideoMode(600, 900), "Log In", sf::Style::Titlebar | sf::Style::Close);
-
 	if (!this->_HeaderFont.loadFromFile("Fonts/07558_CenturyGothic.ttf")) {
 		std::cout << "Error Loading Fonts" << std::endl;
 		std::cout << "Shutting Down!" << std::endl;
@@ -74,10 +64,66 @@ void LoginPage::setUp()
 
 }
 
+void LoginPage::Display()
+{
+	this->_window->clear(sf::Color::Black);
+	this->_window->draw(this->_bgSprite);
+	this->_window->draw(this->_mainTitle);
+	this->_window->draw(this->_SignInButton);
+	this->_window->draw(this->_SignInText);
+	this->_window->draw(this->_RegisterButton);
+	this->_window->draw(this->_RegisterText);
+
+	this->_window->display();
+}
+
 void LoginPage::MouseMoveTigger()
 {
+
+	if (this->IsMouseOverButton(this->_SignInButton)) {
+
+		this->_SignInButton.setFillColor(sf::Color::White);
+		this->_SignInText.setFillColor(CaramelColor);
+		//this->music.play();
+	}                                                                       //sign in Btn	
+	else {
+		this->_SignInButton.setFillColor(CaramelColor);
+		this->_SignInText.setFillColor(sf::Color::Black);
+	}
+
+	if (this->IsMouseOverButton(this->_RegisterButton)) {
+
+		this->_RegisterButton.setFillColor(sf::Color::White);
+		this->_RegisterText.setFillColor(CaramelColor);
+		//this->music.pause();
+	}                                                                       //register Btn	
+	else {
+		this->_RegisterButton.setFillColor(CaramelColor);
+		this->_RegisterText.setFillColor(sf::Color::Black);
+	}
 }
+
 
 void LoginPage::OnFocusEvent()
 {
+	if (this->IsMouseOverButton(this->_SignInButton)) {
+
+		this->ChangePage = true;
+		this->NavTOPage = GamePages::Sign_In;
+	}
+
+	else if (this->IsMouseOverButton(this->_RegisterButton)) {
+
+		//this->ChangePage = true;
+		//this->NavTOPage = GamePages::LevelPage;
+	}
+}
+
+void LoginPage::HandleEvents(sf::Event* event)
+{
+	if (event->type == sf::Event::MouseButtonPressed)
+		this->OnFocusEvent();
+
+	if (event->type == sf::Event::MouseMoved)
+		this->MouseMoveTigger();
 }
