@@ -1,3 +1,4 @@
+#pragma once
 #include"SudokuMapGen.h"
 
 bool SudokuMapGen::Solve(int grid[MaxSize][MaxSize])

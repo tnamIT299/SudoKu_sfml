@@ -51,6 +51,9 @@
     <ClCompile Include="Game_Ice_Play.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="IGrid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BasePageClass.h">
@@ -84,6 +87,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Game_Ice_Play.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IGrid.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
