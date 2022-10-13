@@ -90,3 +90,22 @@ void SudokuMapGen::printGrid(int grid[MaxSize][MaxSize]) // for debugging
 		std::cout << std::endl;
 	}
 }
+
+void SudokuMapGen::fillValues() {
+	fillDiagonal();
+
+	fillRemaining(0, SRN);
+
+	removeKDigits();
+}
+
+SudokuMapGen::SudokuMapGen() {
+	fillValues();
+	for (int i = 0; i < MaxSize; i++)
+	{
+		for (int j = 0; j < MaxSize; j++)
+		{
+			gameMap[i][j]=matrix[i][j];
+		}
+	}
+}
