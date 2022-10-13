@@ -5,6 +5,8 @@
 #include "GamePlayPage.h"
 #include "LoginPage.h"
 #include "Sign_In.h"
+#include "Register.h"
+#include "Game_Ice_Play.h"
 
 class PagesManager
 {

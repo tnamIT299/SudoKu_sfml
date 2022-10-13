@@ -1,4 +1,4 @@
-#include "GamePlayPage.h"
+#include "Game_Ice_Play.h"
 #include "LevelPage.h"
 #include "sstream"
 #include "windows.h"
@@ -6,8 +6,7 @@
 
 
 
-void GamePlayPage::setUp() {
-
+void Game_Ice_Play::setUp() {
 
 	if (!this->_bgTexture.loadFromFile("Images/bg.jpg")) {
 		std::cout << "Error Loading Images/bg.jpg" << std::endl;
@@ -40,7 +39,7 @@ void GamePlayPage::setUp() {
 	this->_gameBoard.setFillColor(sf::Color(209, 201, 178));
 	this->_gameBoard.setSize(sf::Vector2f(500.f, 450.f));
 	this->_gameBoard.setPosition(sf::Vector2f(this->_window->getSize().x / 2.f - this->_gameBoard.getLocalBounds().width / 2.f,
-	this->_window->getSize().y / 2.f - this->_gameBoard.getLocalBounds().height / 2.f));
+		this->_window->getSize().y / 2.f - this->_gameBoard.getLocalBounds().height / 2.f));
 
 #pragma region Vertical BoardLine
 
@@ -84,7 +83,7 @@ void GamePlayPage::setUp() {
 	float sizex;
 	float sizey;
 
-	if (this->computerPlay == true)
+	if (this->ice_play == true)
 	{
 		//this->_submitText.setString("START");
 	//	sizex = this->_submitText.getLocalBounds().width / 1.1f;
@@ -94,7 +93,7 @@ void GamePlayPage::setUp() {
 
 		this->_StartButton.setFillColor(LineColor);
 		this->_StartButton.setSize(sf::Vector2f(133.f, 40.f));
-		this->_StartButton.setPosition(sf::Vector2f(buttonX -80, ButtonY -97));
+		this->_StartButton.setPosition(sf::Vector2f(buttonX - 80, ButtonY - 97));
 
 		this->_StartText.setFont(this->_HeaderFont);
 		this->_StartText.setCharacterSize(18);
@@ -103,14 +102,14 @@ void GamePlayPage::setUp() {
 		sizex = this->_StartText.getLocalBounds().width / 0.9f;
 		sizey = this->_StartText.getLocalBounds().height / 2.3f;
 
-		this->_StartText.setPosition(sf::Vector2f(buttonX + sizex - 90, ButtonY + sizey -95));
+		this->_StartText.setPosition(sf::Vector2f(buttonX + sizex - 90, ButtonY + sizey - 95));
 
 
-		buttonX += 10.f ;
+		buttonX += 10.f;
 
 		this->_BackButton.setFillColor(LineColor);
 		this->_BackButton.setSize(sf::Vector2f(133.f, 40.f));
-		this->_BackButton.setPosition(sf::Vector2f(buttonX - 50 , ButtonY ));
+		this->_BackButton.setPosition(sf::Vector2f(buttonX - 50, ButtonY));
 
 		this->_BackText.setFont(this->_HeaderFont);
 		this->_BackText.setCharacterSize(18);
@@ -121,8 +120,8 @@ void GamePlayPage::setUp() {
 		sizex = this->_BackText.getLocalBounds().width / 1.7f;
 		sizey = this->_BackText.getLocalBounds().height / 2.3f;
 
-		this->_BackText.setPosition(sf::Vector2f(buttonX + sizex , ButtonY + sizey));
-		
+		this->_BackText.setPosition(sf::Vector2f(buttonX + sizex, ButtonY + sizey));
+
 	}
 
 	/*else
@@ -135,13 +134,13 @@ void GamePlayPage::setUp() {
 	}
 	*/
 
-	
+
 
 	buttonX += 140.f;
 
 	this->_checkButton.setFillColor(LineColor);
 	this->_checkButton.setSize(sf::Vector2f(133.f, 40.f));
-	this->_checkButton.setPosition(sf::Vector2f(buttonX -160, ButtonY));
+	this->_checkButton.setPosition(sf::Vector2f(buttonX - 160, ButtonY));
 
 	this->_checkText.setFont(this->_HeaderFont);
 	this->_checkText.setCharacterSize(18);
@@ -150,13 +149,13 @@ void GamePlayPage::setUp() {
 	sizex = this->_checkText.getLocalBounds().width / 2.2f;
 	sizey = this->_checkText.getLocalBounds().height / 2.f;
 
-	this->_checkText.setPosition(sf::Vector2f(buttonX + sizex -170 , ButtonY + sizey));
+	this->_checkText.setPosition(sf::Vector2f(buttonX + sizex - 170, ButtonY + sizey));
 
 	buttonX += 140.f;
 
 	this->_submitButton.setFillColor(LineColor);
 	this->_submitButton.setSize(sf::Vector2f(133.f, 40.f));
-	this->_submitButton.setPosition(sf::Vector2f(buttonX -120 , ButtonY));
+	this->_submitButton.setPosition(sf::Vector2f(buttonX - 120, ButtonY));
 
 	this->_submitText.setFont(this->_HeaderFont);
 	this->_submitText.setCharacterSize(18);
@@ -172,7 +171,7 @@ void GamePlayPage::setUp() {
 
 	this->_undoButton.setFillColor(LineColor);
 	this->_undoButton.setSize(sf::Vector2f(133.f, 40.f));
-	this->_undoButton.setPosition(sf::Vector2f(buttonX -90 , ButtonY));
+	this->_undoButton.setPosition(sf::Vector2f(buttonX - 90, ButtonY));
 
 	this->_undoText.setFont(this->_HeaderFont);
 	this->_undoText.setCharacterSize(18);
@@ -183,13 +182,13 @@ void GamePlayPage::setUp() {
 	sizex = this->_undoText.getLocalBounds().width / 1.2f;
 	sizey = this->_undoText.getLocalBounds().height / 2.f;
 
-	this->_undoText.setPosition(sf::Vector2f(buttonX + sizex -90 , ButtonY + sizey));
+	this->_undoText.setPosition(sf::Vector2f(buttonX + sizex - 90, ButtonY + sizey));
 
 	buttonX += 120.f;
 
 	this->_BackButton.setFillColor(LineColor);
 	this->_BackButton.setSize(sf::Vector2f(133.f, 40.f));
-	this->_BackButton.setPosition(sf::Vector2f(buttonX -100.f , ButtonY - 100.f));
+	this->_BackButton.setPosition(sf::Vector2f(buttonX - 100.f, ButtonY - 100.f));
 
 	this->_BackText.setFont(this->_HeaderFont);
 	this->_BackText.setCharacterSize(18);
@@ -200,7 +199,7 @@ void GamePlayPage::setUp() {
 	sizex = this->_BackText.getLocalBounds().width / 1.7f;
 	sizey = this->_BackText.getLocalBounds().height / 2.3f;
 
-	this->_BackText.setPosition(sf::Vector2f(buttonX + sizex - 85 , ButtonY + sizey - 100 ));
+	this->_BackText.setPosition(sf::Vector2f(buttonX + sizex - 85, ButtonY + sizey - 100));
 
 #pragma region SetInitGrid
 
@@ -208,9 +207,9 @@ void GamePlayPage::setUp() {
 	auto gridPosY = boardOriginY;
 
 
-	for (int i = 0; i < SudokuMapGen::MaxSize; ++i) {
+	for (int i = 0; i < IceBreaker::MaxSize; ++i) {
 
-		for (int j = 0; j < SudokuMapGen::MaxSize; ++j) {
+		for (int j = 0; j < IceBreaker::MaxSize; ++j) {
 
 			this->_gameGridMap[i][j].setFillColor(sf::Color(223, 229, 237));
 			this->_gameGridMap[i][j].setOutlineColor(sf::Color(sf::Color(55, 57, 59)));
@@ -222,7 +221,7 @@ void GamePlayPage::setUp() {
 			this->_textGridMap[i][j].setCharacterSize(30);
 			this->_textGridMap[i][j].setFillColor(sf::Color(55, 57, 59));
 
-			auto boxVal = this->_sudokuMap.gameMap[i][j];           // load values from gridMap 
+			auto boxVal = this->_icebreaker_map.gameMap[i][j];           // load values from gridMap 
 			auto strBoxVal = std::to_string(boxVal);
 			this->_textGridMap[i][j].setString(strBoxVal);
 
@@ -242,13 +241,13 @@ void GamePlayPage::setUp() {
 
 #pragma region Option Selector
 
-	if (this->computerPlay == false)
+	if (this->ice_play == false)
 	{
 		gridPosX = boardOriginX;
 		gridPosY += 20;
 		int fillval = 1;
 
-		for (int i = 0; i < SudokuMapGen::MaxSize; ++i) {
+		for (int i = 0; i < IceBreaker::MaxSize; ++i) {
 
 			this->_optionField[i].setFillColor(sf::Color(223, 229, 237));
 			this->_optionField[i].setOutlineColor(sf::Color(sf::Color(92, 95, 99)));
@@ -277,7 +276,7 @@ void GamePlayPage::setUp() {
 
 }
 
-void GamePlayPage::Display() {
+void Game_Ice_Play::Display() {
 
 	this->_window->clear();
 
@@ -285,18 +284,18 @@ void GamePlayPage::Display() {
 	this->_window->draw(this->_gameBoard);
 
 
-	for (int i = 0; i < SudokuMapGen::MaxSize; ++i) {
+	for (int i = 0; i < IceBreaker::MaxSize; ++i) {
 
-		if (this->computerPlay == false) {
+		if (this->ice_play == false) {
 			this->_window->draw(this->_optionField[i]);    //Option Selector
 			this->_window->draw(this->_optionText[i]);
 		}
 
-		for (int j = 0; j < SudokuMapGen::MaxSize; ++j) {
+		for (int j = 0; j < IceBreaker::MaxSize; ++j) {
 
 			this->_window->draw(this->_gameGridMap[i][j]); //
 
-			if (this->_sudokuMap.gameMap[i][j] == 0)
+			if (this->_icebreaker_map.gameMap[i][j] == 0)
 				continue;
 			this->_window->draw(this->_textGridMap[i][j]);
 		}
@@ -307,7 +306,7 @@ void GamePlayPage::Display() {
 	this->_window->draw(this->_hLine1);
 	this->_window->draw(this->_hLine2);
 
-	if (this->computerPlay == false) {
+	if (this->ice_play == false) {
 		this->_window->draw(this->_submitButton);
 		this->_window->draw(this->_submitText);
 		this->_window->draw(this->_checkButton);
@@ -326,7 +325,7 @@ void GamePlayPage::Display() {
 	}
 	this->_window->draw(this->_BackButton);
 	this->_window->draw(this->_BackText);
-	
+
 	this->_window->draw(this->_StartButton);
 	this->_window->draw(this->_StartText);
 
@@ -334,7 +333,7 @@ void GamePlayPage::Display() {
 	this->_window->display();
 }
 
-void GamePlayPage::MouseMoveTigger() {
+void Game_Ice_Play::MouseMoveTigger() {
 
 	if (this->IsMouseOverButton(this->_BackButton)) {
 
@@ -347,17 +346,17 @@ void GamePlayPage::MouseMoveTigger() {
 		this->_BackText.setFillColor(sf::Color::Black);
 	}
 
-	for (int i = 0; i < SudokuMapGen::MaxSize; ++i) {
+	for (int i = 0; i < IceBreaker::MaxSize; ++i) {
 
 		if (this->IsMouseOverButton(this->_optionField[i]))
-			this->_optionField[i].setFillColor(sf::Color(235, 114, 84));
+			this->_optionField[i].setFillColor(sf::Color::White);
 		else
 		{
 			if (i != this->_selectedIndex)
 				this->_optionField[i].setFillColor(sf::Color(223, 229, 237));
 		}
 
-		for (int j = 0; j < SudokuMapGen::MaxSize; ++j) {
+		for (int j = 0; j < IceBreaker::MaxSize; ++j) {
 
 			if (this->IsMouseOverButton(this->_gameGridMap[i][j]))
 				this->_gameGridMap[i][j].setFillColor(sf::Color(235, 114, 84));
@@ -372,7 +371,7 @@ void GamePlayPage::MouseMoveTigger() {
 	HoverCheck(&this->_BackButton, &this->_BackText);
 }
 
-void GamePlayPage::HoverCheck(sf::RectangleShape* button, sf::Text* buttonText) {
+void Game_Ice_Play::HoverCheck(sf::RectangleShape* button, sf::Text* buttonText) {
 
 	if (this->IsMouseOverButton(*button))
 	{
@@ -386,14 +385,14 @@ void GamePlayPage::HoverCheck(sf::RectangleShape* button, sf::Text* buttonText) 
 	}
 }
 
-void GamePlayPage::OnFocusEvent() {
+void Game_Ice_Play::OnFocusEvent() {
 	if (this->IsMouseOverButton(this->_BackButton)) {
 
 		this->ChangePage = true;
 		this->NavTOPage = GamePages::LevelPage;
 	}
 
-	for (int i = 0; i < SudokuMapGen::MaxSize; ++i) {
+	for (int i = 0; i < IceBreaker::MaxSize; ++i) {
 
 		if (this->IsMouseOverButton(this->_optionField[i])) {
 
@@ -403,14 +402,14 @@ void GamePlayPage::OnFocusEvent() {
 			this->_selectedNumber = this->_selectedIndex + 1;
 		}
 
-		for (int j = 0; j < SudokuMapGen::MaxSize; ++j) {
+		for (int j = 0; j < IceBreaker::MaxSize; ++j) {
 
 			if (this->IsMouseOverButton(this->_gameGridMap[i][j])) {
 
-				if (this->_sudokuMap.gameMap[i][j] == 0)
+				if (this->_icebreaker_map.gameMap[i][j] == 0)
 				{
 					this->_textGridMap[i][j].setString(std::to_string(this->_selectedNumber));
-					this->_sudokuMap.gameMap[i][j] = this->_selectedNumber;
+					this->_icebreaker_map.gameMap[i][j] = this->_selectedNumber;
 					this->_selections.push_back({ i,j });
 				}
 			}
@@ -420,7 +419,7 @@ void GamePlayPage::OnFocusEvent() {
 	if (this->IsMouseOverButton(this->_submitButton)) {
 
 		int rol, col;
-		if (this->_sudokuMap.FindUnassignedLocation(this->_sudokuMap.gameMap, rol, col))
+		if (this->_icebreaker_map.FindUnassignedLocation(this->_icebreaker_map.gameMap, rol, col))
 		{
 			this->AlertWindow(this->_HeaderFont, "Grid not completely filled!", 300, 100, sf::Color(223, 229, 237), LineColor);
 		}
@@ -429,12 +428,12 @@ void GamePlayPage::OnFocusEvent() {
 		{
 			if (this->_checkErr == false) {
 
-				for (int i = 0; i < SudokuMapGen::MaxSize; ++i) {
-					for (int j = 0; j < SudokuMapGen::MaxSize; ++j) {
+				for (int i = 0; i < IceBreaker::MaxSize; ++i) {
+					for (int j = 0; j < IceBreaker::MaxSize; ++j) {
 
-						auto value = this->_sudokuMap.gameMap[i][j];
+						auto value = this->_icebreaker_map.gameMap[i][j];
 
-						if (this->_sudokuMap.isSafe(this->_sudokuMap.gameMap, i, j, value) == false)
+						if (this->_icebreaker_map.isSafe(this->_icebreaker_map.gameMap, i, j, value) == false)
 						{
 							this->_checkErr = true;
 							this->_textGridMap[i][j].setFillColor(sf::Color::Red);
@@ -454,7 +453,7 @@ void GamePlayPage::OnFocusEvent() {
 		if (this->_selections.size() > 0) {
 
 			auto field = this->_selections.end() - 1;
-			this->_sudokuMap.gameMap[field->row][field->col] = 0;
+			this->_icebreaker_map.gameMap[field->row][field->col] = 0;
 			this->_textGridMap[field->row][field->col].setString(" ");
 			this->_selections.pop_back();
 		}
@@ -463,9 +462,9 @@ void GamePlayPage::OnFocusEvent() {
 			this->AlertWindow(this->_HeaderFont, "Nothing to undo!", 300, 100, sf::Color(223, 229, 237), LineColor);
 
 		if (this->_checkErr) {
-			for (int i = 0; i < SudokuMapGen::MaxSize; ++i) {
+			for (int i = 0; i < IceBreaker::MaxSize; ++i) {
 
-				for (int j = 0; j < SudokuMapGen::MaxSize; ++j) {
+				for (int j = 0; j < IceBreaker::MaxSize; ++j) {
 					this->_textGridMap[i][j].setFillColor(sf::Color(55, 57, 59));
 				}
 			}
@@ -475,14 +474,14 @@ void GamePlayPage::OnFocusEvent() {
 
 	if (this->IsMouseOverButton(this->_checkButton)) {
 
-		for (int i = 0; i < SudokuMapGen::MaxSize; ++i) {
-			for (int j = 0; j < SudokuMapGen::MaxSize; ++j) {
+		for (int i = 0; i < IceBreaker::MaxSize; ++i) {
+			for (int j = 0; j < IceBreaker::MaxSize; ++j) {
 
-				auto value = this->_sudokuMap.gameMap[i][j];
+				auto value = this->_icebreaker_map.gameMap[i][j];
 				if (value == 0)
 					continue;
 
-				if (this->_sudokuMap.isSafe(this->_sudokuMap.gameMap, i, j, value) == false)
+				if (this->_icebreaker_map.isSafe(this->_icebreaker_map.gameMap, i, j, value) == false)
 				{
 					this->_checkErr = true;
 					this->_textGridMap[i][j].setFillColor(sf::Color::Red);
@@ -496,9 +495,9 @@ void GamePlayPage::OnFocusEvent() {
 
 }
 
-void GamePlayPage::HandleEvents(sf::Event* event) {
+void Game_Ice_Play::HandleEvents(sf::Event* event) {
 
-	if (this->computerPlay == false) {
+	if (this->ice_play == false) {
 		if (event->type == sf::Event::MouseButtonPressed)
 			this->OnFocusEvent();
 
@@ -509,7 +508,7 @@ void GamePlayPage::HandleEvents(sf::Event* event) {
 	else
 	{
 
-		if (this->computerPlay == true){
+		if (this->ice_play == true) {
 			if (event->type == sf::Event::MouseButtonPressed)
 				this->OnFocusEvent();
 
@@ -536,9 +535,9 @@ void GamePlayPage::HandleEvents(sf::Event* event) {
 		}
 	}
 
-	if (this->computerPlay == true && this->_aiDone != true && this->_initAi) {
+	if (this->ice_play == true && this->_aiDone != true && this->_initAi) {
 
-		auto check = this->AISolve(this->_sudokuMap.gameMap);
+		auto check = this->AISolve(this->_icebreaker_map.gameMap);
 		this->_aiDone = true;
 
 		if (check)
@@ -548,17 +547,17 @@ void GamePlayPage::HandleEvents(sf::Event* event) {
 	}
 }
 
-bool GamePlayPage::AISolve(int grid[SudokuMapGen::MaxSize][SudokuMapGen::MaxSize])
+bool Game_Ice_Play::AISolve(int grid[IceBreaker::MaxSize][IceBreaker::MaxSize])
 {
 	int row, col;
 
-	if (!this->_sudokuMap.FindUnassignedLocation(grid, row, col))
+	if (!this->_icebreaker_map.FindUnassignedLocation(grid, row, col))
 		return true;
 
-	for (int value = 1; value <= SudokuMapGen::MaxSize; value++)
+	for (int value = 1; value <= IceBreaker::MaxSize; value++)
 	{
 
-		if (this->_sudokuMap.isSafe(grid, row, col, value))
+		if (this->_icebreaker_map.isSafe(grid, row, col, value))
 		{
 			grid[row][col] = value;
 			this->_textGridMap[row][col].setString(std::to_string(value));
@@ -574,7 +573,7 @@ bool GamePlayPage::AISolve(int grid[SudokuMapGen::MaxSize][SudokuMapGen::MaxSize
 	}
 	return false;
 }
-void GamePlayPage::TimePlay() {
+void Game_Ice_Play::TimePlay() {
 	//TIME
 	sf::Font font;
 	if (!font.loadFromFile("Fonts/07558_CenturyGothic.ttf"))
@@ -587,65 +586,65 @@ void GamePlayPage::TimePlay() {
 	float sizey = this->_TimeText.getLocalBounds().height / 2.f;
 	this->_TimeButton.setFillColor(LineColor);
 	this->_TimeButton.setSize(sf::Vector2f(133.f, 40.f));
-	this->_TimeButton.setPosition(sf::Vector2f(700-660.f, 700 -680.f));
+	this->_TimeButton.setPosition(sf::Vector2f(700 - 660.f, 700 - 680.f));
 
 	this->_TimeText.setFont(this->_HeaderFont);
 	this->_TimeText.setCharacterSize(20);
 	this->_TimeText.setFillColor(sf::Color::Black);
 	this->_TimeText.setString(ss.str());
 	this->_TimeText.setPosition(sf::Vector2f(100 + sizex - 50, 100 + sizey - 80));
-		Sleep(1);
-		milisecond++;
-		if (milisecond == 60) {
-			second++;
-			milisecond = 0;
-		}
-		if (second == 60) {
-			minute++;
-			second = 0;
-			milisecond = 0;
-		}
-		if (minute == 60) {
-			hours++;
-			second = 0;
-			milisecond = 0;
-			minute = 0;
-		}
-		ss.str("");
+	Sleep(1);
+	milisecond++;
+	if (milisecond == 60) {
+		second++;
+		milisecond = 0;
+	}
+	if (second == 60) {
+		minute++;
+		second = 0;
+		milisecond = 0;
+	}
+	if (minute == 60) {
+		hours++;
+		second = 0;
+		milisecond = 0;
+		minute = 0;
+	}
+	ss.str("");
 
-		if (hours < 10)
-		{
-			ss << "0" << hours << ":";
-		}
-		else
-		{
-			ss << hours;
-		}
-		if (minute < 10)
-		{
-			ss << "0" << minute << ":";
-		}
-		else
-		{
-			ss << minute << ":";
-		}
+	if (hours < 10)
+	{
+		ss << "0" << hours << ":";
+	}
+	else
+	{
+		ss << hours;
+	}
+	if (minute < 10)
+	{
+		ss << "0" << minute << ":";
+	}
+	else
+	{
+		ss << minute << ":";
+	}
 
-		if (second < 10)
-		{
-			ss << "0" << second << ":";
-		}
-		else
-		{
-			ss << second << ":";
-		}
+	if (second < 10)
+	{
+		ss << "0" << second << ":";
+	}
+	else
+	{
+		ss << second << ":";
+	}
 
-		if (milisecond < 10)
-		{
-			ss << "0" << milisecond;
-		}
-		else
-		{
-			ss << milisecond;
-		}
-		
+	if (milisecond < 10)
+	{
+		ss << "0" << milisecond;
+	}
+	else
+	{
+		ss << milisecond;
+	}
+
 }

@@ -141,15 +141,15 @@ void LevelPage::OnFocusEvent() {
 
 	if (this->IsMouseOverButton(this->_EasyButton)) {
 
-		//this->ChangePage = true;
-		//this->NavTOPage = GamePages::GamePlayPage_P;
+		this->ChangePage = true;
+	    this->NavTOPage = GamePages::GamePlayPage_P;
 
 	}
 
 	else if (this->IsMouseOverButton(this->_MediumButton)) {
 
-		//this->ChangePage = true;
-		//this->NavTOPage = GamePages::GamePlayPage_C;
+		this->ChangePage = true;
+		this->NavTOPage = GamePages::IceBreaker;
 	}
 
 

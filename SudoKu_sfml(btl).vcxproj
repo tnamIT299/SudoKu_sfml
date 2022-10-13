@@ -135,9 +135,12 @@
   <ItemGroup>
     <ClCompile Include="BasePageClass.cpp" />
     <ClCompile Include="GamePlayPage.cpp" />
+    <ClCompile Include="Game_Ice_Play.cpp" />
+    <ClCompile Include="IceBreaker.cpp" />
     <ClCompile Include="LevelPage.cpp" />
     <ClCompile Include="LoginPage.cpp" />
     <ClCompile Include="PageManager.cpp" />
+    <ClCompile Include="Register.cpp" />
     <ClCompile Include="Sign_In.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="StartPage.cpp" />
@@ -146,9 +149,12 @@
   <ItemGroup>
     <ClInclude Include="BasePageClass.h" />
     <ClInclude Include="GamePlayPage.h" />
+    <ClInclude Include="Game_Ice_Play.h" />
+    <ClInclude Include="IceBreaker.h" />
     <ClInclude Include="LevelPage.h" />
     <ClInclude Include="LoginPage.h" />
     <ClInclude Include="PageManager.h" />
+    <ClInclude Include="Register.h" />
     <ClInclude Include="Sign_In.h" />
     <ClInclude Include="StartPage.h" />
     <ClInclude Include="SudokuMapGen.h" />

@@ -91,20 +91,20 @@ void StartPage::setUp() {
 	this->_music_StopText.setPosition(239, 27);
 
 	//Play Game button
-	this->_PlayGameButton.setSize(sf::Vector2f(170.f, height));
+	/*this->_PlayGameButton.setSize(sf::Vector2f(170.f, height));
 	this->_PlayGameButton.setPosition(sf::Vector2f(Posx, Posy));
 	this->_PlayGameButton.setFillColor(CaramelColor);
 
 	this->_playGameText.setFillColor(sf::Color::Black);
 	this->_playGameText.setFont(this->_HeaderFont);
 	this->_playGameText.setCharacterSize(18);
-	this->_playGameText.setString("Play Game");
+	this->_playGameText.setString("");
 	Framex = Posx + this->_PlayGameButton.getLocalBounds().width / 1.4f - (this->_PlayGameButton.getLocalBounds().width / 2.f);
     Framey = Posy + this->_PlayGameButton.getLocalBounds().height / 1.5f - (this->_PlayGameButton.getLocalBounds().height / 2.f);
-	this->_playGameText.setPosition(Framex, Framey);
+	this->_playGameText.setPosition(Framex, Framey);*/
 
 
-	Posy += 65;
+	//Posy += 65;
 	this->_LevelButton.setSize(sf::Vector2f(170.f, height));
 	this->_LevelButton.setPosition(sf::Vector2f(Posx, Posy));
 	this->_LevelButton.setFillColor(CaramelColor);
@@ -112,8 +112,8 @@ void StartPage::setUp() {
 	this->_levelText.setFillColor(sf::Color::Black);
 	this->_levelText.setFont(this->_HeaderFont);
 	this->_levelText.setCharacterSize(18);
-	this->_levelText.setString("Level");
-	Framex = Posx + this->_LevelButton.getLocalBounds().width / 1.2f - (this->_LevelButton.getLocalBounds().width / 2.f);
+	this->_levelText.setString("Play Game");
+	Framex = Posx + this->_LevelButton.getLocalBounds().width / 1.4f - (this->_LevelButton.getLocalBounds().width / 2.f);
 	Framey = Posy + this->_LevelButton.getLocalBounds().height / 1.5f - (this->_LevelButton.getLocalBounds().height / 2.f);
 	this->_levelText.setPosition(Framex, Framey);
 
@@ -157,10 +157,10 @@ void StartPage::Display() {
 	this->_window->draw(this->_music_Stop_Button);
 	this->_window->draw(this->_music_StopText);
 	this->_window->draw(this->_music_PauseText);
-	this->_window->draw(this->_playGameText);
-	this->_window->draw(this->_playGameText);
-	this->_window->draw(this->_PlayGameButton);
-	this->_window->draw(this->_playGameText);
+	//this->_window->draw(this->_playGameText);
+	//this->_window->draw(this->_playGameText);
+	//this->_window->draw(this->_PlayGameButton);
+	//this->_window->draw(this->_playGameText);
 	this->_window->draw(this->_LevelButton);
 	this->_window->draw(this->_levelText);
 	this->_window->draw(this->_computerPlayButton);

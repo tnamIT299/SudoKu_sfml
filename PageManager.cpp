@@ -15,6 +15,9 @@ void PagesManager::Display() {
 		if (this->_currentPage->NavTOPage == GamePages::Sign_In)
 			this->_currentPage = new Sign_In(this->_window, true);
 
+		if (this->_currentPage->NavTOPage == GamePages::Register)
+			this->_currentPage = new Register(this->_window, true);
+
 		if (this->_currentPage->NavTOPage == GamePages::StartPage)
 			this->_currentPage = new StartPage(this->_window);
 
@@ -24,9 +27,11 @@ void PagesManager::Display() {
 		else if (this->_currentPage->NavTOPage == GamePages::LevelPage)
 			this->_currentPage = new LevelPage(this->_window , true);
 
+		else if (this->_currentPage->NavTOPage == GamePages::IceBreaker)
+			this->_currentPage = new Game_Ice_Play(this->_window, false);
+
 		else if (this->_currentPage->NavTOPage == GamePages::GamePlayPage_C)
 			this->_currentPage = new GamePlayPage(this->_window, true);
-
 
 		return;
 	}

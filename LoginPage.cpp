@@ -37,7 +37,7 @@ void LoginPage::setUp()
 	const auto height = 40.f;
 
 	this->_SignInButton.setSize(sf::Vector2f(170.f, height));
-	this->_SignInButton.setPosition(sf::Vector2f(Posx, Posy));
+	this->_SignInButton.setPosition(sf::Vector2f(Posx , Posy));
 	this->_SignInButton.setFillColor(CaramelColor);
 
 	this->_SignInText.setFillColor(sf::Color::Black);
@@ -51,7 +51,7 @@ void LoginPage::setUp()
 
 	Posy += 65;
 	this->_RegisterButton.setSize(sf::Vector2f(170.f, height));
-	this->_RegisterButton.setPosition(sf::Vector2f(Posx, Posy));
+	this->_RegisterButton.setPosition(sf::Vector2f(Posx , Posy));
 	this->_RegisterButton.setFillColor(CaramelColor);
 
 	this->_RegisterText.setFillColor(sf::Color::Black);
@@ -114,8 +114,8 @@ void LoginPage::OnFocusEvent()
 
 	else if (this->IsMouseOverButton(this->_RegisterButton)) {
 
-		//this->ChangePage = true;
-		//this->NavTOPage = GamePages::LevelPage;
+		this->ChangePage = true;
+		this->NavTOPage = GamePages::Register;
 	}
 }
 

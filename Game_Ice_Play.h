@@ -1,27 +1,26 @@
 #pragma once
 
 #include "BasePageClass.h"
-#include "SudokuMapGen.h"
 #include "IceBreaker.h"
 #include "sstream"
 #include "string"
 #include "SFML/Audio.hpp"
 
 using namespace std;
-class GamePlayPage : public BasePageClass
+class Game_Ice_Play: public BasePageClass
 {
 
 public:
-	GamePlayPage(){};
-	GamePlayPage(sf::RenderWindow* window, bool compPlay) : BasePageClass(window)
+	Game_Ice_Play(){};
+	Game_Ice_Play(sf::RenderWindow* window, bool ice_play) : BasePageClass(window)
 	{
 		this->_pageID = "MainPage";
 		this->NavTOPage = GamePages::None;
-		this->computerPlay = compPlay;
+		this->ice_play = ice_play;
 		this->setUp();
 	}
 
-	bool computerPlay; // if true "AI" is playing
+	bool ice_play; // if true "AI" is playing
 	//hàm cài time
 	void TimePlay();
 
@@ -34,9 +33,8 @@ private:
 	void MouseMoveTigger();
 	void HoverCheck(sf::RectangleShape*, sf::Text*);
 	void OnFocusEvent();
-	bool AISolve(int grid[SudokuMapGen::MaxSize][SudokuMapGen::MaxSize]);
-	SudokuMapGen _sudokuMap;
-	//IceBreaker _icebreaker_map;
+	bool AISolve(int grid[IceBreaker::MaxSize][IceBreaker::MaxSize]);
+	IceBreaker _icebreaker_map;
 	sf::RectangleShape _gameBoard;
 	sf::Font _HeaderFont;
 	sf::Texture _bgTexture;
@@ -45,13 +43,13 @@ private:
 	sf::RectangleShape _vLine2;
 	sf::RectangleShape _hLine1;
 	sf::RectangleShape _hLine2;
-	sf::RectangleShape _gameGridMap[SudokuMapGen::MaxSize][SudokuMapGen::MaxSize];
-	sf::Text _textGridMap[SudokuMapGen::MaxSize][SudokuMapGen::MaxSize];
-	sf::Text _optionText[SudokuMapGen::MaxSize];
-	sf::RectangleShape _optionField[SudokuMapGen::MaxSize];
+	sf::RectangleShape _gameGridMap[IceBreaker::MaxSize][IceBreaker::MaxSize];
+	sf::Text _textGridMap[IceBreaker::MaxSize][IceBreaker::MaxSize];
+	sf::Text _optionText[IceBreaker::MaxSize];
+	sf::RectangleShape _optionField[IceBreaker::MaxSize];
 	int _selectedNumber{ 1 }; //default
 	int _selectedIndex{ 0 }; //default
-	std::vector<Field> _selections;
+	std::vector<Field1> _selections;
 	sf::RectangleShape _TimeButton;
 	sf::RectangleShape _submitButton;
 	sf::RectangleShape _undoButton;
@@ -64,7 +62,7 @@ private:
 	sf::Text _checkText;
 	sf::Text _BackText;
 	sf::Text _StartText;
-	
+
 	//Music
 	sf::SoundBuffer buffer;
 	sf::Sound sound;

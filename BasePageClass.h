@@ -12,6 +12,8 @@ enum class GamePages
 	GamePlayPage_C,
 	LoginPage,
 	Sign_In,
+	Register,
+	IceBreaker,
 	//EasyPage;
 };
 
