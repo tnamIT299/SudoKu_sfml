@@ -1,5 +1,5 @@
 #include "LevelPage.h"
-
+#include "SFML/Audio.hpp"
 
 void LevelPage::setUp() {
 
@@ -14,6 +14,13 @@ void LevelPage::setUp() {
 		std::cout << "Shutting Down!" << std::endl;
 		this->_window->close();
 	}
+	if (!this->buffer.loadFromFile("music/mixkit-arcade-game-jump-coin-216.wav"))
+	{
+		std::cout << "ERROR: Loading Sound Effect" << std::endl;
+		this->_window->close();
+	}
+	sound.setBuffer(buffer);
+
 
 	auto textureSize =this->_bgTexture.getSize();
 	auto WindowSize = this->_window->getSize();
@@ -156,10 +163,6 @@ void LevelPage::Display() {
 	this->_window->draw(this->_MediumText);
 	this->_window->draw(this->_HardButton);
 	this->_window->draw(this->_HardText);
-	this->_window->draw(this->_ExpertButton);
-	this->_window->draw(this->_ExpertText);
-	this->_window->draw(this->_EvilButton);
-	this->_window->draw(this->_EvilText);
 	this->_window->draw(this->_BackButton);
 	this->_window->draw(this->_BackText);
 	
@@ -188,19 +191,6 @@ void LevelPage::OnFocusEvent() {
 		this->NavTOPage = GamePages::Game_Hard_Play;
 	}
 
-
-	else if (this->IsMouseOverButton(this->_ExpertButton)) {
-
-		this->ChangePage = true;
-		this->NavTOPage = GamePages::Game_Expert_Play;
-	}
-
-	else if (this->IsMouseOverButton(this->_EvilButton)) {
-
-		this->ChangePage = true;
-		this->NavTOPage = GamePages::Game_Evil_Play;
-	}
-
 	else if (this->IsMouseOverButton(this->_BackButton)) {
 
 		this->ChangePage = true;
@@ -214,6 +204,7 @@ void LevelPage::MouseMoveTigger() {
 
 		this->_EasyButton.setFillColor(sf::Color::White);
 		this->_EasyText.setFillColor(sf::Color::Black);
+		this->sound.play();
 	}                                                                       //easy Btn	
 	else {
 		this->_EasyButton.setFillColor(CaramelColor);
@@ -224,6 +215,7 @@ void LevelPage::MouseMoveTigger() {
 
 		this->_MediumButton.setFillColor(sf::Color::White);
 		this->_MediumText.setFillColor(sf::Color::Black);
+		this->sound.play();
 	}                                                                       //medium Btn	
 	else {
 		this->_MediumButton.setFillColor(CaramelColor);
@@ -234,34 +226,18 @@ void LevelPage::MouseMoveTigger() {
 
 		this->_HardButton.setFillColor(sf::Color::White);
 		this->_HardText.setFillColor(sf::Color::Black);
+		this->sound.play();
 	}                                                                       //hard btn
 	else {
 		this->_HardButton.setFillColor(CaramelColor);
 		this->_HardText.setFillColor(sf::Color::Black);
-	}
-	if (this->IsMouseOverButton(this->_ExpertButton)) {
-
-		this->_ExpertButton.setFillColor(sf::Color::White);
-		this->_ExpertText.setFillColor(sf::Color::Black);
-	}                                                                       //hard btn
-	else {
-		this->_ExpertButton.setFillColor(CaramelColor);
-		this->_ExpertText.setFillColor(sf::Color::Black);
-	}
-	if (this->IsMouseOverButton(this->_EvilButton)) {
-
-		this->_EvilButton.setFillColor(sf::Color::White);
-		this->_EvilText.setFillColor(sf::Color::Black);
-	}                                                                       //hard btn
-	else {
-		this->_EvilButton.setFillColor(CaramelColor);
-		this->_EvilText.setFillColor(sf::Color::Black);
 	}
 
 	if (this->IsMouseOverButton(this->_BackButton)) {
 
 		this->_BackButton.setFillColor(sf::Color::White);
 		this->_BackText.setFillColor(sf::Color::Black);
+		this->sound.play();
 	}                                                                       //back btn
 	else {
 		this->_BackButton.setFillColor(CaramelColor);

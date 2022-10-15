@@ -1,6 +1,7 @@
 #pragma once
 
 #include "BasePageClass.h"
+#include "SFML/Audio.hpp"
 
 class LevelPage : public BasePageClass
 {
@@ -42,6 +43,8 @@ private:
 	sf::Text _ExpertText;
 	sf::Text _EvilText;
 	sf::Text _BackText;
+	sf::SoundBuffer buffer;
+	sf::Sound sound;
 	const sf::Color LineColor = sf::Color(235, 114, 84);
 };
 

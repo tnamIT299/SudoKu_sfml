@@ -2,7 +2,6 @@
 
 #include "BasePageClass.h"
 #include "SudokuMapGen.h"
-#include "IceBreaker.h"
 #include "sstream"
 #include "string"
 #include "SFML/Audio.hpp"
@@ -24,6 +23,8 @@ public:
 	bool computerPlay; // if true "AI" is playing
 	//hàm cài time
 	void TimePlay();
+
+	void DeleteGrid();
 
 
 	void Display() override;

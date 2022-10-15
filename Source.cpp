@@ -1,6 +1,5 @@
 #include"PageManager.h"
 #include"SudokuMapGen.h"
-#include "IceBreaker.h"
 #include<SFML/Graphics.hpp>
 #include<iostream>
 #include<sstream>
@@ -12,11 +11,11 @@ int main()
 {
 	
 	sf::RenderWindow window(sf::VideoMode(800, 800), "Sudoku", sf::Style::Titlebar | sf::Style::Close);
-	//sf::Music music;
-	//if (!music.openFromFile("music/Nhac-Thien-Tinh-Tam-V-A.ogg"))
-	//	return -1; // error
-	//music.setVolume(05.f);
-	//music.play();
+	sf::Music music;
+	if (!music.openFromFile("music/Nhac-Thien-Tinh-Tam-V-A.ogg"))
+		return -1; // error
+	music.setVolume(5.f);
+	music.play();
 
 	
 	PagesManager pageManager(&window);

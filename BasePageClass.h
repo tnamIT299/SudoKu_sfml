@@ -13,12 +13,8 @@ enum class GamePages
 	LoginPage,
 	Sign_In,
 	Register,
-	IceBreaker,
-	//SudokuMapMedium,
 	Game_Medium_Play,
 	Game_Hard_Play,
-	Game_Expert_Play,
-	Game_Evil_Play,
 };
 
 class BasePageClass
