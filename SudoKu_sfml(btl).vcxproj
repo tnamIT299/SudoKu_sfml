@@ -134,9 +134,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BasePageClass.cpp" />
+    <ClCompile Include="EvilMap.cpp" />
+    <ClCompile Include="ExpertMap.cpp" />
     <ClCompile Include="GamePlayPage.cpp" />
+    <ClCompile Include="Game_Evil_Play.cpp" />
+    <ClCompile Include="Game_Expert_Play.cpp" />
+    <ClCompile Include="Game_Hard_Play.cpp" />
     <ClCompile Include="Game_Ice_Play.cpp" />
     <ClCompile Include="Game_Medium_Play.cpp" />
+    <ClCompile Include="HardMap.cpp" />
     <ClCompile Include="IceBreaker.cpp" />
     <ClCompile Include="IGrid.cpp" />
     <ClCompile Include="LevelPage.cpp" />
@@ -147,16 +153,25 @@
     <ClCompile Include="Sign_In.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="StartPage.cpp" />
+    <ClCompile Include="SudokuMapEvil.cpp" />
+    <ClCompile Include="SudokuMapExpert.cpp" />
     <ClCompile Include="SudokuMapGen.cpp" />
+    <ClCompile Include="SudokuMapHard.cpp" />
     <ClCompile Include="SudokuMapMedium.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BasePageClass.h" />
     <ClInclude Include="GamePlayPage.h" />
+    <ClInclude Include="Game_Evil_Play.h" />
+    <ClInclude Include="Game_Expert_Play.h" />
+    <ClInclude Include="Game_Hard_Play.h" />
     <ClInclude Include="Game_Ice_Play.h" />
     <ClInclude Include="Game_Medium_Play.h" />
     <ClInclude Include="IceBreaker.h" />
     <ClInclude Include="IGrid.h" />
+    <ClInclude Include="IGrid_Evil.h" />
+    <ClInclude Include="IGrid_Expert.h" />
+    <ClInclude Include="IGrid_Hard.h" />
     <ClInclude Include="IGrid_Medium.h" />
     <ClInclude Include="LevelPage.h" />
     <ClInclude Include="LoginPage.h" />
@@ -164,7 +179,10 @@
     <ClInclude Include="Register.h" />
     <ClInclude Include="Sign_In.h" />
     <ClInclude Include="StartPage.h" />
+    <ClInclude Include="SudokuMapEvil.h" />
+    <ClInclude Include="SudokuMapExpert.h" />
     <ClInclude Include="SudokuMapGen.h" />
+    <ClInclude Include="SudokuMapHard.h" />
     <ClInclude Include="SudokuMapMedium.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

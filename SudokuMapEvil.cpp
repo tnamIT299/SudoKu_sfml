@@ -1,7 +1,7 @@
 #pragma once
-#include"SudokuMapMedium.h"
+#include"SudokuMapEvil.h"
 
-bool SudokuMapMedium::Solve(int grid[MaxSize][MaxSize])
+bool SudokuMapEvil::Solve(int grid[MaxSize][MaxSize])
 {
 	int row, col;
 
@@ -25,7 +25,7 @@ bool SudokuMapMedium::Solve(int grid[MaxSize][MaxSize])
 	return false;
 }
 
-bool SudokuMapMedium::FindUnassignedLocation(int grid[MaxSize][MaxSize], int& row, int& col)
+bool SudokuMapEvil::FindUnassignedLocation(int grid[MaxSize][MaxSize], int& row, int& col)
 {
 	for (row = 0; row < MaxSize; row++)
 		for (col = 0; col < MaxSize; col++)
@@ -34,7 +34,7 @@ bool SudokuMapMedium::FindUnassignedLocation(int grid[MaxSize][MaxSize], int& ro
 	return false;
 }
 
-bool SudokuMapMedium::UsedInRow(int grid[MaxSize][MaxSize], int row, int value, int currentCol)
+bool SudokuMapEvil::UsedInRow(int grid[MaxSize][MaxSize], int row, int value, int currentCol)
 {
 
 	for (int col = 0; col < MaxSize; col++)
@@ -43,7 +43,7 @@ bool SudokuMapMedium::UsedInRow(int grid[MaxSize][MaxSize], int row, int value, 
 	return false;
 }
 
-bool SudokuMapMedium::UsedInCol(int grid[MaxSize][MaxSize], int col, int value, int CurrentRow)
+bool SudokuMapEvil::UsedInCol(int grid[MaxSize][MaxSize], int col, int value, int CurrentRow)
 {
 	for (int row = 0; row < MaxSize; row++)
 		if (grid[row][col] == value && CurrentRow != row)
@@ -51,7 +51,7 @@ bool SudokuMapMedium::UsedInCol(int grid[MaxSize][MaxSize], int col, int value, 
 	return false;
 }
 
-bool SudokuMapMedium::UsedInBox(int grid[MaxSize][MaxSize], int boxStartRow, int boxStartCol, int value, Field2 gameField)
+bool SudokuMapEvil::UsedInBox(int grid[MaxSize][MaxSize], int boxStartRow, int boxStartCol, int value, Field5 gameField)
 {
 	for (int row = 0; row < 3; row++)
 		for (int col = 0; col < 3; col++)
@@ -60,11 +60,11 @@ bool SudokuMapMedium::UsedInBox(int grid[MaxSize][MaxSize], int boxStartRow, int
 	return false;
 }
 
-bool SudokuMapMedium::isSafe(int grid[MaxSize][MaxSize], int row, int col, int value)
+bool SudokuMapEvil::isSafe(int grid[MaxSize][MaxSize], int row, int col, int value)
 {
 	auto curRow = row;
 	auto curCol = col;
-	Field2 gField = { row,col };
+	Field5 gField = { row,col };
 	auto check1 = UsedInRow(grid, row, value, curCol);
 	auto check2 = UsedInCol(grid, col, value, curRow);
 	auto check3 = UsedInBox(grid, row - row % 3, col - col % 3, value, gField) && grid[row][col] == 0;
@@ -75,7 +75,7 @@ bool SudokuMapMedium::isSafe(int grid[MaxSize][MaxSize], int row, int col, int v
 
 }
 
-void SudokuMapMedium::printGrid(int grid[MaxSize][MaxSize]) // for debugging
+void SudokuMapEvil::printGrid(int grid[MaxSize][MaxSize]) // for debugging
 {
 	for (int row = 0; row < MaxSize; row++) {
 		for (int col = 0; col < MaxSize; col++) {
@@ -92,7 +92,7 @@ void SudokuMapMedium::printGrid(int grid[MaxSize][MaxSize]) // for debugging
 	}
 }
 
-void SudokuMapMedium::fillValues() {
+void SudokuMapEvil::fillValues() {
 	fillDiagonal();
 
 	fillRemaining(0, SRN);
@@ -100,7 +100,7 @@ void SudokuMapMedium::fillValues() {
 	removeKDigits();
 }
 
-SudokuMapMedium::SudokuMapMedium() {
+SudokuMapEvil::SudokuMapEvil() {
 	fillValues();
 	for (int i = 0; i < MaxSize; i++)
 	{

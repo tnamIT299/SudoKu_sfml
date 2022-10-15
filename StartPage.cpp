@@ -157,10 +157,6 @@ void StartPage::Display() {
 	this->_window->draw(this->_music_Stop_Button);
 	this->_window->draw(this->_music_StopText);
 	this->_window->draw(this->_music_PauseText);
-	//this->_window->draw(this->_playGameText);
-	//this->_window->draw(this->_playGameText);
-	//this->_window->draw(this->_PlayGameButton);
-	//this->_window->draw(this->_playGameText);
 	this->_window->draw(this->_LevelButton);
 	this->_window->draw(this->_levelText);
 	this->_window->draw(this->_computerPlayButton);
@@ -213,7 +209,7 @@ void StartPage::MouseMoveTigger() {
 	if (this->IsMouseOverButton(this->_music_Play_Button)) {
 
 		this->_music_Play_Button.setFillColor(sf::Color::White);
-		this->_music_PlayText.setFillColor(CaramelColor);
+		this->_music_PlayText.setFillColor(sf::Color::Black);
 		//this->music.play();
 	}                                                                       //PlayMusic Btn	
 	else {
@@ -224,7 +220,7 @@ void StartPage::MouseMoveTigger() {
 	if (this->IsMouseOverButton(this->_music_Pause_Button)) {
 
 		this->_music_Pause_Button.setFillColor(sf::Color::White);
-		this->_music_PauseText.setFillColor(CaramelColor);
+		this->_music_PauseText.setFillColor(sf::Color::Black);
 		//this->music.pause();
 	}                                                                       //PauseMusic Btn	
 	else {
@@ -234,7 +230,7 @@ void StartPage::MouseMoveTigger() {
 	if (this->IsMouseOverButton(this->_music_Stop_Button)) {
 
 		this->_music_Stop_Button.setFillColor(sf::Color::White);
-		this->_music_StopText.setFillColor(CaramelColor);
+		this->_music_StopText.setFillColor(sf::Color::Black);
 		//this->music.stop();
 	}                                                                       //StopMusic Btn	
 	else {
@@ -245,7 +241,7 @@ void StartPage::MouseMoveTigger() {
 	if (this->IsMouseOverButton(this->_PlayGameButton)) {
 
 		this->_PlayGameButton.setFillColor(sf::Color::White);
-		this->_playGameText.setFillColor(CaramelColor);
+		this->_playGameText.setFillColor(sf::Color::Black);
 		//this->sound.play();
 		this->sound.play();
 	}                                                                       //PlayGame Btn	
@@ -257,7 +253,7 @@ void StartPage::MouseMoveTigger() {
 	if (this->IsMouseOverButton(this->_LevelButton)) {
 
 		this->_LevelButton.setFillColor(sf::Color::White);
-		this->_levelText.setFillColor(CaramelColor);
+		this->_levelText.setFillColor(sf::Color::Black);
 		this->sound.play();
 	}                                                                       //Level Btn	
 	else {
@@ -268,7 +264,7 @@ void StartPage::MouseMoveTigger() {
 	if (this->IsMouseOverButton(this->_computerPlayButton)) {
 
 		this->_computerPlayButton.setFillColor(sf::Color::White);
-		this->_computerPlayText.setFillColor(CaramelColor);
+		this->_computerPlayText.setFillColor(sf::Color::Black);
 		this->sound.play();
 	}                                                                       //CompPlay
 	else {
@@ -279,7 +275,7 @@ void StartPage::MouseMoveTigger() {
 	if (this->IsMouseOverButton(this->_exitButton)) {
 
 		this->_exitButton.setFillColor(sf::Color::White);
-		this->_exitButtonText.setFillColor(CaramelColor);
+		this->_exitButtonText.setFillColor(sf::Color::Black);
 		this->sound.play();
 	}                                                                       //exit
 	else {

@@ -339,7 +339,7 @@ void GamePlayPage::MouseMoveTigger() {
 	if (this->IsMouseOverButton(this->_BackButton)) {
 
 		this->_BackButton.setFillColor(sf::Color::White);
-		this->_BackText.setFillColor(CaramelColor);
+		this->_BackText.setFillColor(sf::Color::Black);
 		this->sound.play();
 	}                                                                       //back btn
 	else {
@@ -350,7 +350,7 @@ void GamePlayPage::MouseMoveTigger() {
 	for (int i = 0; i < SudokuMapGen::MaxSize; ++i) {
 
 		if (this->IsMouseOverButton(this->_optionField[i]))
-			this->_optionField[i].setFillColor(sf::Color(235, 114, 84));
+			this->_optionField[i].setFillColor(sf::Color::White);
 		else
 		{
 			if (i != this->_selectedIndex)
@@ -377,7 +377,7 @@ void GamePlayPage::HoverCheck(sf::RectangleShape* button, sf::Text* buttonText) 
 	if (this->IsMouseOverButton(*button))
 	{
 		button->setFillColor(sf::Color::White);
-		buttonText->setFillColor(LineColor);
+		buttonText->setFillColor(sf::Color::Black);
 	}
 	else
 	{
@@ -397,9 +397,9 @@ void GamePlayPage::OnFocusEvent() {
 
 		if (this->IsMouseOverButton(this->_optionField[i])) {
 
-			this->_optionField[this->_selectedIndex].setFillColor(sf::Color(235, 114, 84)); //reset element Previously highlighted.. 
+			this->_optionField[this->_selectedIndex].setFillColor(sf::Color::White); //reset element Previously highlighted.. 
 			this->_selectedIndex = i;
-			this->_optionField[i].setFillColor(sf::Color(235, 114, 84));
+			this->_optionField[i].setFillColor(sf::Color::White);
 			this->_selectedNumber = this->_selectedIndex + 1;
 		}
 

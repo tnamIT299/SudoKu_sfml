@@ -1,4 +1,5 @@
 #pragma once
+#pragma once
 #include <iostream>
 #include <cstring>
 #include <cmath>
@@ -6,7 +7,7 @@
 #include <time.h>
 #include <vector>
 using namespace std;
-class board_Medium
+class board_Hard
 {
 protected:
     int** matrix;
@@ -15,8 +16,8 @@ protected:
     int K; // num of remove cell
 
 public:
-    board_Medium();
-    ~board_Medium();
+    board_Hard();
+    ~board_Hard();
     int randomGenerator(int num);
     virtual void fillValues() = 0;
     bool isSafe(int** matrix, int row, int col, int num);

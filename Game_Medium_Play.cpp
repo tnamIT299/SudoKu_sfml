@@ -337,7 +337,7 @@ void Game_Medium_Play::MouseMoveTigger() {
 	if (this->IsMouseOverButton(this->_BackButton)) {
 
 		this->_BackButton.setFillColor(sf::Color::White);
-		this->_BackText.setFillColor(CaramelColor);
+		this->_BackText.setFillColor(sf::Color::Black);
 		this->sound.play();
 	}                                                                       //back btn
 	else {
@@ -375,7 +375,7 @@ void Game_Medium_Play::HoverCheck(sf::RectangleShape* button, sf::Text* buttonTe
 	if (this->IsMouseOverButton(*button))
 	{
 		button->setFillColor(sf::Color::White);
-		buttonText->setFillColor(LineColor);
+		buttonText->setFillColor(sf::Color::Black);
 	}
 	else
 	{
@@ -395,9 +395,9 @@ void Game_Medium_Play::OnFocusEvent() {
 
 		if (this->IsMouseOverButton(this->_optionField[i])) {
 
-			this->_optionField[this->_selectedIndex].setFillColor(sf::Color(235, 114, 84)); //reset element Previously highlighted.. 
+			this->_optionField[this->_selectedIndex].setFillColor(sf::Color::White); //reset element Previously highlighted.. 
 			this->_selectedIndex = i;
-			this->_optionField[i].setFillColor(sf::Color(235, 114, 84));
+			this->_optionField[i].setFillColor(sf::Color::White);
 			this->_selectedNumber = this->_selectedIndex + 1;
 		}
 
@@ -648,27 +648,4 @@ void Game_Medium_Play::TimePlay() {
 
 }
 
-//void Game_Medium_Play::Display()
-//{
-//}
-//
-//void Game_Medium_Play::HandleEvents(sf::Event*)
-//{
-//}
-//
-//void Game_Medium_Play::MouseMoveTigger()
-//{
-//}
-//
-//void Game_Medium_Play::HoverCheck(sf::RectangleShape*, sf::Text*)
-//{
-//}
-//
-//void Game_Medium_Play::OnFocusEvent()
-//{
-//}
-//
-//bool Game_Medium_Play::AISolve(int grid[SudokuMapMedium::MaxSize][SudokuMapMedium::MaxSize])
-//{
-//	return false;
-//}
+

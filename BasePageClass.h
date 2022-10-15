@@ -16,6 +16,9 @@ enum class GamePages
 	IceBreaker,
 	//SudokuMapMedium,
 	Game_Medium_Play,
+	Game_Hard_Play,
+	Game_Expert_Play,
+	Game_Evil_Play,
 };
 
 class BasePageClass

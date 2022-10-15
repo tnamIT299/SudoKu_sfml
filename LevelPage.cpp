@@ -95,9 +95,9 @@ void LevelPage::setUp() {
 	this->_MediumText.setFont(this->_HeaderFont);
 	this->_MediumText.setCharacterSize(18);
 	this->_MediumText.setString("Medium");
-	Framex = Posx + this->_MediumButton.getLocalBounds().width / 1.3f - (this->_MediumButton.getLocalBounds().width / 2.f);
+	Framex = Posx + this->_MediumButton.getLocalBounds().width / 1.2f - (this->_MediumButton.getLocalBounds().width / 2.f);
 	Framey = Posy + this->_MediumButton.getLocalBounds().height / 1.5f - (this->_MediumButton.getLocalBounds().height / 2.f);
-	this->_MediumText.setPosition(Framex, Framey);
+	this->_MediumText.setPosition(Framex-15, Framey);
 
 
 	Posy += 65;
@@ -112,9 +112,34 @@ void LevelPage::setUp() {
 	Framex = Posx + this->_HardButton.getLocalBounds().width / 1.2f - (this->_HardButton.getLocalBounds().width / 2.f);
 	Framey = Posy + this->_HardButton.getLocalBounds().height / 1.5f - (this->_HardButton.getLocalBounds().height / 2.f);
 	this->_HardText.setPosition(Framex, Framey);
+
+
+	Posy += 65;
+	this->_ExpertButton.setSize(sf::Vector2f(170.f, height));
+	this->_ExpertButton.setPosition(sf::Vector2f(Posx, Posy));
+	this->_ExpertButton.setFillColor(CaramelColor);
+
+	this->_ExpertText.setFillColor(sf::Color::Black);
+	this->_ExpertText.setFont(this->_HeaderFont);
+	this->_ExpertText.setCharacterSize(18);
+	this->_ExpertText.setString("Expert");
+	Framex = Posx + this->_ExpertButton.getLocalBounds().width / 1.2f - (this->_ExpertButton.getLocalBounds().width / 2.f);
+	Framey = Posy + this->_ExpertButton.getLocalBounds().height / 1.5f - (this->_ExpertButton.getLocalBounds().height / 2.f);
+	this->_ExpertText.setPosition(Framex-5, Framey);
 	
 
-	
+	Posy += 65;
+	this->_EvilButton.setSize(sf::Vector2f(170.f, height));
+	this->_EvilButton.setPosition(sf::Vector2f(Posx, Posy));
+	this->_EvilButton.setFillColor(CaramelColor);
+
+	this->_EvilText.setFillColor(sf::Color::Black);
+	this->_EvilText.setFont(this->_HeaderFont);
+	this->_EvilText.setCharacterSize(18);
+	this->_EvilText.setString("Evil");
+	Framex = Posx + this->_EvilButton.getLocalBounds().width / 1.2f - (this->_EvilButton.getLocalBounds().width / 2.f);
+	Framey = Posy + this->_EvilButton.getLocalBounds().height / 1.5f - (this->_EvilButton.getLocalBounds().height / 2.f);
+	this->_EvilText.setPosition(Framex+10, Framey);
 
 
 
@@ -131,6 +156,10 @@ void LevelPage::Display() {
 	this->_window->draw(this->_MediumText);
 	this->_window->draw(this->_HardButton);
 	this->_window->draw(this->_HardText);
+	this->_window->draw(this->_ExpertButton);
+	this->_window->draw(this->_ExpertText);
+	this->_window->draw(this->_EvilButton);
+	this->_window->draw(this->_EvilText);
 	this->_window->draw(this->_BackButton);
 	this->_window->draw(this->_BackText);
 	
@@ -155,7 +184,21 @@ void LevelPage::OnFocusEvent() {
 
 	else if (this->IsMouseOverButton(this->_HardButton)) {
 
-		//this->_window->close();
+		this->ChangePage = true;
+		this->NavTOPage = GamePages::Game_Hard_Play;
+	}
+
+
+	else if (this->IsMouseOverButton(this->_ExpertButton)) {
+
+		this->ChangePage = true;
+		this->NavTOPage = GamePages::Game_Expert_Play;
+	}
+
+	else if (this->IsMouseOverButton(this->_EvilButton)) {
+
+		this->ChangePage = true;
+		this->NavTOPage = GamePages::Game_Evil_Play;
 	}
 
 	else if (this->IsMouseOverButton(this->_BackButton)) {
@@ -170,7 +213,7 @@ void LevelPage::MouseMoveTigger() {
 	if (this->IsMouseOverButton(this->_EasyButton)) {
 
 		this->_EasyButton.setFillColor(sf::Color::White);
-		this->_EasyText.setFillColor(CaramelColor);
+		this->_EasyText.setFillColor(sf::Color::Black);
 	}                                                                       //easy Btn	
 	else {
 		this->_EasyButton.setFillColor(CaramelColor);
@@ -180,7 +223,7 @@ void LevelPage::MouseMoveTigger() {
 	if (this->IsMouseOverButton(this->_MediumButton)) {
 
 		this->_MediumButton.setFillColor(sf::Color::White);
-		this->_MediumText.setFillColor(CaramelColor);
+		this->_MediumText.setFillColor(sf::Color::Black);
 	}                                                                       //medium Btn	
 	else {
 		this->_MediumButton.setFillColor(CaramelColor);
@@ -190,17 +233,35 @@ void LevelPage::MouseMoveTigger() {
 	if (this->IsMouseOverButton(this->_HardButton)) {
 
 		this->_HardButton.setFillColor(sf::Color::White);
-		this->_HardText.setFillColor(CaramelColor);
+		this->_HardText.setFillColor(sf::Color::Black);
 	}                                                                       //hard btn
 	else {
 		this->_HardButton.setFillColor(CaramelColor);
 		this->_HardText.setFillColor(sf::Color::Black);
 	}
+	if (this->IsMouseOverButton(this->_ExpertButton)) {
+
+		this->_ExpertButton.setFillColor(sf::Color::White);
+		this->_ExpertText.setFillColor(sf::Color::Black);
+	}                                                                       //hard btn
+	else {
+		this->_ExpertButton.setFillColor(CaramelColor);
+		this->_ExpertText.setFillColor(sf::Color::Black);
+	}
+	if (this->IsMouseOverButton(this->_EvilButton)) {
+
+		this->_EvilButton.setFillColor(sf::Color::White);
+		this->_EvilText.setFillColor(sf::Color::Black);
+	}                                                                       //hard btn
+	else {
+		this->_EvilButton.setFillColor(CaramelColor);
+		this->_EvilText.setFillColor(sf::Color::Black);
+	}
 
 	if (this->IsMouseOverButton(this->_BackButton)) {
 
 		this->_BackButton.setFillColor(sf::Color::White);
-		this->_BackText.setFillColor(CaramelColor);
+		this->_BackText.setFillColor(sf::Color::Black);
 	}                                                                       //back btn
 	else {
 		this->_BackButton.setFillColor(CaramelColor);

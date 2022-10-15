@@ -6,7 +6,7 @@
 #include <time.h>
 #include <vector>
 using namespace std;
-class board_Medium
+class board_Evil
 {
 protected:
     int** matrix;
@@ -15,8 +15,8 @@ protected:
     int K; // num of remove cell
 
 public:
-    board_Medium();
-    ~board_Medium();
+    board_Evil();
+    ~board_Evil();
     int randomGenerator(int num);
     virtual void fillValues() = 0;
     bool isSafe(int** matrix, int row, int col, int num);

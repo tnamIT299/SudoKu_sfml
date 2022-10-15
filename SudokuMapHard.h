@@ -1,16 +1,17 @@
 #pragma once
+#pragma once
 
 #include <vector>
 #include <iostream>
 #include "IGrid.h"
-#include "IGrid_Medium.h"
-//#include "MediumMap.h"
-struct Field2 {
+#include "IGrid_Hard.h"
+
+struct Field3 {
 
 	int row, col;
 };
 
-class SudokuMapMedium : public board_Medium
+class SudokuMapHard : public board_Hard
 {
 
 public:
@@ -19,7 +20,7 @@ public:
 
 	int gameMap[MaxSize][MaxSize];
 
-	SudokuMapMedium();
+	SudokuMapHard();
 
 	bool Solve(int grid[MaxSize][MaxSize]);
 	bool FindUnassignedLocation(int grid[MaxSize][MaxSize], int&, int&);
@@ -30,7 +31,7 @@ private:
 
 	bool UsedInRow(int grid[MaxSize][MaxSize], int row, int value, int currentCol);
 	bool UsedInCol(int grid[MaxSize][MaxSize], int col, int value, int CurrentRow);
-	bool UsedInBox(int grid[MaxSize][MaxSize], int, int, int, Field2 gameField);
+	bool UsedInBox(int grid[MaxSize][MaxSize], int, int, int, Field3 gameField);
 
 };
 

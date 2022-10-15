@@ -1,12 +1,11 @@
-#include "Game_Ice_Play.h"
+
 #include "LevelPage.h"
 #include "sstream"
 #include "windows.h"
 #include "SFML/Audio.hpp"
+#include "Game_Evil_Play.h"
 
-
-
-void Game_Ice_Play::setUp() {
+void Game_Evil_Play::setUp() {
 
 	if (!this->_bgTexture.loadFromFile("Images/bg.jpg")) {
 		std::cout << "Error Loading Images/bg.jpg" << std::endl;
@@ -83,7 +82,7 @@ void Game_Ice_Play::setUp() {
 	float sizex;
 	float sizey;
 
-	if (this->ice_play == true)
+	if (this->evil_play == true)
 	{
 		//this->_submitText.setString("START");
 	//	sizex = this->_submitText.getLocalBounds().width / 1.1f;
@@ -207,9 +206,9 @@ void Game_Ice_Play::setUp() {
 	auto gridPosY = boardOriginY;
 
 
-	for (int i = 0; i < IceBreaker::MaxSize; ++i) {
+	for (int i = 0; i < SudokuMapGen::MaxSize; ++i) {
 
-		for (int j = 0; j < IceBreaker::MaxSize; ++j) {
+		for (int j = 0; j < SudokuMapGen::MaxSize; ++j) {
 
 			this->_gameGridMap[i][j].setFillColor(sf::Color(223, 229, 237));
 			this->_gameGridMap[i][j].setOutlineColor(sf::Color(sf::Color(55, 57, 59)));
@@ -221,7 +220,7 @@ void Game_Ice_Play::setUp() {
 			this->_textGridMap[i][j].setCharacterSize(30);
 			this->_textGridMap[i][j].setFillColor(sf::Color(55, 57, 59));
 
-			auto boxVal = this->_icebreaker_map.gameMap[i][j];           // load values from gridMap 
+			auto boxVal = this->_evil_map.gameMap[i][j];           // load values from gridMap 
 			auto strBoxVal = std::to_string(boxVal);
 			this->_textGridMap[i][j].setString(strBoxVal);
 
@@ -241,13 +240,13 @@ void Game_Ice_Play::setUp() {
 
 #pragma region Option Selector
 
-	if (this->ice_play == false)
+	if (this->evil_play == false)
 	{
 		gridPosX = boardOriginX;
 		gridPosY += 20;
 		int fillval = 1;
 
-		for (int i = 0; i < IceBreaker::MaxSize; ++i) {
+		for (int i = 0; i < SudokuMapGen::MaxSize; ++i) {
 
 			this->_optionField[i].setFillColor(sf::Color(223, 229, 237));
 			this->_optionField[i].setOutlineColor(sf::Color(sf::Color(92, 95, 99)));
@@ -276,7 +275,7 @@ void Game_Ice_Play::setUp() {
 
 }
 
-void Game_Ice_Play::Display() {
+void Game_Evil_Play::Display() {
 
 	this->_window->clear();
 
@@ -284,18 +283,18 @@ void Game_Ice_Play::Display() {
 	this->_window->draw(this->_gameBoard);
 
 
-	for (int i = 0; i < IceBreaker::MaxSize; ++i) {
+	for (int i = 0; i < SudokuMapGen::MaxSize; ++i) {
 
-		if (this->ice_play == false) {
+		if (this->evil_play == false) {
 			this->_window->draw(this->_optionField[i]);    //Option Selector
 			this->_window->draw(this->_optionText[i]);
 		}
 
-		for (int j = 0; j < IceBreaker::MaxSize; ++j) {
+		for (int j = 0; j < SudokuMapGen::MaxSize; ++j) {
 
 			this->_window->draw(this->_gameGridMap[i][j]); //
 
-			if (this->_icebreaker_map.gameMap[i][j] == 0)
+			if (this->_evil_map.gameMap[i][j] == 0)
 				continue;
 			this->_window->draw(this->_textGridMap[i][j]);
 		}
@@ -306,7 +305,7 @@ void Game_Ice_Play::Display() {
 	this->_window->draw(this->_hLine1);
 	this->_window->draw(this->_hLine2);
 
-	if (this->ice_play == false) {
+	if (this->evil_play == false) {
 		this->_window->draw(this->_submitButton);
 		this->_window->draw(this->_submitText);
 		this->_window->draw(this->_checkButton);
@@ -333,12 +332,12 @@ void Game_Ice_Play::Display() {
 	this->_window->display();
 }
 
-void Game_Ice_Play::MouseMoveTigger() {
+void Game_Evil_Play::MouseMoveTigger() {
 
 	if (this->IsMouseOverButton(this->_BackButton)) {
 
 		this->_BackButton.setFillColor(sf::Color::White);
-		this->_BackText.setFillColor(CaramelColor);
+		this->_BackText.setFillColor(sf::Color::Black);
 		this->sound.play();
 	}                                                                       //back btn
 	else {
@@ -346,7 +345,7 @@ void Game_Ice_Play::MouseMoveTigger() {
 		this->_BackText.setFillColor(sf::Color::Black);
 	}
 
-	for (int i = 0; i < IceBreaker::MaxSize; ++i) {
+	for (int i = 0; i < SudokuMapGen::MaxSize; ++i) {
 
 		if (this->IsMouseOverButton(this->_optionField[i]))
 			this->_optionField[i].setFillColor(sf::Color::White);
@@ -356,7 +355,7 @@ void Game_Ice_Play::MouseMoveTigger() {
 				this->_optionField[i].setFillColor(sf::Color(223, 229, 237));
 		}
 
-		for (int j = 0; j < IceBreaker::MaxSize; ++j) {
+		for (int j = 0; j < SudokuMapGen::MaxSize; ++j) {
 
 			if (this->IsMouseOverButton(this->_gameGridMap[i][j]))
 				this->_gameGridMap[i][j].setFillColor(sf::Color(235, 114, 84));
@@ -371,12 +370,12 @@ void Game_Ice_Play::MouseMoveTigger() {
 	HoverCheck(&this->_BackButton, &this->_BackText);
 }
 
-void Game_Ice_Play::HoverCheck(sf::RectangleShape* button, sf::Text* buttonText) {
+void Game_Evil_Play::HoverCheck(sf::RectangleShape* button, sf::Text* buttonText) {
 
 	if (this->IsMouseOverButton(*button))
 	{
 		button->setFillColor(sf::Color::White);
-		buttonText->setFillColor(LineColor);
+		buttonText->setFillColor(sf::Color::Black);
 	}
 	else
 	{
@@ -385,31 +384,31 @@ void Game_Ice_Play::HoverCheck(sf::RectangleShape* button, sf::Text* buttonText)
 	}
 }
 
-void Game_Ice_Play::OnFocusEvent() {
+void Game_Evil_Play::OnFocusEvent() {
 	if (this->IsMouseOverButton(this->_BackButton)) {
 
 		this->ChangePage = true;
 		this->NavTOPage = GamePages::LevelPage;
 	}
 
-	for (int i = 0; i < IceBreaker::MaxSize; ++i) {
+	for (int i = 0; i < SudokuMapGen::MaxSize; ++i) {
 
 		if (this->IsMouseOverButton(this->_optionField[i])) {
 
-			this->_optionField[this->_selectedIndex].setFillColor(sf::Color(235, 114, 84)); //reset element Previously highlighted.. 
+			this->_optionField[this->_selectedIndex].setFillColor(sf::Color::White); //reset element Previously highlighted.. 
 			this->_selectedIndex = i;
-			this->_optionField[i].setFillColor(sf::Color(235, 114, 84));
+			this->_optionField[i].setFillColor(sf::Color::White);
 			this->_selectedNumber = this->_selectedIndex + 1;
 		}
 
-		for (int j = 0; j < IceBreaker::MaxSize; ++j) {
+		for (int j = 0; j < SudokuMapGen::MaxSize; ++j) {
 
 			if (this->IsMouseOverButton(this->_gameGridMap[i][j])) {
 
-				if (this->_icebreaker_map.gameMap[i][j] == 0)
+				if (this->_evil_map.gameMap[i][j] == 0)
 				{
 					this->_textGridMap[i][j].setString(std::to_string(this->_selectedNumber));
-					this->_icebreaker_map.gameMap[i][j] = this->_selectedNumber;
+					this->_evil_map.gameMap[i][j] = this->_selectedNumber;
 					this->_selections.push_back({ i,j });
 				}
 			}
@@ -419,7 +418,7 @@ void Game_Ice_Play::OnFocusEvent() {
 	if (this->IsMouseOverButton(this->_submitButton)) {
 
 		int rol, col;
-		if (this->_icebreaker_map.FindUnassignedLocation(this->_icebreaker_map.gameMap, rol, col))
+		if (this->_evil_map.FindUnassignedLocation(this->_evil_map.gameMap, rol, col))
 		{
 			this->AlertWindow(this->_HeaderFont, "Grid not completely filled!", 300, 100, sf::Color(223, 229, 237), LineColor);
 		}
@@ -428,12 +427,12 @@ void Game_Ice_Play::OnFocusEvent() {
 		{
 			if (this->_checkErr == false) {
 
-				for (int i = 0; i < IceBreaker::MaxSize; ++i) {
-					for (int j = 0; j < IceBreaker::MaxSize; ++j) {
+				for (int i = 0; i < SudokuMapGen::MaxSize; ++i) {
+					for (int j = 0; j < SudokuMapGen::MaxSize; ++j) {
 
-						auto value = this->_icebreaker_map.gameMap[i][j];
+						auto value = this->_evil_map.gameMap[i][j];
 
-						if (this->_icebreaker_map.isSafe(this->_icebreaker_map.gameMap, i, j, value) == false)
+						if (this->_evil_map.isSafe(this->_evil_map.gameMap, i, j, value) == false)
 						{
 							this->_checkErr = true;
 							this->_textGridMap[i][j].setFillColor(sf::Color::Red);
@@ -453,7 +452,7 @@ void Game_Ice_Play::OnFocusEvent() {
 		if (this->_selections.size() > 0) {
 
 			auto field = this->_selections.end() - 1;
-			this->_icebreaker_map.gameMap[field->row][field->col] = 0;
+			this->_evil_map.gameMap[field->row][field->col] = 0;
 			this->_textGridMap[field->row][field->col].setString(" ");
 			this->_selections.pop_back();
 		}
@@ -462,9 +461,9 @@ void Game_Ice_Play::OnFocusEvent() {
 			this->AlertWindow(this->_HeaderFont, "Nothing to undo!", 300, 100, sf::Color(223, 229, 237), LineColor);
 
 		if (this->_checkErr) {
-			for (int i = 0; i < IceBreaker::MaxSize; ++i) {
+			for (int i = 0; i < SudokuMapGen::MaxSize; ++i) {
 
-				for (int j = 0; j < IceBreaker::MaxSize; ++j) {
+				for (int j = 0; j < SudokuMapGen::MaxSize; ++j) {
 					this->_textGridMap[i][j].setFillColor(sf::Color(55, 57, 59));
 				}
 			}
@@ -474,14 +473,14 @@ void Game_Ice_Play::OnFocusEvent() {
 
 	if (this->IsMouseOverButton(this->_checkButton)) {
 
-		for (int i = 0; i < IceBreaker::MaxSize; ++i) {
-			for (int j = 0; j < IceBreaker::MaxSize; ++j) {
+		for (int i = 0; i < SudokuMapGen::MaxSize; ++i) {
+			for (int j = 0; j < SudokuMapGen::MaxSize; ++j) {
 
-				auto value = this->_icebreaker_map.gameMap[i][j];
+				auto value = this->_evil_map.gameMap[i][j];
 				if (value == 0)
 					continue;
 
-				if (this->_icebreaker_map.isSafe(this->_icebreaker_map.gameMap, i, j, value) == false)
+				if (this->_evil_map.isSafe(this->_evil_map.gameMap, i, j, value) == false)
 				{
 					this->_checkErr = true;
 					this->_textGridMap[i][j].setFillColor(sf::Color::Red);
@@ -495,9 +494,9 @@ void Game_Ice_Play::OnFocusEvent() {
 
 }
 
-void Game_Ice_Play::HandleEvents(sf::Event* event) {
+void Game_Evil_Play::HandleEvents(sf::Event* event) {
 
-	if (this->ice_play == false) {
+	if (this->evil_play == false) {
 		if (event->type == sf::Event::MouseButtonPressed)
 			this->OnFocusEvent();
 
@@ -508,7 +507,7 @@ void Game_Ice_Play::HandleEvents(sf::Event* event) {
 	else
 	{
 
-		if (this->ice_play == true) {
+		if (this->evil_play == true) {
 			if (event->type == sf::Event::MouseButtonPressed)
 				this->OnFocusEvent();
 
@@ -535,9 +534,9 @@ void Game_Ice_Play::HandleEvents(sf::Event* event) {
 		}
 	}
 
-	if (this->ice_play == true && this->_aiDone != true && this->_initAi) {
+	if (this->evil_play == true && this->_aiDone != true && this->_initAi) {
 
-		auto check = this->AISolve(this->_icebreaker_map.gameMap);
+		auto check = this->AISolve(this->_evil_map.gameMap);
 		this->_aiDone = true;
 
 		if (check)
@@ -547,17 +546,17 @@ void Game_Ice_Play::HandleEvents(sf::Event* event) {
 	}
 }
 
-bool Game_Ice_Play::AISolve(int grid[IceBreaker::MaxSize][IceBreaker::MaxSize])
+bool Game_Evil_Play::AISolve(int grid[SudokuMapEvil::MaxSize][SudokuMapEvil::MaxSize])
 {
 	int row, col;
 
-	if (!this->_icebreaker_map.FindUnassignedLocation(grid, row, col))
+	if (!this->_evil_map.FindUnassignedLocation(grid, row, col))
 		return true;
 
-	for (int value = 1; value <= IceBreaker::MaxSize; value++)
+	for (int value = 1; value <= SudokuMapEvil::MaxSize; value++)
 	{
 
-		if (this->_icebreaker_map.isSafe(grid, row, col, value))
+		if (this->_evil_map.isSafe(grid, row, col, value))
 		{
 			grid[row][col] = value;
 			this->_textGridMap[row][col].setString(std::to_string(value));
@@ -573,7 +572,7 @@ bool Game_Ice_Play::AISolve(int grid[IceBreaker::MaxSize][IceBreaker::MaxSize])
 	}
 	return false;
 }
-void Game_Ice_Play::TimePlay() {
+void Game_Evil_Play::TimePlay() {
 	//TIME
 	sf::Font font;
 	if (!font.loadFromFile("Fonts/07558_CenturyGothic.ttf"))
@@ -648,3 +647,5 @@ void Game_Ice_Play::TimePlay() {
 	}
 
 }
+
+

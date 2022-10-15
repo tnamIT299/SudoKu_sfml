@@ -8,6 +8,9 @@
 #include "Register.h"
 #include "Game_Ice_Play.h"
 #include "Game_Medium_Play.h"
+#include "Game_Hard_Play.h"
+#include "Game_Expert_Play.h"
+#include "Game_Evil_Play.h"
 
 class PagesManager
 {
