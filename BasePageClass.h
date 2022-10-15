@@ -14,7 +14,8 @@ enum class GamePages
 	Sign_In,
 	Register,
 	IceBreaker,
-	//EasyPage;
+	//SudokuMapMedium,
+	Game_Medium_Play,
 };
 
 class BasePageClass

@@ -7,6 +7,7 @@
 #include "Sign_In.h"
 #include "Register.h"
 #include "Game_Ice_Play.h"
+#include "Game_Medium_Play.h"
 
 class PagesManager
 {

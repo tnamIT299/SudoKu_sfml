@@ -136,23 +136,28 @@
     <ClCompile Include="BasePageClass.cpp" />
     <ClCompile Include="GamePlayPage.cpp" />
     <ClCompile Include="Game_Ice_Play.cpp" />
+    <ClCompile Include="Game_Medium_Play.cpp" />
     <ClCompile Include="IceBreaker.cpp" />
     <ClCompile Include="IGrid.cpp" />
     <ClCompile Include="LevelPage.cpp" />
     <ClCompile Include="LoginPage.cpp" />
+    <ClCompile Include="MediumMap.cpp" />
     <ClCompile Include="PageManager.cpp" />
     <ClCompile Include="Register.cpp" />
     <ClCompile Include="Sign_In.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="StartPage.cpp" />
     <ClCompile Include="SudokuMapGen.cpp" />
+    <ClCompile Include="SudokuMapMedium.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BasePageClass.h" />
     <ClInclude Include="GamePlayPage.h" />
     <ClInclude Include="Game_Ice_Play.h" />
+    <ClInclude Include="Game_Medium_Play.h" />
     <ClInclude Include="IceBreaker.h" />
     <ClInclude Include="IGrid.h" />
+    <ClInclude Include="IGrid_Medium.h" />
     <ClInclude Include="LevelPage.h" />
     <ClInclude Include="LoginPage.h" />
     <ClInclude Include="PageManager.h" />
@@ -160,6 +165,7 @@
     <ClInclude Include="Sign_In.h" />
     <ClInclude Include="StartPage.h" />
     <ClInclude Include="SudokuMapGen.h" />
+    <ClInclude Include="SudokuMapMedium.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

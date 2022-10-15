@@ -1,6 +1,7 @@
-#include "IGrid.h"
-board::board() {
-    K = 45;
+#include "IGrid_Medium.h"
+
+board_Medium::board_Medium() {
+    K = 51;
     N = 9;
     SRN = sqrt(N);
     matrix = new int* [N];
@@ -10,7 +11,7 @@ board::board() {
         memset(matrix[i], 0, N * sizeof(int));
     }
 }
-int board::randomGenerator(int num)
+int board_Medium::randomGenerator(int num)
 {
     random_device rd;
     mt19937 rng(rd());
@@ -18,7 +19,7 @@ int board::randomGenerator(int num)
     auto n = uni(rng);
     return n;
 }
-bool board::isSafe(int** matrix, int row, int col, int num) {
+bool board_Medium::isSafe(int** matrix, int row, int col, int num) {
     for (int x = 0; x <= 8; x++)
         if (matrix[row][x] == num)
             return false;
@@ -39,14 +40,14 @@ bool board::isSafe(int** matrix, int row, int col, int num) {
     return true;
 }
 
-void board::fillDiagonal()
+void board_Medium::fillDiagonal()
 {
     for (int i = 0; i < N; i = i + SRN)
     {
         fillBox(i, i);
     }
 }
-void board::fillBox(int row, int col)
+void board_Medium::fillBox(int row, int col)
 {
     int num;
     for (int i = 0; i < SRN; i++) {
@@ -58,7 +59,7 @@ void board::fillBox(int row, int col)
         }
     }
 }
-bool board::fillRemaining(int i, int j) {
+bool board_Medium::fillRemaining(int i, int j) {
     if (j >= N && i < N - 1) {
         i = i + 1;
         j = 0;
@@ -96,7 +97,7 @@ bool board::fillRemaining(int i, int j) {
     }
     return false;
 }
-void board::removeKDigits() {
+void board_Medium::removeKDigits() {
     int count = K;
     while (count != 0) {
         int cellId = randomGenerator(N * N) - 1;
@@ -112,14 +113,14 @@ void board::removeKDigits() {
         }
     }
 }
-board::~board() {
+board_Medium::~board_Medium() {
     for (int i = 0; i < N; i++)
     {
         delete[] matrix[i];
     }
     delete[] matrix;
 }
-void board::printResult() {
+void board_Medium::printResult() {
     for (int i = 0; i < N; i++) {
         for (int j = 0; j < N; j++)
             cout << "\t" << matrix[i][j];

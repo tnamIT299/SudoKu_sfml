@@ -2,6 +2,7 @@
 #include <fstream>
 #include <SFML/Graphics.hpp>
 
+//Sign_In* Sign_In::sInstance = nullptr;
 
 void Sign_In::setUp()
 {
@@ -80,6 +81,7 @@ void Sign_In::setUp()
 }
 void Sign_In::Display()
 {
+	
 	this->_window->clear(sf::Color::Black);
 	this->_window->draw(this->_bgSprite);
 	this->_window->draw(this->_mainTitle);
@@ -92,6 +94,7 @@ void Sign_In::Display()
 
 
 	this->_window->display();
+	//this->FillInfor();
 }
 
 
@@ -151,227 +154,227 @@ void Sign_In::HandleEvents(sf::Event* event)
 //
 //
 //}
-void Sign_In::FillInfor()
-{
-	sf::Font font;
-	if (!font.loadFromFile("Fonts/07558_CenturyGothic.ttf"))
-	{
-		std::cout << "Error Loading Fonts" << std::endl;
-		std::cout << "Shutting Down!" << std::endl;
-		this->_window->close();
-	}
-
-	Sign_In textSignInUser(30, sf::Color::White, false);
-	textSignInUser.setFont(font);
-	Sign_In textSignInPassword(30, sf::Color::White, false);
-	textSignInPassword.setFont(font);
-	Sign_In textRegisterUser(30, sf::Color::White, false);
-	textRegisterUser.setFont(font);
-	Sign_In textRegisterPassword(30, sf::Color::White, false);
-	textRegisterPassword.setFont(font);
-	Sign_In textRegisterConfirmPassword(30, sf::Color::White, false);
-	textRegisterConfirmPassword.setFont(font);
-
-	input();
-
-	std::ofstream fout("login.txt", std::ios::in | std::ios::out);
-
-	if (first == true)
-	{
-		for (int j = 1; j < i; j++)
-		{
-			fout << acc[j].user << "\n";
-			fout << acc[j].password << "\n";
-		}
-		first = false;
-	}
-
-	//if (event->type == sf::Event::MouseButtonPressed)
-	//{
-	//	if (event->key.code == sf::Mouse::Left)
-		//
-	sf::Event e;
-	while (this->_window->pollEvent(e)) {
-		int x = sf::Mouse::getPosition().x;
-		int y = sf::Mouse::getPosition().y;
-		if (scene == 1)
-		{
-			if (x >= 75 && x <= 525 && y >= 87 && y <= 257)
-			{
-				// LOGIN
-				scene = 2;
-				std::cout << "erroe";
-			}
-			if (x >= 75 && x <= 525 && y >= 343 && y <= 513)
-			{
-				// REGISTER
-				scene = 3;
-			}
-		}
-		if (scene == 2)
-		{
-			// back
-			if (x >= 233 && x <= 368 && y >= 530 && y <= 580)
-			{
-				scene = 1;
-			}
-			if (x >= 50 && x <= 200 && y >= 75 && y <= 125)
-			{
-				// click on user
-				scene2.user = true;
-				textSignInUser.setSelected(true);
-			}
-			if (x >= 50 && x <= 259 && y >= 235 && y <= 285)
-			{
-				//click on password
-				scene2.password = true;
-				textSignInPassword.setSelected(true);
-			}
-			// submit
-			if (x >= 143 && x <= 457 && y >= 405 && y <= 480)
-			{
-
-				std::string e, p;
-				e = textSignInUser.getText();
-				p = textSignInPassword.getText();
-				if (e.empty() == false && p.empty() == false)
-				{
-					for (int j = 1; j <= i; j++)
-					{
-						if (e == acc[j].user && p == acc[j].password)
-						{
-							scene = 4;
-						}
-					}
-				}
-			}
-		}
-		if (scene == 3)
-		{
-			// back
-			if (x >= 233 && x <= 368 && y >= 530 && y <= 580)
-			{
-				scene = 1;
-			}
-			// email
-			if (x >= 15 && x <= 165 && y >= 34 && y <= 84)
-			{
-				scene3.user = true;
-				textRegisterUser.setSelected(true);
-			}
-			// password
-			if (x >= 15 && x <= 224 && y >= 198 && y <= 248)
-			{
-				scene3.password = true;
-				textRegisterPassword.setSelected(true);
-			}
-			// confirm password
-			if (x >= 15 && x <= 329 && y >= 280 && y <= 330)
-			{
-				scene3.confirmPassword = true;
-				textRegisterConfirmPassword.setSelected(true);
-			}
-			this->OnFocusEvent();
-			//submit
-			if (x >= 143 && x <= 457 && y >= 405 && y <= 480)
-			{
-				std::string e, ce, p, cp;
-				e = textRegisterUser.getText();
-				p = textRegisterPassword.getText();
-				cp = textRegisterConfirmPassword.getText();
-				if (e.empty() == false && ce.empty() == false && p.empty() == false && cp.empty() == false)
-				{
-					if (e == ce && p == cp)
-					{
-						fout << e << "\n";
-						fout << p << "\n";
-					}
-				}
-			}
-		}
-		if (e.type == sf::Event::TextEntered)
-		{
-			if (scene == 2)
-			{
-				if (scene2.user == true)
-				{
-					if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
-					{
-						textSignInUser.setSelected(false);
-						scene2.user = false;
-					}
-					else
-					{
-						textSignInUser.typedOn(e);
-					}
-				}
-				else if (scene2.password == true)
-				{
-					if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
-					{
-						textSignInPassword.setSelected(false);
-						scene2.password = false;
-					}
-					else
-					{
-						textSignInPassword.typedOn(e);
-					}
-				}
-			}
-			if (scene == 3)
-			{
-				if (scene3.user == true)
-				{
-					if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
-					{
-						textRegisterUser.setSelected(false);
-						scene3.user = false;
-					}
-					else
-					{
-						textRegisterUser.typedOn(e);
-					}
-				}
-				else if (scene3.password == true)
-				{
-					if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
-					{
-						textRegisterPassword.setSelected(false);
-						scene3.password = false;
-					}
-					else
-					{
-						textRegisterPassword.typedOn(e);
-					}
-				}
-				else if (scene3.confirmPassword == true)
-				{
-					if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
-					{
-						textRegisterConfirmPassword.setSelected(false);
-						scene3.confirmPassword = false;
-					}
-					else
-					{
-						textRegisterConfirmPassword.typedOn(e);
-					}
-				}
-			}
-		}
-	}
-
-if (scene == 2)
-{
-	textSignInUser.setPosition({ 210,76 });
-	textSignInUser.drawTo(_window);
-	textSignInPassword.setPosition({ 269,237 });
-	textSignInPassword.drawTo(_window);
-	
-}
-if (scene == 4)
-{
-	//LoginOK.setPosition(193, 219);
-}
-
-}
+//void Sign_In::FillInfor()
+//{
+//	
+//	sf::Font font;
+//	if (!font.loadFromFile("Fonts/07558_CenturyGothic.ttf"))
+//	{
+//		std::cout << "Error Loading Fonts" << std::endl;
+//		std::cout << "Shutting Down!" << std::endl;
+//		this->_window->close();
+//	}
+//
+//	Sign_In textSignInUser(30, sf::Color::White, false);
+//	textSignInUser.setFont(font);
+//	Sign_In textSignInPassword(30, sf::Color::White, false);
+//	textSignInPassword.setFont(font);
+//	Sign_In textRegisterUser(30, sf::Color::White, false);
+//	textRegisterUser.setFont(font);
+//	Sign_In textRegisterPassword(30, sf::Color::White, false);
+//	textRegisterPassword.setFont(font);
+//	Sign_In textRegisterConfirmPassword(30, sf::Color::White, false);
+//	textRegisterConfirmPassword.setFont(font);
+//
+//	input();
+//
+//	std::ofstream fout("login.txt", std::ios::in | std::ios::out);
+//
+//	if (first == true)
+//	{
+//		for (int j = 1; j < i; j++)
+//		{
+//			fout << acc[j].user << "\n";
+//			fout << acc[j].password << "\n";
+//		}
+//		first = false;
+//	}
+//
+//	//if (event->type == sf::Event::MouseButtonPressed)
+//	//{
+//	//	if (event->key.code == sf::Mouse::Left)
+//		//
+//	sf::Event e;
+//	while (this->_window->pollEvent(e)) {
+//		int x = sf::Mouse::getPosition().x;
+//		int y = sf::Mouse::getPosition().y;
+//		
+//		if (scene == 1)
+//		{
+//			if (x >= 75 && x <= 525 && y >= 87 && y <= 257)
+//			{
+//				// LOGIN
+//				scene = 2;
+//			}
+//			if (x >= 75 && x <= 525 && y >= 343 && y <= 513)
+//			{
+//				// REGISTER
+//				scene = 3;
+//			}
+//		}
+//		if (scene == 2)
+//		{
+//			// back
+//			if (x >= 233 && x <= 368 && y >= 530 && y <= 580)
+//			{
+//				scene = 1;
+//			}
+//			if (x >= 50 && x <= 200 && y >= 75 && y <= 125)
+//			{
+//				// click on user
+//				scene2.user = true;
+//				textSignInUser.setSelected(true);
+//			}
+//			if (x >= 50 && x <= 259 && y >= 235 && y <= 285)
+//			{
+//				//click on password
+//				scene2.password = true;
+//				textSignInPassword.setSelected(true);
+//			}
+//			// submit
+//			if (x >= 143 && x <= 457 && y >= 405 && y <= 480)
+//			{
+//
+//				std::string e, p;
+//				e = textSignInUser.getText();
+//				p = textSignInPassword.getText();
+//				if (e.empty() == false && p.empty() == false)
+//				{
+//					for (int j = 1; j <= i; j++)
+//					{
+//						if (e == acc[j].user && p == acc[j].password)
+//						{
+//							scene = 4;
+//						}
+//					}
+//				}
+//			}
+//		}
+//		if (scene == 3)
+//		{
+//			// back
+//			if (x >= 233 && x <= 368 && y >= 530 && y <= 580)
+//			{
+//				scene = 1;
+//			}
+//			// email
+//			if (x >= 15 && x <= 165 && y >= 34 && y <= 84)
+//			{
+//				scene3.user = true;
+//				textRegisterUser.setSelected(true);
+//			}
+//			// password
+//			if (x >= 15 && x <= 224 && y >= 198 && y <= 248)
+//			{
+//				scene3.password = true;
+//				textRegisterPassword.setSelected(true);
+//			}
+//			// confirm password
+//			if (x >= 15 && x <= 329 && y >= 280 && y <= 330)
+//			{
+//				scene3.confirmPassword = true;
+//				textRegisterConfirmPassword.setSelected(true);
+//			}
+//			this->OnFocusEvent();
+//			//submit
+//			if (x >= 143 && x <= 457 && y >= 405 && y <= 480)
+//			{
+//				std::string e, ce, p, cp;
+//				e = textRegisterUser.getText();
+//				p = textRegisterPassword.getText();
+//				cp = textRegisterConfirmPassword.getText();
+//				if (e.empty() == false && ce.empty() == false && p.empty() == false && cp.empty() == false)
+//				{
+//					if (e == ce && p == cp)
+//					{
+//						fout << e << "\n";
+//						fout << p << "\n";
+//					}
+//				}
+//			}
+//		}
+//		if (e.type == sf::Event::TextEntered)
+//		{
+//			if (scene == 2)
+//			{
+//				if (scene2.user == true)
+//				{
+//					if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+//					{
+//						textSignInUser.setSelected(false);
+//						scene2.user = false;
+//					}
+//					else
+//					{
+//						textSignInUser.typedOn(e);
+//					}
+//				}
+//				else if (scene2.password == true)
+//				{
+//					if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+//					{
+//						textSignInPassword.setSelected(false);
+//						scene2.password = false;
+//					}
+//					else
+//					{
+//						textSignInPassword.typedOn(e);
+//					}
+//				}
+//			}
+//			if (scene == 3)
+//			{
+//				if (scene3.user == true)
+//				{
+//					if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+//					{
+//						textRegisterUser.setSelected(false);
+//						scene3.user = false;
+//					}
+//					else
+//					{
+//						textRegisterUser.typedOn(e);
+//					}
+//				}
+//				else if (scene3.password == true)
+//				{
+//					if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+//					{
+//						textRegisterPassword.setSelected(false);
+//						scene3.password = false;
+//					}
+//					else
+//					{
+//						textRegisterPassword.typedOn(e);
+//					}
+//				}
+//				else if (scene3.confirmPassword == true)
+//				{
+//					if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return))
+//					{
+//						textRegisterConfirmPassword.setSelected(false);
+//						scene3.confirmPassword = false;
+//					}
+//					else
+//					{
+//						textRegisterConfirmPassword.typedOn(e);
+//					}
+//				}
+//			}
+//		}
+//	}
+//
+//	if (scene == 2)
+//	{
+//		textSignInUser.setPosition({ 210,76 });
+//		textSignInUser.drawTo(_window);
+//		textSignInPassword.setPosition({ 269,237 });
+//		textSignInPassword.drawTo(_window);
+//
+//	}
+//	if (scene == 4)
+//	{
+//		//LoginOK.setPosition(193, 219);
+//	}
+//}
 

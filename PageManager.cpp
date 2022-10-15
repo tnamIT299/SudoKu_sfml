@@ -21,11 +21,14 @@ void PagesManager::Display() {
 		if (this->_currentPage->NavTOPage == GamePages::StartPage)
 			this->_currentPage = new StartPage(this->_window);
 
+		else if (this->_currentPage->NavTOPage == GamePages::LevelPage)
+			this->_currentPage = new LevelPage(this->_window , true);
+
 		else if (this->_currentPage->NavTOPage == GamePages::GamePlayPage_P)
 			this->_currentPage = new GamePlayPage(this->_window, false);
 
-		else if (this->_currentPage->NavTOPage == GamePages::LevelPage)
-			this->_currentPage = new LevelPage(this->_window , true);
+		else if (this->_currentPage->NavTOPage == GamePages::Game_Medium_Play)
+			this->_currentPage = new Game_Medium_Play(this->_window, false);
 
 		else if (this->_currentPage->NavTOPage == GamePages::IceBreaker)
 			this->_currentPage = new Game_Ice_Play(this->_window, false);

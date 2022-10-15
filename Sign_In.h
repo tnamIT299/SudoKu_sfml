@@ -13,7 +13,7 @@
 class Sign_In : public BasePageClass
 {
 public:
-
+	//Sign_In(){};
 	Sign_In(sf::RenderWindow* window, bool sign_in) :BasePageClass(window) {
 		this->setUp();
 		this->_pageID = "Sign_In";
@@ -23,106 +23,101 @@ public:
 	bool sign_in;
 	void Display() override;
 	void HandleEvents(sf::Event*) override;
-	void FillInfor();
+	//void FillInfor();
 
 	const sf::Color CaramelColor = sf::Color(235, 114, 84);
 
-	//textbox
+	////textbox
 
-	Sign_In(int size, sf::Color color, bool sel) {
-		_textBox.setCharacterSize(size);
-		_textBox.setFillColor(color);
-		isSelected = sel;
+	//Sign_In(int size, sf::Color color, bool sel) {
+	//	_textBox->setCharacterSize(size);
+	//	_textBox->setFillColor(color);
+	//	isSelected = sel;
 
-		// Check if the textbox is selected upon creation and display it accordingly:
-		if (isSelected)
-			_textBox.setString("_");
-		else
-			_textBox.setString("");
-	}
+	//	// Check if the textbox is selected upon creation and display it accordingly:
+	//	if (isSelected)
+	//		_textBox->setString("_");
+	//	else
+	//		_textBox->setString("");
+	//}
 
-	// Make sure font is passed by reference:
-	void setFont(sf::Font& fonts) {
-		_textBox.setFont(fonts);
-	}
+	//// Make sure font is passed by reference:
+	//void setFont(sf::Font& fonts) {
+	//	_textBox->setFont(fonts);
+	//}
 
-	void setPosition(sf::Vector2f point) {
-		_textBox.setPosition(point);
-	}
+	//void setPosition(sf::Vector2f point) {
+	//	_textBox->setPosition(point);
+	//}
 
-	// Set char limits:
-	void setLimit(bool ToF) {
-		hasLimit = ToF;
-	}
+	//// Set char limits:
+	//void setLimit(bool ToF) {
+	//	hasLimit = ToF;
+	//}
 
-	void setLimit(bool ToF, int lim) {
-		hasLimit = ToF;
-		limit = lim - 1;
-	}
+	//void setLimit(bool ToF, int lim) {
+	//	hasLimit = ToF;
+	//	limit = lim - 1;
+	//}
 
-	// Change selected state:
-	void setSelected(bool sel) {
-		isSelected = sel;
+	//// Change selected state:
+	//void setSelected(bool sel) {
+	//	isSelected = sel;
 
-		// If not selected, remove the '_' at the end:
-		if (!sel) {
-			std::string t = text.str();
-			std::string newT = "";
-			for (int i = 0; i < t.length(); i++) {
-				newT += t[i];
-			}
-			_textBox.setString(newT);
-		}
-	}
+	//	// If not selected, remove the '_' at the end:
+	//	if (!sel) {
+	//		std::string t = text.str();
+	//		std::string newT = "";
+	//		for (int i = 0; i < t.length(); i++) {
+	//			newT += t[i];
+	//		}
+	//		_textBox->setString(newT);
+	//	}
+	//}
 
-	std::string getText() {
-		return text.str();
-	}
+	//std::string getText() {
+	//	return text.str();
+	//}
 
-	void drawTo(sf::RenderWindow* window) {
-		this->_window = window;
-		this->_window->draw(_textBox);
-	}
+	//void drawTo(sf::RenderWindow* window) {
+	//	this->_window = window;
+	//	this->_window->draw(*_textBox);
+	//}
 
-	// Function for event loop:
-	void typedOn(sf::Event input) {
-		if (isSelected) {
-			int charTyped = input.text.unicode;
+	//// Function for event loop:
+	//void typedOn(sf::Event input) {
+	//	if (isSelected) {
+	//		int charTyped = input.text.unicode;
 
-			// Only allow normal inputs:
-			if (charTyped < 128) {
-				if (hasLimit) {
-					// If there's a limit, don't go over it:
-					if (text.str().length() <= limit) {
-						inputLogic(charTyped);
-					}
-					// But allow for char deletions:
-					else if (text.str().length() > limit && charTyped == DELETE_KEY) {
-						deleteLastChar();
-					}
-				}
-				// If no limit exists, just run the function:
-				else {
-					inputLogic(charTyped);
-				}
-			}
-		}
-	}
-	void setScn(int scn) {
-		this->scene = scn;
-	}
-	int getScn() {
-		return this->scene;
-	}
-	/*static Sign_In* getInstance()
+	//		// Only allow normal inputs:
+	//		if (charTyped < 128) {
+	//			if (hasLimit) {
+	//				// If there's a limit, don't go over it:
+	//				if (text.str().length() <= limit) {
+	//					inputLogic(charTyped);
+	//				}
+	//				// But allow for char deletions:
+	//				else if (text.str().length() > limit && charTyped == DELETE_KEY) {
+	//					deleteLastChar();
+	//				}
+	//			}
+	//			// If no limit exists, just run the function:
+	//			else {
+	//				inputLogic(charTyped);
+	//			}
+	//		}
+	//	}
+	//}
+	
+	/*static Sign_In* getinstance()
 	{
-		return s
+		return sInstance = (sInstance != nullptr) ? sInstance : new Sign_In();
 	}*/
 private:
 	void setUp();
 	void MouseMoveTigger();
 	void OnFocusEvent();
-	static Sign_In* sInstance;
+	//static Sign_In* sInstance;
 	sf::Texture _bgTexture;
 	sf::Sprite _bgSprite;
 	sf::Text _mainTitle;

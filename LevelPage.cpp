@@ -80,7 +80,7 @@ void LevelPage::setUp() {
 	this->_EasyText.setFillColor(sf::Color::Black);
 	this->_EasyText.setFont(this->_HeaderFont);
 	this->_EasyText.setCharacterSize(18);
-	this->_EasyText.setString("Normal");
+	this->_EasyText.setString("Easy");
 	auto Framex = Posx + this->_EasyButton.getLocalBounds().width / 1.2f - (this->_EasyButton.getLocalBounds().width / 2.f);
 	auto Framey = Posy + this->_EasyButton.getLocalBounds().height / 1.5f - (this->_EasyButton.getLocalBounds().height / 2.f);
 	this->_EasyText.setPosition(Framex, Framey);
@@ -94,13 +94,13 @@ void LevelPage::setUp() {
 	this->_MediumText.setFillColor(sf::Color::Black);
 	this->_MediumText.setFont(this->_HeaderFont);
 	this->_MediumText.setCharacterSize(18);
-	this->_MediumText.setString("Ice-Breaker");
+	this->_MediumText.setString("Medium");
 	Framex = Posx + this->_MediumButton.getLocalBounds().width / 1.3f - (this->_MediumButton.getLocalBounds().width / 2.f);
 	Framey = Posy + this->_MediumButton.getLocalBounds().height / 1.5f - (this->_MediumButton.getLocalBounds().height / 2.f);
 	this->_MediumText.setPosition(Framex, Framey);
 
 
-	/*Posy += 65;
+	Posy += 65;
 	this->_HardButton.setSize(sf::Vector2f(170.f, height));
 	this->_HardButton.setPosition(sf::Vector2f(Posx, Posy));
 	this->_HardButton.setFillColor(CaramelColor);
@@ -112,7 +112,7 @@ void LevelPage::setUp() {
 	Framex = Posx + this->_HardButton.getLocalBounds().width / 1.2f - (this->_HardButton.getLocalBounds().width / 2.f);
 	Framey = Posy + this->_HardButton.getLocalBounds().height / 1.5f - (this->_HardButton.getLocalBounds().height / 2.f);
 	this->_HardText.setPosition(Framex, Framey);
-	*/
+	
 
 	
 
@@ -149,7 +149,7 @@ void LevelPage::OnFocusEvent() {
 	else if (this->IsMouseOverButton(this->_MediumButton)) {
 
 		this->ChangePage = true;
-		this->NavTOPage = GamePages::IceBreaker;
+		this->NavTOPage = GamePages::Game_Medium_Play;
 	}
 
 
