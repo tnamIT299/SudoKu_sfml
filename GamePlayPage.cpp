@@ -1,4 +1,4 @@
-#include "GamePlayPage.h"
+﻿#include "GamePlayPage.h"
 #include "LevelPage.h"
 #include "sstream"
 #include "windows.h"
@@ -146,7 +146,7 @@ void GamePlayPage::setUp() {
 	this->_checkText.setFont(this->_HeaderFont);
 	this->_checkText.setCharacterSize(18);
 	this->_checkText.setFillColor(sf::Color::Black);
-	this->_checkText.setString("Error : ");
+	this->_checkText.setString("Lỗi : ");
 	sizex = this->_checkText.getLocalBounds().width / 2.2f;
 	sizey = this->_checkText.getLocalBounds().height / 2.f;
 
@@ -161,7 +161,7 @@ void GamePlayPage::setUp() {
 	this->_submitText.setFont(this->_HeaderFont);
 	this->_submitText.setCharacterSize(18);
 	this->_submitText.setFillColor(sf::Color::Black);
-	this->_submitText.setString("Submit");
+	this->_submitText.setString("Nộp bài");
 
 
 	sizex = this->_submitText.getLocalBounds().width / 12.f;
@@ -174,16 +174,16 @@ void GamePlayPage::setUp() {
 	this->_undoButton.setSize(sf::Vector2f(133.f, 40.f));
 	this->_undoButton.setPosition(sf::Vector2f(buttonX -90 , ButtonY));
 
-	this->_undoText.setFont(this->_HeaderFont);
-	this->_undoText.setCharacterSize(18);
-	this->_undoText.setFillColor(sf::Color::Black);
-	this->_undoText.setString("Undo");
+	this->_errorText.setFont(this->_HeaderFont);
+	this->_errorText.setCharacterSize(18);
+	this->_errorText.setFillColor(sf::Color::Black);
+	this->_errorText.setString("Xóa");
 
 
-	sizex = this->_undoText.getLocalBounds().width / 1.2f;
-	sizey = this->_undoText.getLocalBounds().height / 2.f;
+	sizex = this->_errorText.getLocalBounds().width / 1.2f;
+	sizey = this->_errorText.getLocalBounds().height / 2.f;
 
-	this->_undoText.setPosition(sf::Vector2f(buttonX + sizex -90 , ButtonY + sizey));
+	this->_errorText.setPosition(sf::Vector2f(buttonX + sizex -90 , ButtonY + sizey));
 
 	buttonX += 120.f;
 
@@ -208,9 +208,9 @@ void GamePlayPage::setUp() {
 	auto gridPosY = boardOriginY;
 
 
-	for (int i = 0; i < SudokuMapGen::MaxSize; ++i) {
+	for (int i = 0; i < ISudokuMapGen::MaxSize; ++i) {
 
-		for (int j = 0; j < SudokuMapGen::MaxSize; ++j) {
+		for (int j = 0; j < ISudokuMapGen::MaxSize; ++j) {
 
 			this->_gameGridMap[i][j].setFillColor(sf::Color(223, 229, 237));
 			this->_gameGridMap[i][j].setOutlineColor(sf::Color(sf::Color(55, 57, 59)));
@@ -248,7 +248,7 @@ void GamePlayPage::setUp() {
 		gridPosY += 20;
 		int fillval = 1;
 
-		for (int i = 0; i < SudokuMapGen::MaxSize; ++i) {
+		for (int i = 0; i < ISudokuMapGen::MaxSize; ++i) {
 
 			this->_optionField[i].setFillColor(sf::Color(223, 229, 237));
 			this->_optionField[i].setOutlineColor(sf::Color(sf::Color(92, 95, 99)));
@@ -285,14 +285,14 @@ void GamePlayPage::Display() {
 	this->_window->draw(this->_gameBoard);
 
 
-	for (int i = 0; i < SudokuMapGen::MaxSize; ++i) {
+	for (int i = 0; i < ISudokuMapGen::MaxSize; ++i) {
 
 		if (this->computerPlay == false) {
 			this->_window->draw(this->_optionField[i]);    //Option Selector
 			this->_window->draw(this->_optionText[i]);
 		}
 
-		for (int j = 0; j < SudokuMapGen::MaxSize; ++j) {
+		for (int j = 0; j < ISudokuMapGen::MaxSize; ++j) {
 
 			this->_window->draw(this->_gameGridMap[i][j]); //
 
@@ -313,7 +313,7 @@ void GamePlayPage::Display() {
 		this->_window->draw(this->_checkButton);
 		this->_window->draw(this->_undoButton);
 		this->_window->draw(this->_checkText);
-		this->_window->draw(this->_undoText);
+		this->_window->draw(this->_errorText);
 		this->_window->draw(this->_TimeButton);
 		this->_window->draw(this->_TimeText);
 		this->_window->draw(this->_BackButton);
@@ -347,17 +347,17 @@ void GamePlayPage::MouseMoveTigger() {
 		this->_BackText.setFillColor(sf::Color::Black);
 	}
 
-	for (int i = 0; i < SudokuMapGen::MaxSize; ++i) {
+	for (int i = 0; i < ISudokuMapGen::MaxSize; ++i) {
 
 		if (this->IsMouseOverButton(this->_optionField[i]))
-			this->_optionField[i].setFillColor(sf::Color::White);
+			this->_optionField[i].setFillColor(sf::Color::Yellow);
 		else
 		{
 			if (i != this->_selectedIndex)
 				this->_optionField[i].setFillColor(sf::Color(223, 229, 237));
 		}
 
-		for (int j = 0; j < SudokuMapGen::MaxSize; ++j) {
+		for (int j = 0; j < ISudokuMapGen::MaxSize; ++j) {
 
 			if (this->IsMouseOverButton(this->_gameGridMap[i][j]))
 				this->_gameGridMap[i][j].setFillColor(sf::Color(235, 114, 84));
@@ -368,7 +368,7 @@ void GamePlayPage::MouseMoveTigger() {
 
 	HoverCheck(&this->_submitButton, &this->_submitText);
 	HoverCheck(&this->_checkButton, &this->_checkText);
-	HoverCheck(&this->_undoButton, &this->_undoText);
+	HoverCheck(&this->_undoButton, &this->_errorText);
 	HoverCheck(&this->_BackButton, &this->_BackText);
 }
 
@@ -393,7 +393,7 @@ void GamePlayPage::OnFocusEvent() {
 		this->NavTOPage = GamePages::LevelPage;
 	}
 
-	for (int i = 0; i < SudokuMapGen::MaxSize; ++i) {
+	for (int i = 0; i < ISudokuMapGen::MaxSize; ++i) {
 
 		if (this->IsMouseOverButton(this->_optionField[i])) {
 
@@ -403,11 +403,10 @@ void GamePlayPage::OnFocusEvent() {
 			this->_selectedNumber = this->_selectedIndex + 1;
 		}
 
-		for (int j = 0; j < SudokuMapGen::MaxSize; ++j) {
+		for (int j = 0; j < ISudokuMapGen::MaxSize; ++j) {
 
 			if (this->IsMouseOverButton(this->_gameGridMap[i][j])) {
-
-				if (this->_sudokuMap.gameMap[i][j] == 0)
+				if (this->_sudokuMap.gameMap[i][j] == 0 && _sudokuMap.isSafe(_sudokuMap.gameMap, i, j, this->_selectedNumber))
 				{
 					this->_textGridMap[i][j].setString(std::to_string(this->_selectedNumber));
 					this->_textGridMap[i][j].setFillColor(sf::Color::Blue);
@@ -430,8 +429,8 @@ void GamePlayPage::OnFocusEvent() {
 		{
 			if (this->_checkErr == false) {
 
-				for (int i = 0; i < SudokuMapGen::MaxSize; ++i) {
-					for (int j = 0; j < SudokuMapGen::MaxSize; ++j) {
+				for (int i = 0; i < ISudokuMapGen::MaxSize; ++i) {
+					for (int j = 0; j < ISudokuMapGen::MaxSize; ++j) {
 
 						auto value = this->_sudokuMap.gameMap[i][j];
 
@@ -444,6 +443,7 @@ void GamePlayPage::OnFocusEvent() {
 				}//
 			}//
 			if (this->_checkErr == false) {
+				//lấy thời gian ra ở đây
 
 				this->AlertWindow(this->_HeaderFont, "Completed! You Won!", 200, 100, sf::Color(223, 229, 237), LineColor);
 			}
@@ -464,9 +464,9 @@ void GamePlayPage::OnFocusEvent() {
 			this->AlertWindow(this->_HeaderFont, "Nothing to undo!", 300, 100, sf::Color(223, 229, 237), LineColor);
 
 		if (this->_checkErr) {
-			for (int i = 0; i < SudokuMapGen::MaxSize; ++i) {
+			for (int i = 0; i < ISudokuMapGen::MaxSize; ++i) {
 
-				for (int j = 0; j < SudokuMapGen::MaxSize; ++j) {
+				for (int j = 0; j < ISudokuMapGen::MaxSize; ++j) {
 					this->_textGridMap[i][j].setFillColor(sf::Color(55, 57, 59));
 				}
 			}
@@ -476,8 +476,8 @@ void GamePlayPage::OnFocusEvent() {
 
 	if (this->IsMouseOverButton(this->_checkButton)) {
 
-		for (int i = 0; i < SudokuMapGen::MaxSize; ++i) {
-			for (int j = 0; j < SudokuMapGen::MaxSize; ++j) {
+		for (int i = 0; i < ISudokuMapGen::MaxSize; ++i) {
+			for (int j = 0; j < ISudokuMapGen::MaxSize; ++j) {
 
 				auto value = this->_sudokuMap.gameMap[i][j];
 				if (value == 0)
@@ -549,14 +549,14 @@ void GamePlayPage::HandleEvents(sf::Event* event) {
 	}
 }
 
-bool GamePlayPage::AISolve(int grid[SudokuMapGen::MaxSize][SudokuMapGen::MaxSize])
+bool GamePlayPage::AISolve(int grid[ISudokuMapGen::MaxSize][ISudokuMapGen::MaxSize])
 {
 	int row, col;
 
 	if (!this->_sudokuMap.FindUnassignedLocation(grid, row, col))
 		return true;
 
-	for (int value = 1; value <= SudokuMapGen::MaxSize; value++)
+	for (int value = 1; value <= ISudokuMapGen::MaxSize; value++)
 	{
 
 		if (this->_sudokuMap.isSafe(grid, row, col, value))
@@ -600,6 +600,7 @@ void GamePlayPage::TimePlay() {
 		if (milisecond == 60) {
 			second++;
 			milisecond = 0;
+			getTime++;
 		}
 		if (second == 60) {
 			minute++;

@@ -2,7 +2,6 @@
 #pragma once
 
 #include "BasePageClass.h"
-#include "SudokuMapGen.h"
 #include "SudokuMapExpert.h"
 #include "sstream"
 #include "string"
@@ -35,7 +34,7 @@ private:
 	void MouseMoveTigger();
 	void HoverCheck(sf::RectangleShape*, sf::Text*);
 	void OnFocusEvent();
-	bool AISolve(int grid[SudokuMapExpert::MaxSize][SudokuMapExpert::MaxSize]);
+	bool AISolve(int grid[ISudokuMapGen::MaxSize][ISudokuMapGen::MaxSize]);
 	SudokuMapExpert _expert_map;
 	sf::RectangleShape _gameBoard;
 	sf::Font _HeaderFont;
@@ -45,10 +44,10 @@ private:
 	sf::RectangleShape _vLine2;
 	sf::RectangleShape _hLine1;
 	sf::RectangleShape _hLine2;
-	sf::RectangleShape _gameGridMap[SudokuMapExpert::MaxSize][SudokuMapExpert::MaxSize];
-	sf::Text _textGridMap[SudokuMapExpert::MaxSize][SudokuMapExpert::MaxSize];
-	sf::Text _optionText[SudokuMapExpert::MaxSize];
-	sf::RectangleShape _optionField[SudokuMapExpert::MaxSize];
+	sf::RectangleShape _gameGridMap[ISudokuMapGen::MaxSize][ISudokuMapGen::MaxSize];
+	sf::Text _textGridMap[ISudokuMapGen::MaxSize][ISudokuMapGen::MaxSize];
+	sf::Text _optionText[ISudokuMapGen::MaxSize];
+	sf::RectangleShape _optionField[ISudokuMapGen::MaxSize];
 	int _selectedNumber{ 1 }; //default
 	int _selectedIndex{ 0 }; //default
 	std::vector<Field> _selections;

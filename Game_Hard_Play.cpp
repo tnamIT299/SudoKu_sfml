@@ -206,9 +206,9 @@ void Game_Hard_Play::setUp() {
 	auto gridPosY = boardOriginY;
 
 
-	for (int i = 0; i < SudokuMapGen::MaxSize; ++i) {
+	for (int i = 0; i < ISudokuMapGen::MaxSize; ++i) {
 
-		for (int j = 0; j < SudokuMapGen::MaxSize; ++j) {
+		for (int j = 0; j < ISudokuMapGen::MaxSize; ++j) {
 
 			this->_gameGridMap[i][j].setFillColor(sf::Color(223, 229, 237));
 			this->_gameGridMap[i][j].setOutlineColor(sf::Color(sf::Color(55, 57, 59)));
@@ -246,7 +246,7 @@ void Game_Hard_Play::setUp() {
 		gridPosY += 20;
 		int fillval = 1;
 
-		for (int i = 0; i < SudokuMapGen::MaxSize; ++i) {
+		for (int i = 0; i < ISudokuMapGen::MaxSize; ++i) {
 
 			this->_optionField[i].setFillColor(sf::Color(223, 229, 237));
 			this->_optionField[i].setOutlineColor(sf::Color(sf::Color(92, 95, 99)));
@@ -283,14 +283,14 @@ void Game_Hard_Play::Display() {
 	this->_window->draw(this->_gameBoard);
 
 
-	for (int i = 0; i < SudokuMapGen::MaxSize; ++i) {
+	for (int i = 0; i < ISudokuMapGen::MaxSize; ++i) {
 
 		if (this->hard_play == false) {
 			this->_window->draw(this->_optionField[i]);    //Option Selector
 			this->_window->draw(this->_optionText[i]);
 		}
 
-		for (int j = 0; j < SudokuMapGen::MaxSize; ++j) {
+		for (int j = 0; j < ISudokuMapGen::MaxSize; ++j) {
 
 			this->_window->draw(this->_gameGridMap[i][j]); //
 
@@ -345,7 +345,7 @@ void Game_Hard_Play::MouseMoveTigger() {
 		this->_BackText.setFillColor(sf::Color::Black);
 	}
 
-	for (int i = 0; i < SudokuMapGen::MaxSize; ++i) {
+	for (int i = 0; i < ISudokuMapGen::MaxSize; ++i) {
 
 		if (this->IsMouseOverButton(this->_optionField[i]))
 			this->_optionField[i].setFillColor(sf::Color::White);
@@ -355,7 +355,7 @@ void Game_Hard_Play::MouseMoveTigger() {
 				this->_optionField[i].setFillColor(sf::Color(223, 229, 237));
 		}
 
-		for (int j = 0; j < SudokuMapGen::MaxSize; ++j) {
+		for (int j = 0; j < ISudokuMapGen::MaxSize; ++j) {
 
 			if (this->IsMouseOverButton(this->_gameGridMap[i][j]))
 				this->_gameGridMap[i][j].setFillColor(sf::Color(235, 114, 84));
@@ -391,7 +391,7 @@ void Game_Hard_Play::OnFocusEvent() {
 		this->NavTOPage = GamePages::LevelPage;
 	}
 
-	for (int i = 0; i < SudokuMapGen::MaxSize; ++i) {
+	for (int i = 0; i < ISudokuMapGen::MaxSize; ++i) {
 
 		if (this->IsMouseOverButton(this->_optionField[i])) {
 
@@ -401,7 +401,7 @@ void Game_Hard_Play::OnFocusEvent() {
 			this->_selectedNumber = this->_selectedIndex + 1;
 		}
 
-		for (int j = 0; j < SudokuMapGen::MaxSize; ++j) {
+		for (int j = 0; j < ISudokuMapGen::MaxSize; ++j) {
 
 			if (this->IsMouseOverButton(this->_gameGridMap[i][j])) {
 
@@ -428,8 +428,8 @@ void Game_Hard_Play::OnFocusEvent() {
 		{
 			if (this->_checkErr == false) {
 
-				for (int i = 0; i < SudokuMapGen::MaxSize; ++i) {
-					for (int j = 0; j < SudokuMapGen::MaxSize; ++j) {
+				for (int i = 0; i < ISudokuMapGen::MaxSize; ++i) {
+					for (int j = 0; j < ISudokuMapGen::MaxSize; ++j) {
 
 						auto value = this->_hard_map.gameMap[i][j];
 
@@ -462,9 +462,9 @@ void Game_Hard_Play::OnFocusEvent() {
 			this->AlertWindow(this->_HeaderFont, "Nothing to undo!", 300, 100, sf::Color(223, 229, 237), LineColor);
 
 		if (this->_checkErr) {
-			for (int i = 0; i < SudokuMapGen::MaxSize; ++i) {
+			for (int i = 0; i < ISudokuMapGen::MaxSize; ++i) {
 
-				for (int j = 0; j < SudokuMapGen::MaxSize; ++j) {
+				for (int j = 0; j < ISudokuMapGen::MaxSize; ++j) {
 					this->_textGridMap[i][j].setFillColor(sf::Color(55, 57, 59));
 				}
 			}
@@ -474,8 +474,8 @@ void Game_Hard_Play::OnFocusEvent() {
 
 	if (this->IsMouseOverButton(this->_checkButton)) {
 
-		for (int i = 0; i < SudokuMapGen::MaxSize; ++i) {
-			for (int j = 0; j < SudokuMapGen::MaxSize; ++j) {
+		for (int i = 0; i < ISudokuMapGen::MaxSize; ++i) {
+			for (int j = 0; j < ISudokuMapGen::MaxSize; ++j) {
 
 				auto value = this->_hard_map.gameMap[i][j];
 				if (value == 0)
@@ -547,14 +547,14 @@ void Game_Hard_Play::HandleEvents(sf::Event* event) {
 	}
 }
 
-bool Game_Hard_Play::AISolve(int grid[SudokuMapHard::MaxSize][SudokuMapHard::MaxSize])
+bool Game_Hard_Play::AISolve(int grid[ISudokuMapGen::MaxSize][ISudokuMapGen::MaxSize])
 {
 	int row, col;
 
 	if (!this->_hard_map.FindUnassignedLocation(grid, row, col))
 		return true;
 
-	for (int value = 1; value <= SudokuMapHard::MaxSize; value++)
+	for (int value = 1; value <= ISudokuMapGen::MaxSize; value++)
 	{
 
 		if (this->_hard_map.isSafe(grid, row, col, value))

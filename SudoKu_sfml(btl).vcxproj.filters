@@ -54,9 +54,6 @@
     <ClCompile Include="IGrid.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MediumMap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Game_Medium_Play.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -64,9 +61,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Game_Hard_Play.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="HardMap.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SudokuMapHard.cpp">
@@ -78,16 +72,13 @@
     <ClCompile Include="Game_Evil_Play.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ExpertMap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="EvilMap.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="SudokuMapExpert.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="SudokuMapEvil.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ISudokuMapGen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -134,13 +125,7 @@
     <ClInclude Include="SudokuMapMedium.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="IGrid_Medium.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Game_Hard_Play.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IGrid_Hard.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SudokuMapHard.h">
@@ -152,16 +137,13 @@
     <ClInclude Include="Game_Evil_Play.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="IGrid_Expert.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="IGrid_Evil.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="SudokuMapExpert.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SudokuMapEvil.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ISudokuMapGen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

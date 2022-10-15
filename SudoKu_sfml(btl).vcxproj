@@ -134,20 +134,17 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BasePageClass.cpp" />
-    <ClCompile Include="EvilMap.cpp" />
-    <ClCompile Include="ExpertMap.cpp" />
     <ClCompile Include="GamePlayPage.cpp" />
     <ClCompile Include="Game_Evil_Play.cpp" />
     <ClCompile Include="Game_Expert_Play.cpp" />
     <ClCompile Include="Game_Hard_Play.cpp" />
     <ClCompile Include="Game_Ice_Play.cpp" />
     <ClCompile Include="Game_Medium_Play.cpp" />
-    <ClCompile Include="HardMap.cpp" />
     <ClCompile Include="IceBreaker.cpp" />
     <ClCompile Include="IGrid.cpp" />
+    <ClCompile Include="ISudokuMapGen.cpp" />
     <ClCompile Include="LevelPage.cpp" />
     <ClCompile Include="LoginPage.cpp" />
-    <ClCompile Include="MediumMap.cpp" />
     <ClCompile Include="PageManager.cpp" />
     <ClCompile Include="Register.cpp" />
     <ClCompile Include="Sign_In.cpp" />
@@ -169,10 +166,7 @@
     <ClInclude Include="Game_Medium_Play.h" />
     <ClInclude Include="IceBreaker.h" />
     <ClInclude Include="IGrid.h" />
-    <ClInclude Include="IGrid_Evil.h" />
-    <ClInclude Include="IGrid_Expert.h" />
-    <ClInclude Include="IGrid_Hard.h" />
-    <ClInclude Include="IGrid_Medium.h" />
+    <ClInclude Include="ISudokuMapGen.h" />
     <ClInclude Include="LevelPage.h" />
     <ClInclude Include="LoginPage.h" />
     <ClInclude Include="PageManager.h" />
