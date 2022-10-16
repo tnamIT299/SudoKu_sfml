@@ -298,7 +298,15 @@ void IMapPlay::Display() {
 
 			if (this->_sudokuMap.gameMap[i][j] == 0)
 				continue;
+			if (this->_sudokuMap.gameMap[i][j] == -2) {
+				this->_gameGridMap[i][j].setFillColor(sf::Color(6, 57, 112));
+			}
+			if (this->_sudokuMap.gameMap[i][j] == -1) {
+				this->_gameGridMap[i][j].setFillColor(sf::Color(118, 181, 197));
+			}
+			if(this->_sudokuMap.gameMap[i][j] > 0)
 			this->_window->draw(this->_textGridMap[i][j]);
+
 		}
 	}//
 
@@ -363,6 +371,12 @@ void IMapPlay::MouseMoveTigger() {
 				this->_gameGridMap[i][j].setFillColor(sf::Color(235, 114, 84));
 			else
 				this->_gameGridMap[i][j].setFillColor(sf::Color(223, 229, 237));
+			if (this->_sudokuMap.gameMap[i][j] == -2) {
+				this->_gameGridMap[i][j].setFillColor(sf::Color(6, 57, 112));
+			}
+			if (this->_sudokuMap.gameMap[i][j] == -1) {
+				this->_gameGridMap[i][j].setFillColor(sf::Color(118, 181, 197));
+			}
 		}
 	}
 
@@ -393,7 +407,7 @@ void IMapPlay::OnFocusEvent() {
 		this->NavTOPage = GamePages::LevelPage;
 	}
 
-	for (int i = 0; i < IceMapGen::MaxSize; ++i) {
+	for (int i = 0; i < ISudokuMapGen::MaxSize; ++i) {
 
 		if (this->IsMouseOverButton(this->_optionField[i])) {
 
@@ -403,17 +417,25 @@ void IMapPlay::OnFocusEvent() {
 			this->_selectedNumber = this->_selectedIndex + 1;
 		}
 
-		for (int j = 0; j < IceMapGen::MaxSize; ++j) {
+		for (int j = 0; j < ISudokuMapGen::MaxSize; ++j) {
 
 			if (this->IsMouseOverButton(this->_gameGridMap[i][j])) {
-				if (this->_sudokuMap.gameMap[i][j] == 0 && _sudokuMap.isSafe(_sudokuMap.gameMap, i, j, this->_selectedNumber))
+				if (this->_sudokuMap.gameMap[i][j] < 0 && this->_sudokuMap.gameMap[i][j]!=-2 && this->_sudokuMap.gameMap[i][j] !=-1)
+				{
+					this->_textGridMap[i][j].setString(std::to_string(this->_selectedNumber));
+					this->_sudokuMap.gameMap[i][j] = -this->_selectedNumber;
+					this->_selections.push_back({ i,j });
+				}
+
+				if (this->_sudokuMap.gameMap[i][j] == 0)
 				{
 					this->_textGridMap[i][j].setString(std::to_string(this->_selectedNumber));
 					this->_textGridMap[i][j].setFillColor(sf::Color::Blue);
-					this->_sudokuMap.gameMap[i][j] = this->_selectedNumber;
+					this->_sudokuMap.gameMap[i][j] = -(this->_selectedNumber);
 					this->_selections.push_back({ i,j });
 				}
 			}
+
 		}
 	}
 
@@ -446,26 +468,6 @@ void IMapPlay::OnFocusEvent() {
 				//lấy thời gian ra ở đây
 
 				this->AlertWindow(this->_HeaderFont, "Completed! You Won!", 200, 100, sf::Color(223, 229, 237), LineColor);
-			}
-		}
-	}
-	for (int i = 0; i < IceMapGen::MaxSize; ++i) {
-
-		if (this->IsMouseOverButton(this->_undoButton)) {
-			this->_undoButton.setFillColor(sf::Color::White); //reset element Previously highlighted.. 
-			this->_selectedIndex = 0;
-			this->_selectedNumber = this->_selectedIndex;
-		}
-
-		for (int j = 0; j < IceMapGen::MaxSize; ++j) {
-
-			if (this->IsMouseOverButton(this->_gameGridMap[i][j])) {
-				if (this->_sudokuMap.gameMap[i][j] != 0)
-				{
-					this->_textGridMap[i][j].setString(std::to_string(this->_selectedNumber));
-					this->_sudokuMap.gameMap[i][j] = this->_selectedNumber;
-					this->_selections.push_back({ i,j });
-				}
 			}
 		}
 	}
