@@ -15,6 +15,7 @@ enum class GamePages
 	Register,
 	Game_Medium_Play,
 	Game_Hard_Play,
+	IMapPlay,
 };
 
 class BasePageClass

@@ -33,6 +33,9 @@ void PagesManager::Display() {
 		else if (this->_currentPage->NavTOPage == GamePages::Game_Hard_Play)
 			this->_currentPage = new Game_Hard_Play(this->_window, false);
 
+		else if (this->_currentPage->NavTOPage == GamePages::IMapPlay)
+			this->_currentPage = new IMapPlay(this->_window, false);
+
 		else if (this->_currentPage->NavTOPage == GamePages::GamePlayPage_C)
 			this->_currentPage = new GamePlayPage(this->_window, true);
 

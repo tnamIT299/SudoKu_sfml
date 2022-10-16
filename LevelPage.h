@@ -34,14 +34,12 @@ private:
 	sf::RectangleShape _EasyButton;
 	sf::RectangleShape _MediumButton;
 	sf::RectangleShape _HardButton;
-	sf::RectangleShape _ExpertButton;
-	sf::RectangleShape _EvilButton;
+	sf::RectangleShape _Ice_BreakerButton;
 	sf::RectangleShape _BackButton;
 	sf::Text _EasyText;
 	sf::Text _MediumText;
 	sf::Text _HardText;
-	sf::Text _ExpertText;
-	sf::Text _EvilText;
+	sf::Text _Ice_BreakerText;
 	sf::Text _BackText;
 	sf::SoundBuffer buffer;
 	sf::Sound sound;

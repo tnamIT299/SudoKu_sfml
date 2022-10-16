@@ -122,31 +122,18 @@ void LevelPage::setUp() {
 
 
 	Posy += 65;
-	this->_ExpertButton.setSize(sf::Vector2f(170.f, height));
-	this->_ExpertButton.setPosition(sf::Vector2f(Posx, Posy));
-	this->_ExpertButton.setFillColor(CaramelColor);
+	this->_Ice_BreakerButton.setSize(sf::Vector2f(170.f, height));
+	this->_Ice_BreakerButton.setPosition(sf::Vector2f(Posx, Posy));
+	this->_Ice_BreakerButton.setFillColor(CaramelColor);
 
-	this->_ExpertText.setFillColor(sf::Color::Black);
-	this->_ExpertText.setFont(this->_HeaderFont);
-	this->_ExpertText.setCharacterSize(18);
-	this->_ExpertText.setString("Expert");
-	Framex = Posx + this->_ExpertButton.getLocalBounds().width / 1.2f - (this->_ExpertButton.getLocalBounds().width / 2.f);
-	Framey = Posy + this->_ExpertButton.getLocalBounds().height / 1.5f - (this->_ExpertButton.getLocalBounds().height / 2.f);
-	this->_ExpertText.setPosition(Framex-5, Framey);
+	this->_Ice_BreakerText.setFillColor(sf::Color::Black);
+	this->_Ice_BreakerText.setFont(this->_HeaderFont);
+	this->_Ice_BreakerText.setCharacterSize(18);
+	this->_Ice_BreakerText.setString("Ice-Breaker");
+	Framex = Posx + this->_Ice_BreakerButton.getLocalBounds().width / 1.4f - (this->_Ice_BreakerButton.getLocalBounds().width / 2.f);
+	Framey = Posy + this->_Ice_BreakerButton.getLocalBounds().height / 1.5f - (this->_Ice_BreakerButton.getLocalBounds().height / 2.f);
+	this->_Ice_BreakerText.setPosition(Framex, Framey);
 	
-
-	Posy += 65;
-	this->_EvilButton.setSize(sf::Vector2f(170.f, height));
-	this->_EvilButton.setPosition(sf::Vector2f(Posx, Posy));
-	this->_EvilButton.setFillColor(CaramelColor);
-
-	this->_EvilText.setFillColor(sf::Color::Black);
-	this->_EvilText.setFont(this->_HeaderFont);
-	this->_EvilText.setCharacterSize(18);
-	this->_EvilText.setString("Evil");
-	Framex = Posx + this->_EvilButton.getLocalBounds().width / 1.2f - (this->_EvilButton.getLocalBounds().width / 2.f);
-	Framey = Posy + this->_EvilButton.getLocalBounds().height / 1.5f - (this->_EvilButton.getLocalBounds().height / 2.f);
-	this->_EvilText.setPosition(Framex+10, Framey);
 
 
 
@@ -163,6 +150,8 @@ void LevelPage::Display() {
 	this->_window->draw(this->_MediumText);
 	this->_window->draw(this->_HardButton);
 	this->_window->draw(this->_HardText);
+	this->_window->draw(this->_Ice_BreakerButton);
+	this->_window->draw(this->_Ice_BreakerText);
 	this->_window->draw(this->_BackButton);
 	this->_window->draw(this->_BackText);
 	
@@ -190,6 +179,13 @@ void LevelPage::OnFocusEvent() {
 		this->ChangePage = true;
 		this->NavTOPage = GamePages::Game_Hard_Play;
 	}
+
+	else if (this->IsMouseOverButton(this->_Ice_BreakerButton)) {
+
+		this->ChangePage = true;
+		this->NavTOPage = GamePages::IMapPlay;
+	}
+
 
 	else if (this->IsMouseOverButton(this->_BackButton)) {
 
@@ -231,6 +227,17 @@ void LevelPage::MouseMoveTigger() {
 	else {
 		this->_HardButton.setFillColor(CaramelColor);
 		this->_HardText.setFillColor(sf::Color::Black);
+	}
+
+	if (this->IsMouseOverButton(this->_Ice_BreakerButton)) {
+
+		this->_Ice_BreakerButton.setFillColor(sf::Color::White);
+		this->_Ice_BreakerText.setFillColor(sf::Color::Black);
+		this->sound.play();
+	}                                                                       //ice-breaker btn
+	else {
+		this->_Ice_BreakerButton.setFillColor(CaramelColor);
+		this->_Ice_BreakerText.setFillColor(sf::Color::Black);
 	}
 
 	if (this->IsMouseOverButton(this->_BackButton)) {
