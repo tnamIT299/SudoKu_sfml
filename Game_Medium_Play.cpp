@@ -348,7 +348,7 @@ void Game_Medium_Play::MouseMoveTigger() {
 	for (int i = 0; i < ISudokuMapGen::MaxSize; ++i) {
 
 		if (this->IsMouseOverButton(this->_optionField[i]))
-			this->_optionField[i].setFillColor(sf::Color(235, 114, 84));
+			this->_optionField[i].setFillColor(sf::Color::White);
 		else
 		{
 			if (i != this->_selectedIndex)
@@ -448,51 +448,26 @@ void Game_Medium_Play::OnFocusEvent() {
 		}
 	}
 
-	if (this->IsMouseOverButton(this->_undoButton)) {
+	for (int i = 0; i < ISudokuMapGen::MaxSize; ++i) {
 
-		if (this->_selections.size() > 0) {
-
-			auto field = this->_selections.end() - 1;
-			this->_medium_map.gameMap[field->row][field->col] = 0;
-			this->_textGridMap[field->row][field->col].setString(" ");
-			this->_selections.pop_back();
+		if (this->IsMouseOverButton(this->_undoButton)) {
+			this->_undoButton.setFillColor(sf::Color::White); //reset element Previously highlighted.. 
+			this->_selectedIndex = 0;
+			this->_selectedNumber = this->_selectedIndex;
 		}
 
-		else
-			this->AlertWindow(this->_HeaderFont, "Nothing to undo!", 300, 100, sf::Color(223, 229, 237), LineColor);
+		for (int j = 0; j < ISudokuMapGen::MaxSize; ++j) {
 
-		if (this->_checkErr) {
-			for (int i = 0; i < ISudokuMapGen::MaxSize; ++i) {
-
-				for (int j = 0; j < ISudokuMapGen::MaxSize; ++j) {
-					this->_textGridMap[i][j].setFillColor(sf::Color(55, 57, 59));
+			if (this->IsMouseOverButton(this->_gameGridMap[i][j])) {
+				if (this->_medium_map.gameMap[i][j] != 0)
+				{
+					this->_textGridMap[i][j].setString(std::to_string(this->_selectedNumber));
+					this->_medium_map.gameMap[i][j] = this->_selectedNumber;
+					this->_selections.push_back({ i,j });
 				}
 			}
-			this->_checkErr = false;
 		}
 	}
-
-	if (this->IsMouseOverButton(this->_checkButton)) {
-
-		for (int i = 0; i < ISudokuMapGen::MaxSize; ++i) {
-			for (int j = 0; j < ISudokuMapGen::MaxSize; ++j) {
-
-				auto value = this->_medium_map.gameMap[i][j];
-				if (value == 0)
-					continue;
-
-				if (this->_medium_map.isSafe(this->_medium_map.gameMap, i, j, value) == false)
-				{
-					this->_checkErr = true;
-					this->_textGridMap[i][j].setFillColor(sf::Color::Red);
-				}
-			}
-		}//
-
-		if (this->_checkErr == false)
-			this->AlertWindow(this->_HeaderFont, "No errors for now..", 300, 100, sf::Color(223, 229, 237), LineColor);
-	}//
-
 }
 
 void Game_Medium_Play::HandleEvents(sf::Event* event) {
