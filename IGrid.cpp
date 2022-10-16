@@ -18,7 +18,7 @@ int board::randomGenerator(int num)
     auto n = uni(rng);
     return n;
 }
-bool board::isSafe(int** matrix, int row, int col, int num) {
+bool board::CheckIsSafe(int** matrix, int row, int col, int num) {
     for (int x = 0; x <= 8; x++)
         if (matrix[row][x] == num)
             return false;
@@ -53,7 +53,7 @@ void board::fillBox(int row, int col)
         for (int j = 0; j < SRN; j++) {
             do {
                 num = randomGenerator(N);
-            } while (!isSafe(matrix, row, col, num));
+            } while (!CheckIsSafe(matrix, row, col, num));
             matrix[row + i][col + j] = num;
         }
     }
@@ -86,7 +86,7 @@ bool board::fillRemaining(int i, int j) {
         }
     }
     for (int num = 1; num <= N; num++) {
-        if (isSafe(matrix, i, j, num)) {
+        if (CheckIsSafe(matrix, i, j, num)) {
             matrix[i][j] = num;
             if (fillRemaining(i, j + 1)) {
                 return true;

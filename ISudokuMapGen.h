@@ -1,9 +1,6 @@
 #pragma once
 #include "IGrid.h"
-struct Field {
 
-	int row, col;
-};
 class ISudokuMapGen :public board
 {
 public:

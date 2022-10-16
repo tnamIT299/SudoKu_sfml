@@ -137,7 +137,9 @@
     <ClCompile Include="GamePlayPage.cpp" />
     <ClCompile Include="Game_Hard_Play.cpp" />
     <ClCompile Include="Game_Medium_Play.cpp" />
+    <ClCompile Include="IceMapGen.cpp" />
     <ClCompile Include="IGrid.cpp" />
+    <ClCompile Include="IMapPlay.cpp" />
     <ClCompile Include="ISudokuMapGen.cpp" />
     <ClCompile Include="LevelPage.cpp" />
     <ClCompile Include="LoginPage.cpp" />
@@ -155,7 +157,9 @@
     <ClInclude Include="GamePlayPage.h" />
     <ClInclude Include="Game_Hard_Play.h" />
     <ClInclude Include="Game_Medium_Play.h" />
+    <ClInclude Include="IceMapGen.h" />
     <ClInclude Include="IGrid.h" />
+    <ClInclude Include="IMapPlay.h" />
     <ClInclude Include="ISudokuMapGen.h" />
     <ClInclude Include="LevelPage.h" />
     <ClInclude Include="LoginPage.h" />

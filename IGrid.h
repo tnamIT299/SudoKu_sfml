@@ -5,6 +5,10 @@
 #include <random>
 #include <time.h>
 #include <vector>
+struct Field {
+
+    int row, col;
+};
 using namespace std;
 class board
 {
@@ -19,7 +23,7 @@ public:
     ~board();
     int randomGenerator(int num);
     virtual void fillValues() = 0;
-    bool isSafe(int** matrix, int row, int col, int num);
+    bool CheckIsSafe(int** matrix, int row, int col, int num);
     bool fillRemaining(int i, int j);
     void fillDiagonal();
     void fillBox(int row, int col);
