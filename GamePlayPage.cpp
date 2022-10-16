@@ -395,6 +395,12 @@ void GamePlayPage::OnFocusEvent() {
 
 	for (int i = 0; i < ISudokuMapGen::MaxSize; ++i) {
 
+		if (this->IsMouseOverButton(this->_undoButton)) {
+			this->_undoButton.setFillColor(sf::Color::White);
+			this->_selectedIndex= i;
+			this->_selectedNumber =_selectedIndex*0;
+		}
+
 		if (this->IsMouseOverButton(this->_optionField[i])) {
 
 			this->_optionField[this->_selectedIndex].setFillColor(sf::Color::White); //reset element Previously highlighted.. 
@@ -406,16 +412,25 @@ void GamePlayPage::OnFocusEvent() {
 		for (int j = 0; j < ISudokuMapGen::MaxSize; ++j) {
 
 			if (this->IsMouseOverButton(this->_gameGridMap[i][j])) {
-				if (this->_sudokuMap.gameMap[i][j] == 0 && _sudokuMap.isSafe(_sudokuMap.gameMap, i, j, this->_selectedNumber))
+				if (this->_sudokuMap.gameMap[i][j] < 0)
+				{
+					this->_textGridMap[i][j].setString(std::to_string(this->_selectedNumber));
+					this->_sudokuMap.gameMap[i][j] = this->_selectedNumber;
+					this->_selections.push_back({ i,j });
+				} 
+
+				if (this->_sudokuMap.gameMap[i][j] == 0 )
 				{
 					this->_textGridMap[i][j].setString(std::to_string(this->_selectedNumber));
 					this->_textGridMap[i][j].setFillColor(sf::Color::Blue);
-					this->_sudokuMap.gameMap[i][j] = this->_selectedNumber;
+					this->_sudokuMap.gameMap[i][j] = -(this->_selectedNumber);
 					this->_selections.push_back({ i,j });
 				}
 			}
+
+			}
 		}
-	}
+	
 
 	if (this->IsMouseOverButton(this->_submitButton)) {
 
@@ -446,26 +461,6 @@ void GamePlayPage::OnFocusEvent() {
 				//lấy thời gian ra ở đây
 
 				this->AlertWindow(this->_HeaderFont, "Completed! You Won!", 200, 100, sf::Color(223, 229, 237), LineColor);
-			}
-		}
-	}
-	for (int i = 0; i < ISudokuMapGen::MaxSize; ++i) {
-
-		if (this->IsMouseOverButton(this->_undoButton)) {
-			this->_undoButton.setFillColor(sf::Color::White); //reset element Previously highlighted.. 
-			this->_selectedIndex = 0;
-			this->_selectedNumber = this->_selectedIndex;
-		}
-
-		for (int j = 0; j < ISudokuMapGen::MaxSize; ++j) {
-
-			if (this->IsMouseOverButton(this->_gameGridMap[i][j])) {
-				if (this->_sudokuMap.gameMap[i][j] != 0)
-				{
-					this->_textGridMap[i][j].setString(std::to_string(this->_selectedNumber));
-					this->_sudokuMap.gameMap[i][j] = this->_selectedNumber;
-					this->_selections.push_back({ i,j });
-				}
 			}
 		}
 	}
