@@ -393,6 +393,12 @@ void Game_Hard_Play::OnFocusEvent() {
 
 	for (int i = 0; i < ISudokuMapGen::MaxSize; ++i) {
 
+		if (this->IsMouseOverButton(this->_undoButton)) {
+			this->_undoButton.setFillColor(sf::Color::White);
+			this->_selectedIndex = i;
+			this->_selectedNumber = _selectedIndex * 0;
+		}
+
 		if (this->IsMouseOverButton(this->_optionField[i])) {
 
 			this->_optionField[this->_selectedIndex].setFillColor(sf::Color::White); //reset element Previously highlighted.. 
@@ -404,11 +410,10 @@ void Game_Hard_Play::OnFocusEvent() {
 		for (int j = 0; j < ISudokuMapGen::MaxSize; ++j) {
 
 			if (this->IsMouseOverButton(this->_gameGridMap[i][j])) {
-
 				if (this->_hard_map.gameMap[i][j] < 0)
 				{
 					this->_textGridMap[i][j].setString(std::to_string(this->_selectedNumber));
-					this->_hard_map.gameMap[i][j] = -this->_selectedNumber;
+					this->_hard_map.gameMap[i][j] = this->_selectedNumber;
 					this->_selections.push_back({ i,j });
 				}
 
@@ -416,12 +421,14 @@ void Game_Hard_Play::OnFocusEvent() {
 				{
 					this->_textGridMap[i][j].setString(std::to_string(this->_selectedNumber));
 					this->_textGridMap[i][j].setFillColor(sf::Color::Blue);
-					this->_hard_map.gameMap[i][j] = -this->_selectedNumber;
+					this->_hard_map.gameMap[i][j] = -(this->_selectedNumber);
 					this->_selections.push_back({ i,j });
 				}
 			}
+
 		}
 	}
+
 
 	if (this->IsMouseOverButton(this->_submitButton)) {
 
