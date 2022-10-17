@@ -143,14 +143,20 @@ void GamePlayPage::setUp() {
 	this->_checkButton.setSize(sf::Vector2f(133.f, 40.f));
 	this->_checkButton.setPosition(sf::Vector2f(buttonX -160, ButtonY));
 
+	this->_ErorText.setFont(this->_HeaderFont);
+	this->_ErorText.setCharacterSize(18);
+	this->_ErorText.setFillColor(sf::Color::Black);
+	this->_ErorText.setString("Error : ");
+	this->_ErorText.setPosition(200, 130);
+
 	this->_checkText.setFont(this->_HeaderFont);
 	this->_checkText.setCharacterSize(18);
 	this->_checkText.setFillColor(sf::Color::Black);
-	this->_checkText.setString("Error : ");
+	this->_checkText.setString("");
 	sizex = this->_checkText.getLocalBounds().width / 2.2f;
 	sizey = this->_checkText.getLocalBounds().height / 2.f;
 
-	this->_checkText.setPosition(sf::Vector2f(buttonX + sizex -170 , ButtonY + sizey));
+	this->_checkText.setPosition(sf::Vector2f(buttonX + sizex -60 , ButtonY + sizey +10));
 
 	buttonX += 140.f;
 
@@ -320,6 +326,7 @@ void GamePlayPage::Display() {
 		this->_window->draw(this->_TimeText);
 		this->_window->draw(this->_BackButton);
 		this->_window->draw(this->_BackText);
+		this->_window->draw(this->_ErorText);
 
 
 		//Vong lap timeplay
@@ -432,8 +439,11 @@ void GamePlayPage::OnFocusEvent() {
 						this->_sudokuMap.gameMap[i][j] = -(this->_selectedNumber);
 						this->_selections.push_back({ i,j });
 					}
-					else
+					else{
 						errorCount++;
+						this->_checkText.setString(std::to_string(errorCount));
+					}
+						
 				}
 			}
 
@@ -565,7 +575,7 @@ void GamePlayPage::TimePlay() {
 		std::cout << "Shutting Down!" << std::endl;
 		this->_window->close();
 	}
-	float  sizex = this->_TimeText.getLocalBounds().width / 12.f;
+	float sizex = this->_TimeText.getLocalBounds().width / 12.f;
 	float sizey = this->_TimeText.getLocalBounds().height / 2.f;
 	this->_TimeButton.setFillColor(LineColor);
 	this->_TimeButton.setSize(sf::Vector2f(133.f, 40.f));
