@@ -348,7 +348,7 @@ void Game_Hard_Play::MouseMoveTigger() {
 	for (int i = 0; i < ISudokuMapGen::MaxSize; ++i) {
 
 		if (this->IsMouseOverButton(this->_optionField[i]))
-			this->_optionField[i].setFillColor(sf::Color::White);
+			this->_optionField[i].setFillColor(sf::Color::Yellow);
 		else
 		{
 			if (i != this->_selectedIndex)

@@ -358,7 +358,7 @@ void IMapPlay::MouseMoveTigger() {
 	for (int i = 0; i < IceMapGen::MaxSize; ++i) {
 
 		if (this->IsMouseOverButton(this->_optionField[i]))
-			this->_optionField[i].setFillColor(sf::Color::White);
+			this->_optionField[i].setFillColor(sf::Color::Yellow);
 		else
 		{
 			if (i != this->_selectedIndex)
