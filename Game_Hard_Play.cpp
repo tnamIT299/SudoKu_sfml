@@ -419,7 +419,7 @@ void Game_Hard_Play::OnFocusEvent() {
 				if (this->_hard_map.gameMap[i][j] < 0)
 				{
 					this->_textGridMap[i][j].setString(std::to_string(this->_selectedNumber));
-					this->_hard_map.gameMap[i][j] = this->_selectedNumber;
+					this->_hard_map.gameMap[i][j] = -this->_selectedNumber;
 					this->_selections.push_back({ i,j });
 				}
 
@@ -591,6 +591,7 @@ void Game_Hard_Play::TimePlay() {
 		milisecond = 0;
 		minute = 0;
 	}
+
 	ss.str("");
 
 	if (hours < 10)

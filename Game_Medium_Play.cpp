@@ -419,7 +419,7 @@ void Game_Medium_Play::OnFocusEvent() {
 				if (this->_medium_map.gameMap[i][j] < 0)
 				{
 					this->_textGridMap[i][j].setString(std::to_string(this->_selectedNumber));
-					this->_medium_map.gameMap[i][j] = this->_selectedNumber;
+					this->_medium_map.gameMap[i][j] = -this->_selectedNumber;
 					this->_selections.push_back({ i,j });
 				}
 

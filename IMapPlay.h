@@ -4,6 +4,7 @@
 #include "sstream"
 #include "string"
 #include "SFML/Audio.hpp"
+#include "XacThuc.h"
 class IMapPlay :public BasePageClass
 {
 public:
@@ -85,5 +86,6 @@ private:
 	int hours = 0;
 	//t?o thêm bi?n ? ?ây
 	int getTime = 0;
+	XacThuc verify;
 };
 

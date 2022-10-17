@@ -1,7 +1,7 @@
 #pragma once
 #include"SudokuMapGen.h"
 SudokuMapGen::SudokuMapGen() {
-	K = 30;
+	K = 1;
 	fillValues();
 	for (int i = 0; i < MaxSize; i++)
 	{

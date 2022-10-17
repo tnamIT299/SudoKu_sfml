@@ -148,10 +148,12 @@
     <ClCompile Include="LevelPage.cpp" />
     <ClCompile Include="PageManager.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="UserInfo.cpp" />
     <ClCompile Include="StartPage.cpp" />
     <ClCompile Include="SudokuMapGen.cpp" />
     <ClCompile Include="SudokuMapHard.cpp" />
     <ClCompile Include="SudokuMapMedium.cpp" />
+    <ClCompile Include="XacThuc.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BasePageClass.h" />
@@ -169,6 +171,8 @@
     <ClInclude Include="SudokuMapGen.h" />
     <ClInclude Include="SudokuMapHard.h" />
     <ClInclude Include="SudokuMapMedium.h" />
+    <ClInclude Include="UserInfo.h" />
+    <ClInclude Include="XacThuc.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

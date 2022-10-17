@@ -3,6 +3,7 @@
 #include "sstream"
 #include "windows.h"
 #include "SFML/Audio.hpp"
+#include"UserInfo.h"
 
 
 
@@ -399,6 +400,25 @@ void GamePlayPage::HoverCheck(sf::RectangleShape* button, sf::Text* buttonText) 
 
 void GamePlayPage::OnFocusEvent() {
 	//Chuyển trang
+	Sleep(1);
+	milisecond++;
+	if (milisecond == 60) {
+		second++;
+		milisecond = 0;
+		getTime++;
+	}
+	if (second == 60) {
+		minute++;
+		second = 0;
+		milisecond = 0;
+	}
+	if (minute == 60) {
+		hours++;
+		second = 0;
+		milisecond = 0;
+		minute = 0;
+	}
+
 	if (this->IsMouseOverButton(this->_BackButton)) {
 
 		this->ChangePage = true;
@@ -427,11 +447,11 @@ void GamePlayPage::OnFocusEvent() {
 				if (this->_sudokuMap.gameMap[i][j] < 0)
 				{
 					this->_textGridMap[i][j].setString(std::to_string(this->_selectedNumber));
-					this->_sudokuMap.gameMap[i][j] = this->_selectedNumber;
+					this->_sudokuMap.gameMap[i][j] = -this->_selectedNumber;
 					this->_selections.push_back({ i,j });
 				} 
 
-				if (this->_sudokuMap.gameMap[i][j] == 0 )
+				if (this->_sudokuMap.gameMap[i][j] == 0 && this->_sudokuMap.isSafe(this->_sudokuMap.gameMap, i, j, this->_selectedNumber))
 				{
 					if (this->_sudokuMap.isSafe(this->_sudokuMap.gameMap, i, j, this->_selectedNumber)) {
 						this->_textGridMap[i][j].setString(std::to_string(this->_selectedNumber));
@@ -478,8 +498,10 @@ void GamePlayPage::OnFocusEvent() {
 			}//
 			if (this->_checkErr == false) {
 				//lấy thời gian ra ở đây
-
+				UserInfo::getXacThuc()->gettimer(getTime);
 				this->AlertWindow(this->_HeaderFont, "Completed! You Won!", 200, 100, sf::Color(223, 229, 237), LineColor);
+				/*this->_checkErr = true;*/
+				cout << "Loop" << endl;
 			}
 		}
 	}
@@ -604,6 +626,7 @@ void GamePlayPage::TimePlay() {
 			milisecond = 0;
 			minute = 0;
 		}
+
 		ss.str("");
 
 		if (hours < 10)

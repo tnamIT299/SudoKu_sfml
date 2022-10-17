@@ -5,7 +5,7 @@
 #include "sstream"
 #include "string"
 #include "SFML/Audio.hpp"
-
+#include "XacThuc.h"
 using namespace std;
 class GamePlayPage : public BasePageClass
 {
@@ -90,6 +90,7 @@ private:
 	int hours = 0;
 	//t?o thêm bi?n ? ?ây
 	int getTime = 0;
+	XacThuc verify;
 };
 
 
