@@ -154,7 +154,7 @@ void Game_Medium_Play::setUp() {
 	sizex = this->_checkText.getLocalBounds().width / 2.2f;
 	sizey = this->_checkText.getLocalBounds().height / 2.f;
 
-	this->_checkText.setPosition(sf::Vector2f(buttonX + sizex - 170, ButtonY + sizey));
+	this->_checkText.setPosition(sf::Vector2f(buttonX + sizex - 60, ButtonY + sizey +10));
 
 	buttonX += 140.f;
 
@@ -423,7 +423,7 @@ void Game_Medium_Play::OnFocusEvent() {
 					this->_selections.push_back({ i,j });
 				}
 
-				if (this->_medium_map.gameMap[i][j] == 0 && this->_medium_map.isSafe(this->_medium_map.gameMap, i, j, this->_selectedNumber))
+				if (this->_medium_map.gameMap[i][j] == 0)
 				{
 					if (this->_medium_map.isSafe(this->_medium_map.gameMap, i, j, this->_selectedNumber)) {
 						this->_textGridMap[i][j].setString(std::to_string(this->_selectedNumber));
@@ -431,7 +431,7 @@ void Game_Medium_Play::OnFocusEvent() {
 						this->_medium_map.gameMap[i][j] = -(this->_selectedNumber);
 						this->_selections.push_back({ i,j });
 					}
-					else {
+					else{
 						errorCount++;
 						this->_checkText.setString(std::to_string(errorCount));
 					}
