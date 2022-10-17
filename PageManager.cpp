@@ -39,6 +39,9 @@ void PagesManager::Display() {
 		else if (this->_currentPage->NavTOPage == GamePages::GamePlayPage_C)
 			this->_currentPage = new GamePlayPage(this->_window, true);
 
+		else if (this->_currentPage->NavTOPage == GamePages::HighSoccerPage)
+			this->_currentPage = new HighSoccerPage(this->_window, true);
+
 		return;
 	}
 

@@ -2,8 +2,6 @@
 #include <fstream>
 #include <SFML/Graphics.hpp>
 
-//Sign_In* Sign_In::sInstance = nullptr;
-
 void Sign_In::setUp()
 {
 	if (!this->_HeaderFont.loadFromFile("Fonts/07558_CenturyGothic.ttf")) {

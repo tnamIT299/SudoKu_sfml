@@ -140,6 +140,7 @@
     <ClCompile Include="GamePlayPage.cpp" />
     <ClCompile Include="Game_Hard_Play.cpp" />
     <ClCompile Include="Game_Medium_Play.cpp" />
+    <ClCompile Include="HighSoccerPage.cpp" />
     <ClCompile Include="IceMapGen.cpp" />
     <ClCompile Include="IGrid.cpp" />
     <ClCompile Include="IMapPlay.cpp" />
@@ -160,6 +161,7 @@
     <ClInclude Include="GamePlayPage.h" />
     <ClInclude Include="Game_Hard_Play.h" />
     <ClInclude Include="Game_Medium_Play.h" />
+    <ClInclude Include="HighSoccerPage.h" />
     <ClInclude Include="IceMapGen.h" />
     <ClInclude Include="IGrid.h" />
     <ClInclude Include="IMapPlay.h" />

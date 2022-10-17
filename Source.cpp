@@ -14,7 +14,7 @@ int main()
 	sf::Music music;
 	if (!music.openFromFile("music/Nhac-Thien-Tinh-Tam-V-A.ogg"))
 		return -1; // error
-	music.setVolume(5.f);
+	music.setVolume(10.f);
 	music.play();
 
 	

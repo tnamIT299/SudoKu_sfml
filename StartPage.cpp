@@ -71,6 +71,19 @@ void StartPage::setUp() {
 	this->_computerPlayText.setPosition(Framex, Framey);
 
 	Posy += 65;
+	this->_HighSoccerButton.setSize(sf::Vector2f(170.f, height));
+	this->_HighSoccerButton.setPosition(sf::Vector2f(Posx, Posy));
+	this->_HighSoccerButton.setFillColor(CaramelColor);
+
+	this->_HighSoccerText.setFillColor(sf::Color::Black);
+	this->_HighSoccerText.setFont(this->_HeaderFont);
+	this->_HighSoccerText.setCharacterSize(18);
+	this->_HighSoccerText.setString("High Soccer");
+	Framex = Posx + this->_HighSoccerButton.getLocalBounds().width / 1.7f - (this->_HighSoccerButton.getLocalBounds().width / 2.f);
+	Framey = Posy + this->_HighSoccerButton.getLocalBounds().height / 1.5f - (this->_HighSoccerButton.getLocalBounds().height / 2.f);
+	this->_HighSoccerText.setPosition(Framex+15, Framey);
+
+	Posy += 65;
 	this->_exitButton.setSize(sf::Vector2f(170.f, height));
 	this->_exitButton.setPosition(sf::Vector2f(Posx, Posy));
 	this->_exitButton.setFillColor(CaramelColor);
@@ -89,17 +102,12 @@ void StartPage::Display() {
 	this->_window->clear(sf::Color::Black);
 	this->_window->draw(this->_bgSprite);
 	this->_window->draw(this->_mainTitle);
-	this->_window->draw(this->_music_Play_Button);
-	this->_window->draw(this->_music_PlayText);
-	this->_window->draw(this->_music_Pause_Button);
-	this->_window->draw(this->_music_PauseText);
-	this->_window->draw(this->_music_Stop_Button);
-	this->_window->draw(this->_music_StopText);
-	this->_window->draw(this->_music_PauseText);
 	this->_window->draw(this->_LevelButton);
 	this->_window->draw(this->_levelText);
 	this->_window->draw(this->_computerPlayButton);
 	this->_window->draw(this->_computerPlayText);
+	this->_window->draw(this->_HighSoccerButton);
+	this->_window->draw(this->_HighSoccerText);
 	this->_window->draw(this->_exitButton);
 	this->_window->draw(this->_exitButtonText);
 
@@ -107,19 +115,8 @@ void StartPage::Display() {
 }
 
 void StartPage::OnFocusEvent() {
-	if (this->IsMouseOverButton(this->_music_Play_Button)) {
 
-		this->music.play();
-	}
-	else if (this->IsMouseOverButton(this->_music_Pause_Button)) {
-
-		this->music.pause();
-	}
-	else if (this->IsMouseOverButton(this->_music_Stop_Button)) {
-
-		this->music.stop();
-	}
-	else if (this->IsMouseOverButton(this->_PlayGameButton)) {
+    if (this->IsMouseOverButton(this->_PlayGameButton)) {
 
 		this->ChangePage = true;
 		this->NavTOPage = GamePages::GamePlayPage_P;
@@ -136,6 +133,11 @@ void StartPage::OnFocusEvent() {
 		this->ChangePage = true;
 		this->NavTOPage = GamePages::GamePlayPage_C;
 	}
+	else if (this->IsMouseOverButton(this->_HighSoccerButton)) {
+
+		this->ChangePage = true;
+		this->NavTOPage = GamePages::HighSoccerPage;
+	}
 
 
 	else if (this->IsMouseOverButton(this->_exitButton)) {
@@ -145,38 +147,7 @@ void StartPage::OnFocusEvent() {
 }
 
 void StartPage::MouseMoveTigger() {
-	if (this->IsMouseOverButton(this->_music_Play_Button)) {
-
-		this->_music_Play_Button.setFillColor(sf::Color::White);
-		this->_music_PlayText.setFillColor(sf::Color::Black);
-		//this->music.play();
-	}                                                                       //PlayMusic Btn	
-	else {
-		this->_music_Play_Button.setFillColor(CaramelColor);
-		this->_music_PlayText.setFillColor(sf::Color::Black);
-	}
-
-	if (this->IsMouseOverButton(this->_music_Pause_Button)) {
-
-		this->_music_Pause_Button.setFillColor(sf::Color::White);
-		this->_music_PauseText.setFillColor(sf::Color::Black);
-		//this->music.pause();
-	}                                                                       //PauseMusic Btn	
-	else {
-		this->_music_Pause_Button.setFillColor(CaramelColor);
-		this->_music_PauseText.setFillColor(sf::Color::Black);
-	}
-	if (this->IsMouseOverButton(this->_music_Stop_Button)) {
-
-		this->_music_Stop_Button.setFillColor(sf::Color::White);
-		this->_music_StopText.setFillColor(sf::Color::Black);
-		//this->music.stop();
-	}                                                                       //StopMusic Btn	
-	else {
-		this->_music_Stop_Button.setFillColor(CaramelColor);
-		this->_music_StopText.setFillColor(sf::Color::Black);
-	}
-
+	
 	if (this->IsMouseOverButton(this->_PlayGameButton)) {
 
 		this->_PlayGameButton.setFillColor(sf::Color::White);
@@ -209,6 +180,17 @@ void StartPage::MouseMoveTigger() {
 	else {
 		this->_computerPlayButton.setFillColor(CaramelColor);
 		this->_computerPlayText.setFillColor(sf::Color::Black);
+	}
+
+	if (this->IsMouseOverButton(this->_HighSoccerButton)) {
+
+		this->_HighSoccerButton.setFillColor(sf::Color::White);
+		this->_HighSoccerText.setFillColor(sf::Color::Black);
+		this->sound.play();
+	}                                                                       //High soccer
+	else {
+		this->_HighSoccerButton.setFillColor(CaramelColor);
+		this->_HighSoccerText.setFillColor(sf::Color::Black);
 	}
 
 	if (this->IsMouseOverButton(this->_exitButton)) {

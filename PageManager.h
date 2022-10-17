@@ -2,6 +2,7 @@
 
 #include "StartPage.h"
 #include "LevelPage.h"
+#include "HighSoccerPage.h"
 #include "GamePlayPage.h"
 #include "LoginPage.h"
 #include "Sign_In.h"

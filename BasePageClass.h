@@ -11,6 +11,7 @@ enum class GamePages
 	GamePlayPage_P,
 	GamePlayPage_C,
 	LoginPage,
+	HighSoccerPage,
 	Sign_In,
 	Register,
 	Game_Medium_Play,

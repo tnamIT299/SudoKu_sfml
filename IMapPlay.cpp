@@ -36,7 +36,7 @@ void IMapPlay::setUp() {
 
 	this->_bgSprite.setTexture(this->_bgTexture);
 	this->_bgSprite.setScale(ScaleX, ScaleY);
-
+	                       
 	this->_gameBoard.setFillColor(sf::Color(209, 201, 178));
 	this->_gameBoard.setSize(sf::Vector2f(500.f, 450.f));
 	this->_gameBoard.setPosition(sf::Vector2f(this->_window->getSize().x / 2.f - this->_gameBoard.getLocalBounds().width / 2.f,
@@ -50,7 +50,7 @@ void IMapPlay::setUp() {
 	this->_vLine1.setFillColor(LineColor);
 	this->_vLine1.setSize(sf::Vector2f(3.f, 450));
 	this->_vLine1.setPosition(sf::Vector2f(boardOriginX + 166.7f, boardOriginY));
-
+	                                                                              //dòng kẻ dọc chia bảng thành các các lưới 
 	this->_vLine2.setFillColor(LineColor);
 	this->_vLine2.setSize(sf::Vector2f(3.f, 450));
 	this->_vLine2.setPosition(sf::Vector2f(boardOriginX + 333.3f, boardOriginY));
@@ -63,7 +63,7 @@ void IMapPlay::setUp() {
 	this->_hLine1.setFillColor(LineColor);
 	this->_hLine1.setSize(sf::Vector2f(500.f, 3.f));
 	this->_hLine1.setPosition(sf::Vector2f(boardOriginX, boardOriginY + 150.f));
-
+	                                                                              //dòng kẻ dọc chia bảng thành các lưới
 	this->_hLine2.setFillColor(LineColor);
 	this->_hLine2.setSize(sf::Vector2f(500.f, 3.f));
 	this->_hLine2.setPosition(sf::Vector2f(boardOriginX, boardOriginY + 300.f));

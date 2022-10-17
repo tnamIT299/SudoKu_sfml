@@ -217,7 +217,7 @@ void GamePlayPage::setUp() {
 			this->_gameGridMap[i][j].setOutlineThickness(2.f);
 			this->_gameGridMap[i][j].setSize(sf::Vector2f(55.55f, 50.f));
 			this->_gameGridMap[i][j].setPosition(sf::Vector2f(gridPosX, gridPosY));
-
+			                                                                        //phần bảng để random các số 
 			this->_textGridMap[i][j].setFont(this->_HeaderFont);
 			this->_textGridMap[i][j].setCharacterSize(30);
 			this->_textGridMap[i][j].setFillColor(sf::Color(55, 57, 59));
@@ -255,7 +255,7 @@ void GamePlayPage::setUp() {
 			this->_optionField[i].setOutlineThickness(1.f);
 			this->_optionField[i].setSize(sf::Vector2f(55.55f, 50.f));
 			this->_optionField[i].setPosition(sf::Vector2f(gridPosX, gridPosY));
-
+			                                                                     //phần lựa chọn số để điền vào bảng 
 			this->_optionText[i].setFont(this->_HeaderFont);
 			this->_optionText[i].setCharacterSize(30);
 			this->_optionText[i].setFillColor(sf::Color(55, 57, 59));
@@ -308,6 +308,8 @@ void GamePlayPage::Display() {
 	this->_window->draw(this->_hLine2);
 
 	if (this->computerPlay == false) {
+
+		//Hiển thị các button
 		this->_window->draw(this->_submitButton);
 		this->_window->draw(this->_submitText);
 		this->_window->draw(this->_checkButton);
@@ -335,6 +337,8 @@ void GamePlayPage::Display() {
 }
 
 void GamePlayPage::MouseMoveTigger() {
+
+	//Hiệu ứng chuột
 
 	if (this->IsMouseOverButton(this->_BackButton)) {
 
@@ -387,6 +391,7 @@ void GamePlayPage::HoverCheck(sf::RectangleShape* button, sf::Text* buttonText) 
 }
 
 void GamePlayPage::OnFocusEvent() {
+	//Chuyển trang
 	if (this->IsMouseOverButton(this->_BackButton)) {
 
 		this->ChangePage = true;
