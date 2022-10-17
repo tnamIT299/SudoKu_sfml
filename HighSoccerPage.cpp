@@ -81,12 +81,6 @@ void HighSoccerPage::setUp() {
 
 	const auto height = 40.f;
 
-
-
-
-
-
-
 }
 
 void HighSoccerPage::Display() {

@@ -9,14 +9,6 @@ void PagesManager::HandleEvents(sf::Event* event) {
 void PagesManager::Display() {
 
 	if (this->_currentPage->ChangePage) {
-		if (this->_currentPage->NavTOPage == GamePages::LoginPage)
-			this->_currentPage = new LoginPage(this->_window);
-
-		if (this->_currentPage->NavTOPage == GamePages::Sign_In)
-			this->_currentPage = new Sign_In(this->_window, true);
-
-		if (this->_currentPage->NavTOPage == GamePages::Register)
-			this->_currentPage = new Register(this->_window, true);
 
 		if (this->_currentPage->NavTOPage == GamePages::StartPage)
 			this->_currentPage = new StartPage(this->_window);
