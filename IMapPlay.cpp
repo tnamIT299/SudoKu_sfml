@@ -425,7 +425,7 @@ void IMapPlay::OnFocusEvent() {
 		for (int j = 0; j < ISudokuMapGen::MaxSize; ++j) {
 
 			if (this->IsMouseOverButton(this->_gameGridMap[i][j])) {
-				if (this->_sudokuMap.gameMap[i][j] < 0 && this->_sudokuMap.gameMap[i][j]!=-2 && this->_sudokuMap.gameMap[i][j] !=-1)
+				if (this->_sudokuMap.gameMap[i][j] < 0 && this->_sudokuMap.gameMap[i][j]!=10 && this->_sudokuMap.gameMap[i][j] !=11)
 				{
 					this->_textGridMap[i][j].setString(std::to_string(this->_selectedNumber));
 					this->_sudokuMap.gameMap[i][j] = -this->_selectedNumber;
