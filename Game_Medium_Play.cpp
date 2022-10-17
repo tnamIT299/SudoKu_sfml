@@ -175,7 +175,7 @@ void Game_Medium_Play::setUp() {
 	this->_undoText.setFont(this->_HeaderFont);
 	this->_undoText.setCharacterSize(18);
 	this->_undoText.setFillColor(sf::Color::Black);
-	this->_undoText.setString("Undo");
+	this->_undoText.setString("Erase");
 
 
 	sizex = this->_undoText.getLocalBounds().width / 1.2f;

@@ -146,7 +146,7 @@ void GamePlayPage::setUp() {
 	this->_checkText.setFont(this->_HeaderFont);
 	this->_checkText.setCharacterSize(18);
 	this->_checkText.setFillColor(sf::Color::Black);
-	this->_checkText.setString("Lỗi : ");
+	this->_checkText.setString("Error : ");
 	sizex = this->_checkText.getLocalBounds().width / 2.2f;
 	sizey = this->_checkText.getLocalBounds().height / 2.f;
 
@@ -161,7 +161,7 @@ void GamePlayPage::setUp() {
 	this->_submitText.setFont(this->_HeaderFont);
 	this->_submitText.setCharacterSize(18);
 	this->_submitText.setFillColor(sf::Color::Black);
-	this->_submitText.setString("Nộp bài");
+	this->_submitText.setString("Submit");
 
 
 	sizex = this->_submitText.getLocalBounds().width / 12.f;
@@ -177,7 +177,7 @@ void GamePlayPage::setUp() {
 	this->_errorText.setFont(this->_HeaderFont);
 	this->_errorText.setCharacterSize(18);
 	this->_errorText.setFillColor(sf::Color::Black);
-	this->_errorText.setString("Xóa");
+	this->_errorText.setString("Erase");
 
 
 	sizex = this->_errorText.getLocalBounds().width / 1.2f;
