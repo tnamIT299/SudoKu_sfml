@@ -298,13 +298,13 @@ void IMapPlay::Display() {
 
 			if (this->_sudokuMap.gameMap[i][j] == 0)
 				continue;
-			if (this->_sudokuMap.gameMap[i][j] == -2) {
+			if (this->_sudokuMap.gameMap[i][j] == 11) {
 				this->_gameGridMap[i][j].setFillColor(sf::Color(6, 57, 112));
 			}
-			if (this->_sudokuMap.gameMap[i][j] == -1) {
+			if (this->_sudokuMap.gameMap[i][j] == 10) {
 				this->_gameGridMap[i][j].setFillColor(sf::Color(118, 181, 197));
 			}
-			if(this->_sudokuMap.gameMap[i][j] > 0)
+			if( this->_sudokuMap.gameMap[i][j]< 10)
 			this->_window->draw(this->_textGridMap[i][j]);
 
 		}
@@ -371,10 +371,10 @@ void IMapPlay::MouseMoveTigger() {
 				this->_gameGridMap[i][j].setFillColor(sf::Color(235, 114, 84));
 			else
 				this->_gameGridMap[i][j].setFillColor(sf::Color(223, 229, 237));
-			if (this->_sudokuMap.gameMap[i][j] == -2) {
+			if (this->_sudokuMap.gameMap[i][j] == 11) {
 				this->_gameGridMap[i][j].setFillColor(sf::Color(6, 57, 112));
 			}
-			if (this->_sudokuMap.gameMap[i][j] == -1) {
+			if (this->_sudokuMap.gameMap[i][j] == 10) {
 				this->_gameGridMap[i][j].setFillColor(sf::Color(118, 181, 197));
 			}
 		}
@@ -408,6 +408,11 @@ void IMapPlay::OnFocusEvent() {
 	}
 
 	for (int i = 0; i < ISudokuMapGen::MaxSize; ++i) {
+		if (this->IsMouseOverButton(this->_undoButton)) {
+			this->_undoButton.setFillColor(sf::Color::White);
+			this->_selectedIndex = i;
+			this->_selectedNumber = _selectedIndex*0;
+		}
 
 		if (this->IsMouseOverButton(this->_optionField[i])) {
 

@@ -15,7 +15,7 @@ void IceMapGen::fillValues() {
         x = rand() % 9;
         y = rand() % 9;
         if (board::matrix[x][y] == 0) {
-            board::matrix[x][y] = rand() % 2 - 2;
+            board::matrix[x][y] = rand() % 2 + 10;
             i++;
         }
     }
