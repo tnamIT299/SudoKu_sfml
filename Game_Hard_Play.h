@@ -84,6 +84,7 @@ private:
 	int milisecond = 0;
 	int minute = 0;
 	int hours = 0;
+	int errorCount = 0;
 };
 
 

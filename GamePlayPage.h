@@ -65,7 +65,7 @@ private:
 	sf::Text _checkText;
 	sf::Text _BackText;
 	sf::Text _StartText;
-	int errorCount;
+	int errorCount=0;
 	//Music
 	sf::SoundBuffer buffer;
 	sf::Sound sound;
