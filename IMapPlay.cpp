@@ -432,8 +432,9 @@ void IMapPlay::OnFocusEvent() {
 					this->_selections.push_back({ i,j });
 				}
 
-				if (this->_sudokuMap.gameMap[i][j] == 0)
+				if (this->_sudokuMap.gameMap[i][j] == 0 && _sudokuMap.isSafe(this->_sudokuMap.gameMap,i,j,this->_selectedNumber))
 				{
+					_sudokuMap.iceHandle(this->_sudokuMap.gameMap,i,j);
 					this->_textGridMap[i][j].setString(std::to_string(this->_selectedNumber));
 					this->_textGridMap[i][j].setFillColor(sf::Color::Blue);
 					this->_sudokuMap.gameMap[i][j] = -(this->_selectedNumber);
