@@ -39,7 +39,7 @@ bool ISudokuMapGen::UsedInRow(int grid[MaxSize][MaxSize], int row, int value, in
 {
 
 	for (int col = 0; col < MaxSize; col++)
-		if (grid[row][col] == value && currentCol != col)
+		if (abs(grid[row][col]) == value && currentCol != col)
 			return true;
 	return false;
 }
@@ -47,7 +47,7 @@ bool ISudokuMapGen::UsedInRow(int grid[MaxSize][MaxSize], int row, int value, in
 bool ISudokuMapGen::UsedInCol(int grid[MaxSize][MaxSize], int col, int value, int CurrentRow)
 {
 	for (int row = 0; row < MaxSize; row++)
-		if (grid[row][col] == value && CurrentRow != row)
+		if (abs(grid[row][col]) == value && CurrentRow != row)
 			return true;
 	return false;
 }
@@ -56,7 +56,7 @@ bool ISudokuMapGen::UsedInBox(int grid[MaxSize][MaxSize], int boxStartRow, int b
 {
 	for (int row = 0; row < 3; row++)
 		for (int col = 0; col < 3; col++)
-			if (grid[row + boxStartRow][col + boxStartCol] == value && gameField.row != row && gameField.col != col)
+			if (abs(grid[row + boxStartRow][col + boxStartCol]) == value && gameField.row != row && gameField.col != col)
 				return true;
 	return false;
 }
@@ -65,10 +65,11 @@ bool ISudokuMapGen::isSafe(int grid[MaxSize][MaxSize], int row, int col, int val
 {
 	auto curRow = row;
 	auto curCol = col;
+	auto value1 = abs(value);
 	Field gField = { row,col };
-	auto check1 = UsedInRow(grid, row, value, curCol);
-	auto check2 = UsedInCol(grid, col, value, curRow);
-	auto check3 = UsedInBox(grid, row - row % 3, col - col % 3, value, gField) && grid[row][col] == 0;
+	auto check1 = UsedInRow(grid, row, value1, curCol);
+	auto check2 = UsedInCol(grid, col, value1, curRow);
+	auto check3 = UsedInBox(grid, row - row % 3, col - col % 3, value1, gField) && grid[row][col] == 0;
 
 	auto check = !check1 && !check2 && !check3;
 

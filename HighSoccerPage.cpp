@@ -75,7 +75,7 @@ void HighSoccerPage::setUp() {
 	this->_mainTitle.setFillColor(sf::Color::Red);
 	this->_mainTitle.setPosition(sf::Vector2f(this->_window->getSize().x / 2.5f - (4.f * 45.f) / 3.2f, this->_window->getSize().y / 6.5f));
 	this->_mainTitle.setStyle(sf::Text::Bold);
-
+	
 	auto Posx = this->_window->getSize().x / 2.3f - (170.f / 3.5f);
 	auto Posy = this->_window->getSize().y / 3.f;
 

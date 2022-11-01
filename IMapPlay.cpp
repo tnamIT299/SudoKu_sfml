@@ -447,8 +447,13 @@ void IMapPlay::OnFocusEvent() {
 					this->_selections.push_back({ i,j });
 				}
 				else {
-					errorCount++;
-					this->_checkText.setString(std::to_string(errorCount));
+					if (errorCount < 5) {
+						errorCount++;
+						this->_checkText.setString(std::to_string(errorCount));
+					}
+					else if (errorCount == 5) {
+						this->AlertWindow(this->_HeaderFont, "You have make more than 5 mistake, you lose!", 300, 100, sf::Color(223, 229, 237), LineColor);
+					}
 				}
 			}
 

@@ -451,7 +451,7 @@ void GamePlayPage::OnFocusEvent() {
 					this->_selections.push_back({ i,j });
 				} 
 
-				if (this->_sudokuMap.gameMap[i][j] == 0 && this->_sudokuMap.isSafe(this->_sudokuMap.gameMap, i, j, this->_selectedNumber))
+				if (this->_sudokuMap.gameMap[i][j] == 0)
 				{
 					if (this->_sudokuMap.isSafe(this->_sudokuMap.gameMap, i, j, this->_selectedNumber)) {
 						this->_textGridMap[i][j].setString(std::to_string(this->_selectedNumber));
@@ -459,11 +459,16 @@ void GamePlayPage::OnFocusEvent() {
 						this->_sudokuMap.gameMap[i][j] = -(this->_selectedNumber);
 						this->_selections.push_back({ i,j });
 					}
-					else{
-						errorCount++;
-						this->_checkText.setString(std::to_string(errorCount));
+					else {
+						if (errorCount < 5) {
+							errorCount++;
+							this->_checkText.setString(std::to_string(errorCount));
+						}
+						else if(errorCount ==5) {
+							this->AlertWindow(this->_HeaderFont, "You have make more than 5 mistake, you lose!", 300, 100, sf::Color(223, 229, 237), LineColor);
+						}
 					}
-						
+
 				}
 			}
 

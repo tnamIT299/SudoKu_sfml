@@ -1,4 +1,44 @@
-#include "XacThuc.h"
+﻿#include "XacThuc.h"
+#include <stdio.h> 
+#include <conio.h> 
+#include<ctime> 
+#include <windows.h>
+#include <iostream>
+
+//============== dịch con trỏ hiện tại đến điểm có tọa độ (x,y) ==========
+void gotoXY(int x, int y) {
+	HANDLE hConsoleOutput;
+	COORD Cursor_an_Pos = { x, y };
+	hConsoleOutput = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleCursorPosition(hConsoleOutput, Cursor_an_Pos);
+}
+//============= đặt màu cho chữ =========
+void SetColor(WORD color) {
+	HANDLE hConsoleOutput;
+	hConsoleOutput = GetStdHandle(STD_OUTPUT_HANDLE);
+
+	CONSOLE_SCREEN_BUFFER_INFO screen_buffer_info;
+	GetConsoleScreenBufferInfo(hConsoleOutput, &screen_buffer_info);
+
+	WORD wAttributes = screen_buffer_info.wAttributes;
+	color &= 0x000f;
+	wAttributes &= 0xfff0;
+	wAttributes |= color;
+
+	SetConsoleTextAttribute(hConsoleOutput, wAttributes);
+}
+//============== làm ẩn trỏ chuột ===========
+void ShowCur(bool CursorVisibility) {
+	HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
+	CONSOLE_CURSOR_INFO cursor = { 1, CursorVisibility };
+	SetConsoleCursorInfo(handle, &cursor);
+}
+//======= chỉnh màu =========
+void textcolor(int x) {
+	HANDLE mau;
+	mau = GetStdHandle(STD_OUTPUT_HANDLE);
+	SetConsoleTextAttribute(mau, x);
+}
 void XacThuc::gettimer(int seconds) {
 	try {
 		Driver* driver;
@@ -45,9 +85,10 @@ bool SoSanh(string s1, string s2)
 
 }
 int  XacThuc::DangNhap() {
-	cout << "Tai Khoan: ";
+	SetColor(9); gotoXY(45, 6); printf("========= DANG NHAP =========");
+	SetColor(9); gotoXY(50, 9); cout << "Tai Khoan: ";
 	cin >> this->taikhoan;
-	cout << "Mat Khau: ";
+	SetColor(12); gotoXY(50, 13); cout << "Mat Khau: ";
 	cin >> this->matkhau;
 	XacThuc::hashFuction(this->matkhau);
 	try {
@@ -109,7 +150,9 @@ string XacThuc::hashFuction(string input) {
 }
 
 int  XacThuc::DangKy() {
-	cout << "Tai Khoan: ";
+	system("cls");
+	SetColor(9); gotoXY(45, 6); printf("========= DANG KY =========");
+	SetColor(9); gotoXY(52, 9); cout << "Tai Khoan: ";
 	cin >> this->taikhoan;
 	try {
 		Driver* driver;
@@ -127,8 +170,9 @@ int  XacThuc::DangKy() {
 		while (res->next()) {
 			const string namee = res->getString("name");
 			if (SoSanh(namee, taikhoan) == true) {
-				cout << "tai khoan da ton tai trong co so du lieu" << endl;
-				cout << "vui long dang ky lai" << endl;
+				SetColor(9); gotoXY(52, 10); cout << "tai khoan da ton tai trong co so du lieu" << endl;
+				SetColor(9); gotoXY(52, 11); cout << "vui long dang ky lai" << endl;
+				system("pause");
 				XacThuc::DangKy();
 
 			}
@@ -141,9 +185,9 @@ int  XacThuc::DangKy() {
 	catch (SQLException& e) {
 		cout << "error";
 	}
-	cout << "Mat Khau: ";
+	SetColor(9); gotoXY(52, 12); cout << "Mat Khau: ";
 	cin >> this->matkhau;
-	cout << "Nhap lai Mat Khau: ";
+	SetColor(9); gotoXY(52, 13); cout << "Nhap lai Mat Khau: ";
 	cin >> this->matkhau2;
 	if (this->matkhau == this->matkhau2) {
 		try {
@@ -172,13 +216,15 @@ int  XacThuc::DangKy() {
 
 		}
 		catch (SQLException& e) {
-			cout << "error";
+			SetColor(9); gotoXY(52, 14); cout << "error";
+			system("pause");
 		}
 		return 1;
 	}
 	else {
-		cout << "Mat Khau khong trung khop!" << endl;
-		cout << "Vui long dang ky lai !" << endl;
+		SetColor(9); gotoXY(52, 15); cout << "Mat Khau khong trung khop!" << endl;
+		SetColor(9); gotoXY(52, 16); cout << "Vui long dang ky lai !" << endl;
+		system("pause");
 		XacThuc::DangKy();
 	};
 };
