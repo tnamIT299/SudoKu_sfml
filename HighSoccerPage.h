@@ -29,6 +29,8 @@ private:
 	sf::Font _HeaderFont;
 	sf::Texture _bgTexture;
 	sf::Text _mainTitle;
+	sf::Text _highScore;
+	sf::Text _highUser;
 	sf::Sprite _bgSprite;
 	sf::RectangleShape _soccer;
 	/*sf::RectangleShape _EasyButton;

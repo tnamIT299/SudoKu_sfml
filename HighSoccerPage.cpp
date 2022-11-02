@@ -1,4 +1,5 @@
 #include "HighSoccerPage.h"
+#include"UserInfo.h"
 #include "SFML/Audio.hpp"
 
 void HighSoccerPage::setUp() {
@@ -70,12 +71,18 @@ void HighSoccerPage::setUp() {
 	}
 
 	this->_mainTitle.setFont(this->_HeaderFont);
-	this->_mainTitle.setString("High Soccer");
+	this->_mainTitle.setString("High Score");	
 	this->_mainTitle.setCharacterSize(45);
 	this->_mainTitle.setFillColor(sf::Color::Red);
 	this->_mainTitle.setPosition(sf::Vector2f(this->_window->getSize().x / 2.5f - (4.f * 45.f) / 3.2f, this->_window->getSize().y / 6.5f));
 	this->_mainTitle.setStyle(sf::Text::Bold);
-	
+	UserInfo::updateTimeComplete();
+	this->_highUser.setFont(this->_HeaderFont);
+	this->_highUser.setString(UserInfo::userTimeComplete+"\t\t"+to_string(UserInfo::timeComplete));
+	this->_highUser.setCharacterSize(35);
+	this->_highUser.setFillColor(sf::Color::Blue);
+	this->_highUser.setPosition(sf::Vector2f(this->_window->getSize().x / 2.7f - (5.f * 50.f) / 4.2f, this->_window->getSize().y / 4.2f));
+	this->_highUser.setStyle(sf::Text::Bold);
 	auto Posx = this->_window->getSize().x / 2.3f - (170.f / 3.5f);
 	auto Posy = this->_window->getSize().y / 3.f;
 
@@ -87,7 +94,9 @@ void HighSoccerPage::Display() {
 
 	this->_window->clear(sf::Color::Black);
 	this->_window->draw(this->_bgSprite);
+	this->_window->draw(this->_highUser);
 	this->_window->draw(this->_mainTitle);
+	
 	this->_window->draw(this->_BackButton);
 	this->_window->draw(this->_BackText);
 

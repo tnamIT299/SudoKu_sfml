@@ -11,6 +11,8 @@ using namespace std;
 using namespace sf;
 int main()
 {
+	UserInfo::updateTimeComplete();
+
 	int a;
 	cout << "1. Dang nhap" << endl;
 	cout << "2. Dang ky" << endl;
